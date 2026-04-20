@@ -22,6 +22,7 @@ import { Footer } from "@/components/site/Footer";
 import { CookieBanner } from "@/components/site/CookieBanner";
 import { BathroomPromo } from "@/components/site/BathroomPromo";
 import { SocialCTA } from "@/components/site/SocialCTA";
+import { ScrollToTop } from "@/components/site/ScrollToTop";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -75,6 +76,7 @@ function Index() {
       <Footer />
       <CookieBanner />
       <LeadPopup />
+      <ScrollToTop />
     </main>
   );
 }

@@ -21,20 +21,22 @@ export function BathroomPromo() {
                 <Bath className="h-3.5 w-3.5" /> Акция «Приведи друга»
               </div>
               <h2 className="font-display font-bold uppercase text-3xl md:text-4xl lg:text-5xl leading-tight">
-                Скидка <span className="text-gradient-gold">−40%</span> на ремонт санузла
+                Акция <span className="text-gradient-gold">«Приведи друга»</span>
               </h2>
               <p className="mt-5 text-white/70 text-lg leading-relaxed max-w-lg">
-                Закажите ремонт квартиры под ключ и приведите друга — он получит ремонт санузла
-                со скидкой 40%, а вы — приятный бонус от компании СКАЙСИТИ.
+                Закажите ремонт квартиры под ключ и приведите друга — вы получите дополнительную
+                скидку <span className="text-primary font-semibold">10%</span> на ремонт под ключ,
+                а друг — скидку <span className="text-primary font-semibold">30%</span> на ремонт
+                санузла от компании СКАЙСИТИ.
               </p>
 
               <div className="mt-8 flex items-baseline gap-4 flex-wrap">
                 <div className="font-display font-bold text-5xl md:text-6xl text-gradient-gold leading-none">
-                  от 133 200 ₽
+                  от 155 400 ₽
                 </div>
                 <div className="text-white/40 text-xl line-through">от 222 000 ₽</div>
               </div>
-              <div className="mt-2 text-white/50 text-sm">В стоимость входит только работа · материалы оплачиваются отдельно</div>
+              <div className="mt-2 text-white/50 text-sm">Цена санузла для друга со скидкой 30% · работа без материалов</div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <button
@@ -79,8 +81,9 @@ export function BathroomPromo() {
               </ul>
               <div className="mt-5 text-white/50 text-xs leading-relaxed">
                 * В акционную стоимость включена только работа. Материалы (плитка, сантехника,
-                мебель) оплачиваются отдельно по закупочной цене. Скидка 40% предоставляется
-                другу при заключении им договора на ремонт квартиры под ключ.
+                мебель) оплачиваются отдельно по закупочной цене. Скидка 10% на ремонт под ключ
+                начисляется заказчику, скидка 30% на ремонт санузла — приведённому другу при
+                заключении им договора.
               </div>
             </div>
           </div>

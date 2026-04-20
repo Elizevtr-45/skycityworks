@@ -123,22 +123,23 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   useEffect(() => {
-    const run = () => applyRussianTypography(document.body);
-    run();
-    const observer = new MutationObserver((mutations) => {
-      for (const m of mutations) {
-        m.addedNodes.forEach((node) => {
-          if (node.nodeType === Node.ELEMENT_NODE) {
-            applyRussianTypography(node as HTMLElement);
-          } else if (node.nodeType === Node.TEXT_NODE) {
-            const parent = (node as Text).parentElement;
-            if (parent) applyRussianTypography(parent);
-          }
-        });
-      }
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-    return () => observer.disconnect();
+    let timer: number | null = null;
+    const schedule = () => {
+      if (timer !== null) return;
+      timer = window.setTimeout(() => {
+        timer = null;
+        applyRussianTypography(document.body);
+      }, 50);
+    };
+    // Запускаем после гидрации, не на первом синхронном рендере
+    const initial = window.setTimeout(() => applyRussianTypography(document.body), 0);
+    const observer = new MutationObserver(schedule);
+    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+    return () => {
+      observer.disconnect();
+      if (timer !== null) clearTimeout(timer);
+      clearTimeout(initial);
+    };
   }, []);
   return <Outlet />;
 }

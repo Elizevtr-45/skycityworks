@@ -1,6 +1,53 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
+
+// Русская типографика: вставляем неразрывные пробелы (\u00A0) после
+// предлогов, коротких союзов и частицы «не», чтобы они не «висели»
+// в конце строки.
+const SHORT_WORDS = [
+  "в", "во", "на", "за", "под", "о", "об", "обо", "от", "до", "у", "к",
+  "ко", "с", "со", "без", "через", "из", "изо", "над", "про", "при",
+  "по", "для",
+  "и", "а", "но", "да", "или", "либо", "же",
+  "не", "ни",
+];
+
+function applyRussianTypography(root: HTMLElement) {
+  const re = new RegExp(
+    `(^|[\\s(«"'])(${SHORT_WORDS.join("|")})\\s+`,
+    "gi",
+  );
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      const parent = node.parentElement;
+      if (!parent) return NodeFilter.FILTER_REJECT;
+      const tag = parent.tagName;
+      if (
+        tag === "SCRIPT" ||
+        tag === "STYLE" ||
+        tag === "CODE" ||
+        tag === "PRE" ||
+        tag === "TEXTAREA" ||
+        tag === "INPUT"
+      ) {
+        return NodeFilter.FILTER_REJECT;
+      }
+      if (parent.isContentEditable) return NodeFilter.FILTER_REJECT;
+      if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    },
+  });
+  const nodes: Text[] = [];
+  let n: Node | null;
+  while ((n = walker.nextNode())) nodes.push(n as Text);
+  for (const node of nodes) {
+    const original = node.nodeValue ?? "";
+    const updated = original.replace(re, (_m, pre, word) => `${pre}${word}\u00A0`);
+    if (updated !== original) node.nodeValue = updated;
+  }
+}
 
 function NotFoundComponent() {
   return (
@@ -62,7 +109,7 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <head>
         <HeadContent />
       </head>
@@ -75,5 +122,23 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  useEffect(() => {
+    const run = () => applyRussianTypography(document.body);
+    run();
+    const observer = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        m.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            applyRussianTypography(node as HTMLElement);
+          } else if (node.nodeType === Node.TEXT_NODE) {
+            const parent = (node as Text).parentElement;
+            if (parent) applyRussianTypography(parent);
+          }
+        });
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
   return <Outlet />;
 }

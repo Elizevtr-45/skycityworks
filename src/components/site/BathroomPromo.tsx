@@ -21,11 +21,13 @@ export function BathroomPromo() {
                 <Bath className="h-3.5 w-3.5" /> Акция «Приведи друга»
               </div>
               <h2 className="font-display font-bold uppercase text-3xl md:text-4xl lg:text-5xl leading-tight">
-                Скидка <span className="text-gradient-gold">−40%</span> на ремонт санузла
+                Акция <span className="text-gradient-gold">«Приведи друга»</span>
               </h2>
               <p className="mt-5 text-white/70 text-lg leading-relaxed max-w-lg">
-                Закажите ремонт квартиры под ключ и приведите друга — он получит ремонт санузла
-                со скидкой 40%, а вы — приятный бонус от компании СКАЙСИТИ.
+                Закажите ремонт квартиры под ключ и приведите друга — вы получите дополнительную
+                скидку <span className="text-primary font-semibold">10%</span> на ремонт под ключ,
+                а друг — скидку <span className="text-primary font-semibold">30%</span> на ремонт
+                санузла от компании СКАЙСИТИ.
               </p>
 
               <div className="mt-8 flex items-baseline gap-4 flex-wrap">

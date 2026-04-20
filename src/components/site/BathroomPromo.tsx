@@ -32,11 +32,11 @@ export function BathroomPromo() {
 
               <div className="mt-8 flex items-baseline gap-4 flex-wrap">
                 <div className="font-display font-bold text-5xl md:text-6xl text-gradient-gold leading-none">
-                  от 133 200 ₽
+                  от 155 400 ₽
                 </div>
                 <div className="text-white/40 text-xl line-through">от 222 000 ₽</div>
               </div>
-              <div className="mt-2 text-white/50 text-sm">В стоимость входит только работа · материалы оплачиваются отдельно</div>
+              <div className="mt-2 text-white/50 text-sm">Цена санузла для друга со скидкой 30% · работа без материалов</div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <button

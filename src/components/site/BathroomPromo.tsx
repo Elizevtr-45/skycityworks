@@ -1,4 +1,4 @@
-import { Bath, Check, Clock, ShieldCheck } from "lucide-react";
+import { Bath, Check, Users, Tag } from "lucide-react";
 
 const includes = [
   "Демонтаж и вывоз мусора",
@@ -18,24 +18,23 @@ export function BathroomPromo() {
           <div className="relative grid lg:grid-cols-2 gap-10 p-8 md:p-12 lg:p-16 items-center">
             <div className="reveal">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/15 border border-primary/40 text-primary text-xs uppercase tracking-[0.25em] font-semibold rounded-sm mb-5">
-                <Bath className="h-3.5 w-3.5" /> Акция месяца
+                <Bath className="h-3.5 w-3.5" /> Акция «Приведи друга»
               </div>
               <h2 className="font-display font-bold uppercase text-3xl md:text-4xl lg:text-5xl leading-tight">
-                Санузел под ключ <br />
-                <span className="text-gradient-gold">за 14 дней</span>
+                Скидка <span className="text-gradient-gold">−40%</span> на ремонт санузла
               </h2>
               <p className="mt-5 text-white/70 text-lg leading-relaxed max-w-lg">
-                Полный ремонт санузла с премиальной плиткой и сантехникой. Фиксированная цена,
-                без скрытых доплат. Скидка 15% при заказе до конца месяца.
+                Закажите ремонт квартиры под ключ и приведите друга — он получит ремонт санузла
+                со скидкой 40%, а вы — приятный бонус от компании СКАЙСИТИ.
               </p>
 
               <div className="mt-8 flex items-baseline gap-4 flex-wrap">
                 <div className="font-display font-bold text-5xl md:text-6xl text-gradient-gold leading-none">
-                  от 189 000 ₽
+                  от 133 200 ₽
                 </div>
                 <div className="text-white/40 text-xl line-through">от 222 000 ₽</div>
               </div>
-              <div className="mt-2 text-white/50 text-sm">«под ключ» · материалы включены</div>
+              <div className="mt-2 text-white/50 text-sm">«под ключ» · материалы и работа включены</div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <button
@@ -55,10 +54,10 @@ export function BathroomPromo() {
 
               <div className="mt-8 flex flex-wrap gap-6 text-sm text-white/70">
                 <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-primary" /> 14 рабочих дней
+                  <Users className="h-4 w-4 text-primary" /> Действует для друга
                 </div>
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-primary" /> Гарантия 3 года
+                  <Tag className="h-4 w-4 text-primary" /> Фиксированная цена
                 </div>
               </div>
             </div>
@@ -78,6 +77,10 @@ export function BathroomPromo() {
                   </li>
                 ))}
               </ul>
+              <div className="mt-5 text-white/50 text-xs leading-relaxed">
+                * Скидка 40% на ремонт санузла предоставляется другу при заключении им договора на
+                ремонт квартиры под ключ. Условия обсуждаются индивидуально.
+              </div>
             </div>
           </div>
         </div>

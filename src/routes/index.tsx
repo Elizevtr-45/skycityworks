@@ -59,7 +59,7 @@ function Index() {
       <Process />
       <Reviews />
       <Team />
-      <VideoBlog />
+      
       <Pricing />
       <Calculator />
       <LeadForm />

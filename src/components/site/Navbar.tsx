@@ -76,28 +76,35 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="lg:hidden bg-dark border-t border-white/5">
-          <div className="container-px mx-auto py-4 flex flex-col gap-4">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="text-white/80 hover:text-primary transition-colors uppercase tracking-wider text-sm font-medium"
-              >
-                {l.label}
-              </a>
-            ))}
-            <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
-              <a href="tel:+79693077772" className="inline-flex items-center gap-2 text-primary font-semibold">
-                <Phone className="h-4 w-4" /> 8 969 307 77 72 — Денис
-              </a>
-              <a href="tel:+79644455525" className="inline-flex items-center gap-2 text-primary font-semibold">
-                <Phone className="h-4 w-4" /> 8 964 445 55 25 — Николай
-              </a>
+        <>
+          <div
+            className="lg:hidden fixed inset-0 top-16 md:top-20 bg-black/50 z-40"
+            onClick={() => setOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="lg:hidden relative z-50 bg-dark border-t border-white/5">
+            <div className="container-px mx-auto py-4 flex flex-col gap-4">
+              {links.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="text-white/80 hover:text-primary transition-colors uppercase tracking-wider text-sm font-medium"
+                >
+                  {l.label}
+                </a>
+              ))}
+              <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
+                <a href="tel:+79693077772" className="inline-flex items-center gap-2 text-primary font-semibold">
+                  <Phone className="h-4 w-4" /> 8 969 307 77 72 — Денис
+                </a>
+                <a href="tel:+79644455525" className="inline-flex items-center gap-2 text-primary font-semibold">
+                  <Phone className="h-4 w-4" /> 8 964 445 55 25 — Николай
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );

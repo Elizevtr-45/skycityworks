@@ -36,17 +36,18 @@ export function Hero() {
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <a
-              href="#contact"
+              href="#calculator"
               className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all duration-300 hover:shadow-[0_10px_40px_-10px_oklch(0.7_0.08_65/0.6)] hover:-translate-y-0.5"
             >
               Рассчитать стоимость
             </a>
-            <a
-              href="#contact"
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("open-lead-form"))}
               className="inline-flex items-center justify-center px-8 py-4 border border-white/30 text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-white hover:text-dark transition-all duration-300"
             >
               Получить консультацию
-            </a>
+            </button>
           </div>
 
           <div className="mt-16 grid grid-cols-3 gap-6 max-w-2xl">

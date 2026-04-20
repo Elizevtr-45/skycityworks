@@ -4,7 +4,7 @@ import { SectionHeader } from "./SectionHeader";
 const tiers = [
   {
     name: "Базовый",
-    price: "от 12 900",
+    price: "от 22 000",
     unit: "₽ / м²",
     features: [
       "Черновые работы",
@@ -16,7 +16,7 @@ const tiers = [
   },
   {
     name: "Стандарт",
-    price: "от 18 900",
+    price: "от 25 000",
     unit: "₽ / м²",
     features: [
       "Дизайн-проект включён",
@@ -28,7 +28,7 @@ const tiers = [
   },
   {
     name: "Премиум",
-    price: "от 28 900",
+    price: "от 30 000",
     unit: "₽ / м²",
     features: [
       "Индивидуальный дизайн",

@@ -50,6 +50,27 @@ export function Pricing() {
           subtitle="Прозрачное ценообразование. Окончательная стоимость — после бесплатного замера."
           center
         />
+
+        <div className="reveal max-w-3xl mx-auto mb-12 -mt-4 bg-dark text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4" style={{ borderRadius: "10px" }}>
+          <div>
+            <div className="text-primary uppercase tracking-[0.3em] text-xs font-semibold mb-2">Бесплатно</div>
+            <div className="font-display font-bold uppercase text-xl md:text-2xl">
+              Осмотр · Замер · Смета
+            </div>
+            <div className="text-white/60 text-sm mt-2">Без обязательств. Выезд по Приморскому краю.</div>
+          </div>
+          <div className="flex items-baseline gap-2">
+            <span className="font-display font-bold text-4xl md:text-5xl text-primary">0</span>
+            <span className="text-white/60 text-sm">₽</span>
+          </div>
+          <a
+            href="#contact"
+            className="px-6 py-3 bg-primary text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-colors text-center whitespace-nowrap"
+          >
+            Вызвать замерщика
+          </a>
+        </div>
+
         <div className="grid md:grid-cols-3 gap-6">
           {tiers.map((t, i) => (
             <div

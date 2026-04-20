@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
+import logo from "@/assets/logo.svg";
 
 const links = [
   { href: "#services", label: "Услуги" },
+  { href: "#about", label: "О компании" },
   { href: "#portfolio", label: "Портфолио" },
   { href: "#process", label: "Процесс" },
   { href: "#pricing", label: "Тарифы" },
   { href: "#calculator", label: "Калькулятор" },
-  { href: "#reviews", label: "Отзывы" },
   { href: "#contact", label: "Контакты" },
 ];
 
@@ -31,11 +32,11 @@ export function Navbar() {
       }`}
     >
       <div className="container-px mx-auto max-w-7xl flex items-center justify-between h-16 md:h-20">
-        <a href="#top" className="font-display font-bold text-lg md:text-xl tracking-widest text-white uppercase">
-          Велес<span className="text-primary">·</span>Ремонт
+        <a href="#top" className="flex items-center" aria-label="СКАЙСИТИ — на главную">
+          <img src={logo} alt="СКАЙСИТИ" className="h-8 md:h-10 w-auto brightness-0 invert" />
         </a>
 
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-7">
           {links.map((l) => (
             <a
               key={l.href}
@@ -48,11 +49,11 @@ export function Navbar() {
         </nav>
 
         <a
-          href="tel:+74232000000"
+          href="tel:+79693077772"
           className="hidden md:inline-flex items-center gap-2 text-white text-sm font-semibold hover:text-primary transition-colors"
         >
           <Phone className="h-4 w-4 text-primary" />
-          +7 (423) 200-00-00
+          8 969 307 77 72
         </a>
 
         <button
@@ -77,12 +78,14 @@ export function Navbar() {
                 {l.label}
               </a>
             ))}
-            <a
-              href="tel:+74232000000"
-              className="inline-flex items-center gap-2 text-primary font-semibold pt-2 border-t border-white/10"
-            >
-              <Phone className="h-4 w-4" /> +7 (423) 200-00-00
-            </a>
+            <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
+              <a href="tel:+79693077772" className="inline-flex items-center gap-2 text-primary font-semibold">
+                <Phone className="h-4 w-4" /> 8 969 307 77 72 — Денис
+              </a>
+              <a href="tel:+79644455525" className="inline-flex items-center gap-2 text-primary font-semibold">
+                <Phone className="h-4 w-4" /> 8 964 445 55 25 — Николай
+              </a>
+            </div>
           </div>
         </div>
       )}

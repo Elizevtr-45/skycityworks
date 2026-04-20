@@ -13,7 +13,7 @@ export function Showroom() {
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/15 border border-primary/40 text-primary text-xs uppercase tracking-[0.25em] font-semibold rounded-sm">
               <Building2 className="h-3.5 w-3.5" /> Объекты в работе
             </div>
-            <div className="mt-6 font-display font-bold uppercase text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
+            <div className="mt-6 font-display font-bold uppercase text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[0.95] break-words">
               <span className="text-gradient-gold">Покажем</span>
               <br />вживую
             </div>

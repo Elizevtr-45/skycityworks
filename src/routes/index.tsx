@@ -15,10 +15,12 @@ import { Team } from "@/components/site/Team";
 import { VideoBlog } from "@/components/site/VideoBlog";
 import { Pricing } from "@/components/site/Pricing";
 import { Calculator } from "@/components/site/Calculator";
-import { LeadForm } from "@/components/site/LeadForm";
+import { LeadForm, LeadPopup } from "@/components/site/LeadForm";
 import { FAQ } from "@/components/site/FAQ";
 import { Footer } from "@/components/site/Footer";
 import { CookieBanner } from "@/components/site/CookieBanner";
+import { BathroomPromo } from "@/components/site/BathroomPromo";
+import { SocialCTA } from "@/components/site/SocialCTA";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -52,6 +54,7 @@ function Index() {
       <Portfolio />
       <Showroom />
       <Furniture />
+      <BathroomPromo />
       <SocialProof />
       <Process />
       <Reviews />
@@ -60,9 +63,11 @@ function Index() {
       <Pricing />
       <Calculator />
       <LeadForm />
+      <SocialCTA />
       <FAQ />
       <Footer />
       <CookieBanner />
+      <LeadPopup />
     </main>
   );
 }

@@ -19,9 +19,9 @@ function LeadFormFields({ onDone, dark = true }: { onDone: () => void; dark?: bo
 
   return (
     <form onSubmit={onSubmit} className="grid gap-4">
-      <input required placeholder="Имя" className={inputCls} />
-      <input required type="tel" placeholder="Телефон" className={inputCls} />
-      <input type="number" min={5} placeholder="Площадь, м² (необязательно)" className={inputCls} />
+      <input required placeholder="Имя *" className={inputCls} />
+      <input required type="tel" placeholder="Телефон *" className={inputCls} />
+      <input required type="number" min={5} placeholder="Площадь, м² *" className={inputCls} />
       <button
         type="submit"
         className="mt-2 px-8 py-4 bg-primary text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5"

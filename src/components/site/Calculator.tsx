@@ -5,9 +5,9 @@ import { SectionHeader } from "./SectionHeader";
 type TierKey = "basic" | "standard" | "premium";
 
 const TIERS: Record<TierKey, { name: string; price: number }> = {
-  basic: { name: "Базовый", price: 12900 },
-  standard: { name: "Стандарт", price: 18900 },
-  premium: { name: "Премиум", price: 28900 },
+  basic: { name: "Базовый", price: 22000 },
+  standard: { name: "Стандарт", price: 25000 },
+  premium: { name: "Премиум", price: 30000 },
 };
 
 const OPTIONS = [

@@ -34,7 +34,7 @@ export function BathroomPromo() {
                 </div>
                 <div className="text-white/40 text-xl line-through">от 222 000 ₽</div>
               </div>
-              <div className="mt-2 text-white/50 text-sm">«под ключ» · материалы и работа включены</div>
+              <div className="mt-2 text-white/50 text-sm">В стоимость входит только работа · материалы оплачиваются отдельно</div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <button
@@ -78,8 +78,9 @@ export function BathroomPromo() {
                 ))}
               </ul>
               <div className="mt-5 text-white/50 text-xs leading-relaxed">
-                * Скидка 40% на ремонт санузла предоставляется другу при заключении им договора на
-                ремонт квартиры под ключ. Условия обсуждаются индивидуально.
+                * В акционную стоимость включена только работа. Материалы (плитка, сантехника,
+                мебель) оплачиваются отдельно по закупочной цене. Скидка 40% предоставляется
+                другу при заключении им договора на ремонт квартиры под ключ.
               </div>
             </div>
           </div>

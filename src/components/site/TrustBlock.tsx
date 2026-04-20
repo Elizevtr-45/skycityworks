@@ -1,10 +1,10 @@
-import { Award, Briefcase, Wallet, Clock } from "lucide-react";
+import { Award, Briefcase, ShieldCheck, Wallet } from "lucide-react";
 
 const items = [
-  { icon: Award, title: "5+ лет опыта", text: "На рынке Владивостока" },
-  { icon: Briefcase, title: "120+ проектов", text: "Сданы и заселены" },
+  { icon: Award, title: "7+ лет опыта", text: "В строительстве и отделке" },
+  { icon: Briefcase, title: "2800+ проектов", text: "Сданы и заселены" },
+  { icon: ShieldCheck, title: "2 года гарантии", text: "+ расширенная пожизненная" },
   { icon: Wallet, title: "Фиксированная цена", text: "Без скрытых доплат" },
-  { icon: Clock, title: "Соблюдение сроков", text: "Прописано в договоре" },
 ];
 
 export function TrustBlock() {

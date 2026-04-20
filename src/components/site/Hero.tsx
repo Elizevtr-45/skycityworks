@@ -20,18 +20,18 @@ export function Hero() {
           <div className="inline-flex items-center gap-3 mb-6">
             <span className="gold-divider" />
             <span className="text-primary uppercase tracking-[0.3em] text-xs font-semibold">
-              Ремонт под ключ · Владивосток
+              СКАЙСИТИ · Приморский край
             </span>
           </div>
 
           <h1 className="font-display font-bold uppercase text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05]">
-            Профессиональный ремонт квартир{" "}
-            <span className="text-gradient-gold">под ключ</span> во Владивостоке
+            Строительство и ремонт{" "}
+            <span className="text-gradient-gold">под ключ</span>
           </h1>
 
           <p className="mt-6 text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">
-            С гарантией до 5 лет. Делаем ремонт без стресса — фиксированная цена,
-            точные сроки и контроль качества на каждом этапе.
+            Безупречное качество и архитектурная точность. Полный цикл работ — от проекта
+            до изготовления мебели. Гарантия 2 года + расширенная пожизненная.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
@@ -51,9 +51,9 @@ export function Hero() {
 
           <div className="mt-16 grid grid-cols-3 gap-6 max-w-2xl">
             {[
-              { n: "5+", t: "лет опыта" },
-              { n: "120+", t: "проектов" },
-              { n: "5 лет", t: "гарантии" },
+              { n: "7+", t: "лет опыта" },
+              { n: "2800+", t: "проектов" },
+              { n: "2 года", t: "гарантии" },
             ].map((s) => (
               <div key={s.t}>
                 <div className="font-display text-3xl md:text-4xl font-bold text-primary">{s.n}</div>

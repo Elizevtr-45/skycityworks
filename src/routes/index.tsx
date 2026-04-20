@@ -12,6 +12,7 @@ import { Reviews } from "@/components/site/Reviews";
 import { Team } from "@/components/site/Team";
 import { VideoBlog } from "@/components/site/VideoBlog";
 import { Pricing } from "@/components/site/Pricing";
+import { Calculator } from "@/components/site/Calculator";
 import { LeadForm } from "@/components/site/LeadForm";
 import { FAQ } from "@/components/site/FAQ";
 import { Footer } from "@/components/site/Footer";
@@ -52,6 +53,7 @@ function Index() {
       <Team />
       <VideoBlog />
       <Pricing />
+      <Calculator />
       <LeadForm />
       <FAQ />
       <Footer />

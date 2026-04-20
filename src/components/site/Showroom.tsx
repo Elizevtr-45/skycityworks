@@ -1,19 +1,35 @@
-import siteVisitImg from "@/assets/site-visit.jpg";
-import { MapPin, Eye } from "lucide-react";
+import { MapPin, Eye, Building2, Hammer, Sparkles } from "lucide-react";
 
 export function Showroom() {
   return (
     <section className="py-20 md:py-32 bg-background">
       <div className="container-px mx-auto max-w-7xl grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-        <div className="reveal relative aspect-[4/3] overflow-hidden rounded-sm">
-          <img
-            src={siteVisitImg}
-            alt="Экскурсия на объект ремонта СКАЙСИТИ"
-            width={1280}
-            height={960}
-            loading="lazy"
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-          />
+        <div
+          className="reveal relative aspect-[4/3] overflow-hidden bg-dark text-white p-8 md:p-12 flex flex-col justify-between"
+          style={{ borderRadius: "10px" }}
+        >
+          <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_20%_20%,_var(--primary),_transparent_55%),radial-gradient(circle_at_80%_80%,_var(--primary),_transparent_60%)]" />
+          <div className="relative">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/15 border border-primary/40 text-primary text-xs uppercase tracking-[0.25em] font-semibold rounded-sm">
+              <Building2 className="h-3.5 w-3.5" /> Объекты в работе
+            </div>
+            <div className="mt-6 font-display font-bold uppercase text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
+              <span className="text-gradient-gold">Покажем</span>
+              <br />вживую
+            </div>
+          </div>
+          <div className="relative grid grid-cols-2 gap-4 mt-8">
+            <div className="bg-white/5 border border-white/10 rounded-sm p-4">
+              <Hammer className="h-5 w-5 text-primary mb-2" />
+              <div className="font-display font-bold text-2xl">12+</div>
+              <div className="text-white/60 text-xs uppercase tracking-wider">активных объектов</div>
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-sm p-4">
+              <Sparkles className="h-5 w-5 text-primary mb-2" />
+              <div className="font-display font-bold text-2xl">100%</div>
+              <div className="text-white/60 text-xs uppercase tracking-wider">прозрачность работ</div>
+            </div>
+          </div>
         </div>
         <div className="reveal">
           <div className="flex items-center gap-3 mb-4">

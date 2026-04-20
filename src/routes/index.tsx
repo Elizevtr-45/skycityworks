@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { useReveal } from "@/hooks/useReveal";
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
@@ -44,6 +45,12 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   useReveal();
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash) {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+  }, []);
   return (
     <main className="min-h-screen bg-background">
       <Navbar />

@@ -35,7 +35,7 @@ const projects: Project[] = [
     images: [p1, p1b, p1c],
     title: "ЖК «Маринист»",
     type: "2-комнатная · 68 м²",
-    price: "1 850 000 ₽",
+    price: "1 700 000 ₽",
     duration: "3,5 месяца",
     area: "68 м²",
     description:
@@ -52,7 +52,7 @@ const projects: Project[] = [
     images: [p2, p2b, p2c],
     title: "ЖК «Аквамарин»",
     type: "Кухня-гостиная · 42 м²",
-    price: "1 120 000 ₽",
+    price: "1 050 000 ₽",
     duration: "2 месяца",
     area: "42 м²",
     description:
@@ -69,7 +69,7 @@ const projects: Project[] = [
     images: [p3, p3b, p3c],
     title: "ЖК «Жемчужина»",
     type: "3-комнатная · 92 м²",
-    price: "2 480 000 ₽",
+    price: "2 300 000 ₽",
     duration: "5 месяцев",
     area: "92 м²",
     description:
@@ -86,7 +86,7 @@ const projects: Project[] = [
     images: [p4, p4b, p4c],
     title: "ЖК «Босфор»",
     type: "Санузел премиум · 9 м²",
-    price: "480 000 ₽",
+    price: "270 000 ₽",
     duration: "3 недели",
     area: "9 м²",
     description:

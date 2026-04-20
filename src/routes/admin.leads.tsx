@@ -103,7 +103,11 @@ function AdminLeads() {
           setLeads((prev) => prev.filter((l) => l.id !== (payload.old as { id: string }).id));
         }
       )
-      .subscribe();
+      .subscribe((status) => {
+        if (status === "SUBSCRIBED") {
+          void loadLeads();
+        }
+      });
 
     return () => {
       supabase.removeChannel(channel);

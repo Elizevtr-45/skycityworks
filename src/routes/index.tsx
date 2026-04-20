@@ -12,7 +12,7 @@ import { SocialProof } from "@/components/site/SocialProof";
 import { Process } from "@/components/site/Process";
 import { Reviews } from "@/components/site/Reviews";
 import { Team } from "@/components/site/Team";
-import { VideoBlog } from "@/components/site/VideoBlog";
+
 import { Pricing } from "@/components/site/Pricing";
 import { Calculator } from "@/components/site/Calculator";
 import { LeadForm, LeadPopup } from "@/components/site/LeadForm";
@@ -59,7 +59,7 @@ function Index() {
       <Process />
       <Reviews />
       <Team />
-      <VideoBlog />
+      
       <Pricing />
       <Calculator />
       <LeadForm />

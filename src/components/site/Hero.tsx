@@ -26,7 +26,7 @@ export function Hero() {
 
           <h1 className="font-display font-bold uppercase text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05]">
             Строительство и ремонт{" "}
-            <span className="text-gradient-gold">под ключ</span>
+            <span className="text-gradient-gold">под ключ во Владивостоке</span>
           </h1>
 
           <p className="mt-6 text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">
@@ -65,9 +65,6 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-xs uppercase tracking-widest animate-pulse">
-        Прокрутите вниз
-      </div>
     </section>
   );
 }

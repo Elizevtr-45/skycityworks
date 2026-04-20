@@ -1,0 +1,72 @@
+import heroImg from "@/assets/hero-interior.jpg";
+
+export function Hero() {
+  return (
+    <section id="top" className="relative min-h-screen flex items-center overflow-hidden">
+      <div className="absolute inset-0">
+        <img
+          src={heroImg}
+          alt="Премиальный интерьер квартиры после ремонта во Владивостоке"
+          width={1920}
+          height={1280}
+          className="w-full h-full object-cover scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/70 to-dark/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent" />
+      </div>
+
+      <div className="relative container-px mx-auto max-w-7xl pt-28 pb-20 md:pt-32 md:pb-28">
+        <div className="max-w-3xl reveal is-visible">
+          <div className="inline-flex items-center gap-3 mb-6">
+            <span className="gold-divider" />
+            <span className="text-primary uppercase tracking-[0.3em] text-xs font-semibold">
+              Ремонт под ключ · Владивосток
+            </span>
+          </div>
+
+          <h1 className="font-display font-bold uppercase text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05]">
+            Профессиональный ремонт квартир{" "}
+            <span className="text-gradient-gold">под ключ</span> во Владивостоке
+          </h1>
+
+          <p className="mt-6 text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">
+            С гарантией до 5 лет. Делаем ремонт без стресса — фиксированная цена,
+            точные сроки и контроль качества на каждом этапе.
+          </p>
+
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all duration-300 hover:shadow-[0_10px_40px_-10px_oklch(0.7_0.08_65/0.6)] hover:-translate-y-0.5"
+            >
+              Рассчитать стоимость
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center px-8 py-4 border border-white/30 text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-white hover:text-dark transition-all duration-300"
+            >
+              Получить консультацию
+            </a>
+          </div>
+
+          <div className="mt-16 grid grid-cols-3 gap-6 max-w-2xl">
+            {[
+              { n: "5+", t: "лет опыта" },
+              { n: "120+", t: "проектов" },
+              { n: "5 лет", t: "гарантии" },
+            ].map((s) => (
+              <div key={s.t}>
+                <div className="font-display text-3xl md:text-4xl font-bold text-primary">{s.n}</div>
+                <div className="text-white/70 text-xs md:text-sm uppercase tracking-wider mt-1">{s.t}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-xs uppercase tracking-widest animate-pulse">
+        Прокрутите вниз
+      </div>
+    </section>
+  );
+}

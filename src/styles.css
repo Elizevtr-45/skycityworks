@@ -88,22 +88,19 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Автоматические переносы по слогам для основного текста */
-  p, li, dd, dt, blockquote, figcaption, .prose {
-    hyphens: auto;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* В заголовках переносы не нужны */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    letter-spacing: -0.01em;
+  /* Слова никогда не переносятся по слогам */
+  html, body, p, li, dd, dt, blockquote, figcaption,
+  h1, h2, h3, h4, h5, h6, span, a, button, label {
     hyphens: none;
     -webkit-hyphens: none;
     -ms-hyphens: none;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
   }
 }
 

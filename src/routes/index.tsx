@@ -52,7 +52,7 @@ function Index() {
     }
   }, []);
   return (
-    <main className="min-h-screen bg-background" suppressHydrationWarning>
+    <main className="min-h-screen bg-background">
       <Navbar />
       <Hero />
       <TrustBlock />

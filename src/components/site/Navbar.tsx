@@ -48,13 +48,22 @@ export function Navbar() {
           ))}
         </nav>
 
-        <a
-          href="tel:+79693077772"
-          className="hidden md:inline-flex items-center gap-2 text-white text-sm font-semibold hover:text-primary transition-colors"
-        >
-          <Phone className="h-4 w-4 text-primary" />
-          8 969 307 77 72
-        </a>
+        <div className="hidden md:flex items-center gap-5">
+          <a
+            href="tel:+79693077772"
+            className="inline-flex items-center gap-2 text-white text-sm font-semibold hover:text-primary transition-colors"
+          >
+            <Phone className="h-4 w-4 text-primary" />
+            8 969 307 77 72
+          </a>
+          <a
+            href="tel:+79644455525"
+            className="hidden xl:inline-flex items-center gap-2 text-white text-sm font-semibold hover:text-primary transition-colors"
+          >
+            <Phone className="h-4 w-4 text-primary" />
+            8 964 445 55 25
+          </a>
+        </div>
 
         <button
           aria-label="Меню"

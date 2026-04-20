@@ -5,20 +5,22 @@ export function SocialProof() {
       <div className="container-px mx-auto max-w-5xl text-center relative">
         <div className="reveal">
           <div className="font-display font-bold text-7xl md:text-8xl lg:text-9xl text-gradient-gold leading-none">
-            120+
+            2800+
           </div>
           <div className="mt-4 font-display uppercase tracking-[0.3em] text-white text-sm md:text-base">
-            Завершённых проектов
+            Сданных и заселённых проектов
           </div>
           <p className="mt-8 text-white/70 text-lg md:text-xl max-w-2xl mx-auto">
-            Запишитесь на экскурсию по готовому объекту и убедитесь в качестве нашей работы лично.
+            За 7+ лет работы мы построили доверие тысяч семей в Приморском крае. Запишитесь на
+            экскурсию по действующему объекту и убедитесь в качестве нашей работы лично.
           </p>
-          <a
-            href="#contact"
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent("open-lead-form"))}
             className="mt-10 inline-flex items-center justify-center px-10 py-4 bg-primary text-primary-foreground font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5 hover:shadow-[0_10px_40px_-10px_oklch(0.7_0.08_65/0.6)]"
           >
             Записаться на экскурсию
-          </a>
+          </button>
         </div>
       </div>
     </section>

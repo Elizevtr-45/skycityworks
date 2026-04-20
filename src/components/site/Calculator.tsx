@@ -23,6 +23,7 @@ const fmt = (n: number) => new Intl.NumberFormat("ru-RU").format(Math.round(n)) 
 
 export function Calculator() {
   const [area, setArea] = useState(60);
+  const MIN_AREA = 5;
   const [tier, setTier] = useState<TierKey>("standard");
   const [opts, setOpts] = useState<string[]>(["design"]);
 
@@ -65,7 +66,7 @@ export function Calculator() {
               </div>
               <input
                 type="range"
-                min={20}
+                min={MIN_AREA}
                 max={250}
                 step={1}
                 value={area}
@@ -78,7 +79,7 @@ export function Calculator() {
                   [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-primary"
               />
               <div className="flex justify-between text-xs text-muted-foreground mt-2">
-                <span>20 м²</span>
+                <span>{MIN_AREA} м²</span>
                 <span>250 м²</span>
               </div>
             </div>

@@ -6,6 +6,7 @@ const links = [
   { href: "#portfolio", label: "Портфолио" },
   { href: "#process", label: "Процесс" },
   { href: "#pricing", label: "Тарифы" },
+  { href: "#calculator", label: "Калькулятор" },
   { href: "#reviews", label: "Отзывы" },
   { href: "#contact", label: "Контакты" },
 ];

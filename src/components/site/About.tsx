@@ -2,10 +2,10 @@ import { Building2, ShieldCheck, FileCheck, UserCheck } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 
 const values = [
-  { icon: Building2, title: "Полный спектр услуг", text: "От малоэтажного строительства до премиальной отделки." },
+  { icon: Building2, title: "Полный спектр услуг", text: "От\u00A0малоэтажного строительства до\u00A0премиальной\u00A0отделки." },
   { icon: ShieldCheck, title: "Стандарты надёжности", text: "Каждое действие регламентировано строгими стандартами." },
-  { icon: FileCheck, title: "Прозрачные договоры", text: "Чёткие условия, фиксированные сроки и цены." },
-  { icon: UserCheck, title: "Персональный контроль", text: "На каждом этапе реализации проекта." },
+  { icon: FileCheck, title: "Прозрачные договоры", text: "Чёткие условия, фиксированные сроки и\u00A0цены." },
+  { icon: UserCheck, title: "Персональный контроль", text: "На\u00A0каждом этапе реализации проекта." },
 ];
 
 export function About() {
@@ -19,7 +19,7 @@ export function About() {
               <span className="text-primary uppercase tracking-[0.3em] text-xs font-semibold">О компании</span>
             </div>
             <h2 className="font-display font-bold uppercase text-3xl md:text-4xl lg:text-5xl leading-tight">
-              СКАЙСИТИ — где качество <span className="text-gradient-gold">встречается</span> с архитектурной точностью
+              {"СКАЙСИТИ\u00A0— где качество "}<span className="text-gradient-gold">встречается</span>{" с\u00A0архитектурной точностью"}
             </h2>
           </div>
           <div className="reveal text-white/75 text-base md:text-lg leading-relaxed space-y-4">

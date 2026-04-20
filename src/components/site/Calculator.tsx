@@ -89,7 +89,7 @@ export function Calculator() {
               <label className="font-display font-bold uppercase text-sm tracking-wider block mb-4">
                 Тариф
               </label>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {(Object.keys(TIERS) as TierKey[]).map((k) => {
                   const active = tier === k;
                   return (
@@ -97,16 +97,16 @@ export function Calculator() {
                       key={k}
                       type="button"
                       onClick={() => setTier(k)}
-                      className={`p-4 rounded-sm border text-left transition-all ${
+                      className={`p-3 sm:p-4 rounded-sm border text-left transition-all min-w-0 ${
                         active
                           ? "border-primary bg-primary/5 shadow-[0_4px_20px_-8px_oklch(0.7_0.08_65/0.5)]"
                           : "border-border hover:border-primary/50"
                       }`}
                     >
-                      <div className="font-display font-bold uppercase text-sm">
+                      <div className="font-display font-bold uppercase text-xs sm:text-sm break-words">
                         {TIERS[k].name}
                       </div>
-                      <div className={`text-xs mt-1 ${active ? "text-primary" : "text-muted-foreground"}`}>
+                      <div className={`text-[11px] sm:text-xs mt-1 break-words ${active ? "text-primary" : "text-muted-foreground"}`}>
                         от {fmt(TIERS[k].price)}/м²
                       </div>
                     </button>

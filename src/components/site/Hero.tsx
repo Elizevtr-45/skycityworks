@@ -24,12 +24,12 @@ export function Hero() {
             </span>
           </div>
 
-          <h1 className="font-display font-bold uppercase text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05]">
+          <h1 className="font-display font-bold uppercase text-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] break-words">
             Строительство и ремонт{" "}
             <span className="text-gradient-gold">под ключ во Владивостоке</span>
           </h1>
 
-          <p className="mt-6 text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">
+          <p className="mt-6 text-base sm:text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">
             Безупречное качество и архитектурная точность. Полный цикл работ — от проекта
             до изготовления мебели. Гарантия 2 года + расширенная пожизненная.
           </p>

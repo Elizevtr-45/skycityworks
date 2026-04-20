@@ -1,10 +1,10 @@
 import { SectionHeader } from "./SectionHeader";
 
 const team = [
-  { name: "Коля", role: "Основатель, прораб" },
-  { name: "Коля", role: "Главный дизайнер" },
-  { name: "Коля", role: "Технический директор" },
-  { name: "Коля", role: "Менеджер проектов" },
+  { name: "Николай", role: "Основатель, прораб" },
+  { name: "Алексей", role: "Главный дизайнер" },
+  { name: "Дмитрий", role: "Технический директор" },
+  { name: "Ольга", role: "Менеджер проектов" },
 ];
 
 export function Team() {
@@ -14,7 +14,7 @@ export function Team() {
         <SectionHeader eyebrow="Команда" title="Наша команда" center />
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {team.map((m, i) => (
-            <div key={m.name} className="reveal text-center" style={{ transitionDelay: `${i * 80}ms` }}>
+            <div key={`${m.name}-${i}`} className="reveal text-center" style={{ transitionDelay: `${i * 80}ms` }}>
               <div className="aspect-[3/4] bg-gradient-to-br from-primary/20 via-muted to-accent/20 rounded-sm mb-4 relative overflow-hidden hover-lift">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className="font-display font-bold text-7xl text-primary/40">

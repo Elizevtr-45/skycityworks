@@ -31,12 +31,12 @@ export function BathroomPromo() {
               </p>
 
               <div className="mt-8 flex items-baseline gap-4 flex-wrap">
-                <div className="font-display font-bold text-5xl md:text-6xl text-gradient-gold leading-none">
-                  от 155 400 ₽
+                <div className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-gradient-gold leading-none whitespace-nowrap">
+                  {"от\u00A0155\u00A0400\u00A0₽"}
                 </div>
-                <div className="text-white/40 text-xl line-through">от 222 000 ₽</div>
+                <div className="text-white/40 text-xl line-through whitespace-nowrap">{"от\u00A0222\u00A0000\u00A0₽"}</div>
               </div>
-              <div className="mt-2 text-white/50 text-sm">Цена санузла для друга со скидкой 30% · работа без материалов</div>
+              <div className="mt-2 text-white/50 text-sm">{"Цена санузла для друга со\u00A0скидкой 30% · работа без\u00A0материалов"}</div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <button

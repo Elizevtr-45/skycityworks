@@ -64,26 +64,31 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "СКАЙСИТИ — строительная компания в Приморском крае. Ремонт квартир и домов под ключ, изготовление мебели на заказ. 7+ лет опыта, 2800+ проектов, гарантия 2 года.",
+          "Строим и ремонтируем под ключ во Владивостоке и Приморском крае. 7+ лет опыта, 2800+ сданных объектов, гарантия 2 года + расширенная пожизненная. Ремонт квартир, домов и мебель на заказ — без переплат и срывов сроков.",
       },
       { name: "author", content: "СКАЙСИТИ" },
       { name: "theme-color", content: "#1a1a1a" },
-      { property: "og:title", content: "СКАЙСИТИ — Строительство и ремонт под ключ" },
+      { property: "og:title", content: "СКАЙСИТИ — Ремонт и строительство под ключ во Владивостоке" },
       {
         property: "og:description",
         content:
-          "Полный спектр услуг: ремонт, отделка, мебель на заказ во Владивостоке. 2800+ проектов, расширенная гарантия.",
+          "2800+ объектов, 7+ лет опыта, гарантия до пожизненной. Ремонт квартир и домов под ключ, мебель на заказ. Прозрачная смета, фиксированные сроки и цены.",
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "ru_RU" },
       { property: "og:site_name", content: "СКАЙСИТИ" },
+      { property: "og:url", content: "https://skycityworks.lovable.app" },
+      { property: "og:image", content: "https://skycityworks.lovable.app/android-chrome-512x512.png" },
+      { property: "og:image:width", content: "512" },
+      { property: "og:image:height", content: "512" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "СКАЙСИТИ — Строительство и ремонт под ключ" },
+      { name: "twitter:title", content: "СКАЙСИТИ — Ремонт и строительство под ключ во Владивостоке" },
       {
         name: "twitter:description",
         content:
-          "Полный спектр услуг: ремонт, отделка, мебель на заказ во Владивостоке. 2800+ проектов, расширенная гарантия.",
+          "2800+ объектов, 7+ лет опыта, гарантия до пожизненной. Ремонт квартир и домов под ключ, мебель на заказ. Прозрачная смета, фиксированные сроки и цены.",
       },
+      { name: "twitter:image", content: "https://skycityworks.lovable.app/android-chrome-512x512.png" },
     ],
     links: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },

@@ -72,6 +72,44 @@ function AdminLeads() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Realtime: подписка на изменения leads
+  useEffect(() => {
+    if (!isAdmin) return;
+    const channel = supabase
+      .channel("leads-changes")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "leads" },
+        (payload) => {
+          setLeads((prev) => {
+            if (prev.some((l) => l.id === (payload.new as Lead).id)) return prev;
+            return [payload.new as Lead, ...prev];
+          });
+        }
+      )
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "leads" },
+        (payload) => {
+          setLeads((prev) =>
+            prev.map((l) => (l.id === (payload.new as Lead).id ? (payload.new as Lead) : l))
+          );
+        }
+      )
+      .on(
+        "postgres_changes",
+        { event: "DELETE", schema: "public", table: "leads" },
+        (payload) => {
+          setLeads((prev) => prev.filter((l) => l.id !== (payload.old as { id: string }).id));
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [isAdmin]);
+
   const loadLeads = async () => {
     setLoading(true);
     const { data, error } = await supabase

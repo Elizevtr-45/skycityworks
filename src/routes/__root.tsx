@@ -1,6 +1,53 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
+
+// Русская типографика: вставляем неразрывные пробелы (\u00A0) после
+// предлогов, коротких союзов и частицы «не», чтобы они не «висели»
+// в конце строки.
+const SHORT_WORDS = [
+  "в", "во", "на", "за", "под", "о", "об", "обо", "от", "до", "у", "к",
+  "ко", "с", "со", "без", "через", "из", "изо", "над", "про", "при",
+  "по", "для",
+  "и", "а", "но", "да", "или", "либо", "же",
+  "не", "ни",
+];
+
+function applyRussianTypography(root: HTMLElement) {
+  const re = new RegExp(
+    `(^|[\\s(«"'])(${SHORT_WORDS.join("|")})\\s+`,
+    "gi",
+  );
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      const parent = node.parentElement;
+      if (!parent) return NodeFilter.FILTER_REJECT;
+      const tag = parent.tagName;
+      if (
+        tag === "SCRIPT" ||
+        tag === "STYLE" ||
+        tag === "CODE" ||
+        tag === "PRE" ||
+        tag === "TEXTAREA" ||
+        tag === "INPUT"
+      ) {
+        return NodeFilter.FILTER_REJECT;
+      }
+      if (parent.isContentEditable) return NodeFilter.FILTER_REJECT;
+      if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    },
+  });
+  const nodes: Text[] = [];
+  let n: Node | null;
+  while ((n = walker.nextNode())) nodes.push(n as Text);
+  for (const node of nodes) {
+    const original = node.nodeValue ?? "";
+    const updated = original.replace(re, (_m, pre, word) => `${pre}${word}\u00A0`);
+    if (updated !== original) node.nodeValue = updated;
+  }
+}
 
 function NotFoundComponent() {
   return (

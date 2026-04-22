@@ -15,14 +15,14 @@ export function Team() {
         <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {team.map((m, i) => (
             <div key={`${m.name}-${i}`} className="reveal text-center" style={{ transitionDelay: `${i * 80}ms` }}>
-              <div className="aspect-[3/4] bg-gradient-to-br from-primary/20 via-muted to-accent/20 rounded-sm mb-4 relative overflow-hidden hover-lift">
+              <div className="aspect-[3/4] bg-muted rounded-sm mb-4 relative overflow-hidden hover-lift">
                 <img
                   src={m.photo}
                   alt={`${m.name} — ${m.role}, СКАЙСИТИ Владивосток`}
                   title={`${m.name} — ${m.role}`}
                   loading="lazy"
                   decoding="async"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-contain"
                 />
               </div>
               <div className="font-display font-bold uppercase">{m.name}</div>

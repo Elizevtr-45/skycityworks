@@ -1,37 +1,6 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts, ScriptOnce } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-
-// Скрипт типографики: выполняется ДО гидратации React.
-// Вставляет неразрывные пробелы (\u00A0) после русских предлогов,
-// коротких союзов и частиц «не»/«ни». Запускается также после загрузки DOM,
-// чтобы покрыть весь начальный SSR-контент. React увидит уже изменённый DOM
-// и гидрация пройдёт без mismatch.
-const TYPOGRAPHY_SCRIPT = `(function(){
-  var WORDS = ["в","во","на","за","под","о","об","обо","от","до","у","к","ко","с","со","без","через","из","изо","над","про","при","по","для","и","а","но","да","или","либо","же","не","ни"];
-  var re = new RegExp("(^|[\\\\s(«\\"'])(" + WORDS.join("|") + ")\\\\s+", "gi");
-  var SKIP = {SCRIPT:1,STYLE:1,CODE:1,PRE:1,TEXTAREA:1,INPUT:1,NOSCRIPT:1};
-  function walk(root){
-    if(!root) return;
-    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
-    var nodes = [], n;
-    while((n = w.nextNode())) nodes.push(n);
-    for(var i=0;i<nodes.length;i++){
-      var node = nodes[i], p = node.parentElement;
-      if(!p || SKIP[p.tagName] || p.isContentEditable) continue;
-      var v = node.nodeValue;
-      if(!v || !v.trim()) continue;
-      var u = v.replace(re, function(_m, pre, word){ return pre + word + "\\u00A0"; });
-      if(u !== v) node.nodeValue = u;
-    }
-  }
-  function run(){ walk(document.body); }
-  if(document.readyState === "loading"){
-    document.addEventListener("DOMContentLoaded", run, { once: true });
-  } else {
-    run();
-  }
-})();`;
 
 function NotFoundComponent() {
   return (
@@ -120,7 +89,6 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body suppressHydrationWarning>
-        <ScriptOnce>{TYPOGRAPHY_SCRIPT}</ScriptOnce>
         {children}
         <Scripts />
       </body>

@@ -11,11 +11,6 @@ const includes = [
   "Укладка плитки и напольных покрытий",
 ];
 
-const notIncluded = [
-  "Демонтаж (для новостроя не требуется)",
-  "Натяжные / подвесные потолки",
-];
-
 export function ApartmentPromo() {
   return (
     <section className="py-20 md:py-28 bg-background">

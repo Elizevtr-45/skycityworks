@@ -11,11 +11,6 @@ const includes = [
   "Укладка плитки и напольных покрытий",
 ];
 
-const notIncluded = [
-  "Демонтаж (для новостроя не требуется)",
-  "Натяжные / подвесные потолки",
-];
-
 export function ApartmentPromo() {
   return (
     <section className="py-20 md:py-28 bg-background">
@@ -89,21 +84,6 @@ export function ApartmentPromo() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-5">
-                <div className="text-white/60 text-xs uppercase tracking-widest font-semibold mb-2">
-                  Не входит (для новостроя)
-                </div>
-                <ul className="flex flex-wrap gap-2">
-                  {notIncluded.map((item) => (
-                    <li
-                      key={item}
-                      className="text-xs text-white/60 bg-white/5 border border-white/10 px-3 py-1.5 rounded-sm"
-                    >
-                      — {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
               <div className="mt-5 text-white/50 text-xs leading-relaxed">
                 * Скидка 10% — другу на ремонт квартиры под ключ при подписании договора.
                 Расчёт от базового тарифа 22&nbsp;000&nbsp;₽/м² × 50&nbsp;м². Финальная стоимость

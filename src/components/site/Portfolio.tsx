@@ -8,6 +8,13 @@ import p2c from "@/assets/portfolio-2c.jpg";
 import p3 from "@/assets/portfolio-3.jpg";
 import p3b from "@/assets/portfolio-3b.jpg";
 import p3c from "@/assets/portfolio-3c.jpg";
+import p3d from "@/assets/portfolio-3d.jpg";
+import p3e from "@/assets/portfolio-3e.jpg";
+import p3f from "@/assets/portfolio-3f.jpg";
+import p3g from "@/assets/portfolio-3g.jpg";
+import p3h from "@/assets/portfolio-3h.jpg";
+import p3i from "@/assets/portfolio-3i.jpg";
+import p3j from "@/assets/portfolio-3j.jpg";
 import p4 from "@/assets/portfolio-4.jpg";
 import p4b from "@/assets/portfolio-4b.jpg";
 import p4c from "@/assets/portfolio-4c.jpg";
@@ -73,7 +80,7 @@ const projects: Project[] = [
     ],
   },
   {
-    images: [p3, p3b, p3c],
+    images: [p3, p3b, p3c, p3d, p3e, p3f, p3g, p3h, p3i, p3j],
     title: "Уютная однушка для жизни",
     type: "Новостройка · 1-комнатная · 40 м²",
     price: "1 100 000 ₽",

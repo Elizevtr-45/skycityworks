@@ -34,7 +34,7 @@ type Project = {
 const projects: Project[] = [
   {
     images: [p1, p1b, p1c],
-    title: "ЖК «Маринист»",
+    title: "Премиум-прихожая со светом",
     type: "Новостройка · 98 м²",
     price: "3 700 000 ₽",
     tier: "Премиум",
@@ -54,7 +54,7 @@ const projects: Project[] = [
   },
   {
     images: [p2, p2b, p2c],
-    title: "ЖК «Аквамарин»",
+    title: "Светлая квартира под ключ",
     type: "Новостройка · 57 м²",
     price: "1 750 000 ₽",
     tier: "Стандарт",
@@ -74,7 +74,7 @@ const projects: Project[] = [
   },
   {
     images: [p3, p3b, p3c],
-    title: "ЖК «Жемчужина»",
+    title: "Уютная однушка для жизни",
     type: "Новостройка · 1-комнатная · 40 м²",
     price: "950 000 ₽",
     tier: "Базовый",
@@ -94,7 +94,7 @@ const projects: Project[] = [
   },
   {
     images: [p4, p4b, p4c],
-    title: "ЖК «Босфор»",
+    title: "Премиальный санузел",
     type: "Санузел премиум · 9 м²",
     price: "390 000 ₽",
     tier: "Премиум",

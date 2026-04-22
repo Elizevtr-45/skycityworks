@@ -6,7 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import furnitureImg from "@/assets/furniture.jpg";
+
 import f1 from "@/assets/furniture-1.jpg";
 import f2 from "@/assets/furniture-2.jpg";
 import f3 from "@/assets/furniture-3.jpg";

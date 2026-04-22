@@ -28,8 +28,31 @@ const gallery = [
 ];
 
 export function Furniture() {
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Мебель на заказ во Владивостоке — СКАЙСИТИ",
+    description:
+      "Кухонные гарнитуры, гардеробные и корпусная мебель на заказ под ваш ремонт. Собственное производство, премиальные материалы, точные размеры.",
+    itemListElement: gallery.map((p, i) => ({
+      "@type": "ImageObject",
+      position: i + 1,
+      contentUrl: p.src,
+      description: p.alt,
+    })),
+  };
+
   return (
-    <section className="py-20 md:py-32 bg-background">
+    <section
+      id="furniture"
+      aria-labelledby="furniture-heading"
+      className="py-20 md:py-32 bg-background"
+    >
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
       <div className="container-px mx-auto max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div className="reveal order-2 lg:order-1">
@@ -37,7 +60,7 @@ export function Furniture() {
               <span className="gold-divider" />
               <span className="text-primary uppercase tracking-[0.3em] text-xs font-semibold">Новое направление</span>
             </div>
-            <h2 className="font-display font-bold uppercase text-3xl md:text-4xl lg:text-5xl leading-tight">
+            <h2 id="furniture-heading" className="font-display font-bold uppercase text-3xl md:text-4xl lg:text-5xl leading-tight">
               Изготавливаем мебель <span className="text-gradient-gold">на заказ</span>
             </h2>
             <p className="mt-6 text-muted-foreground text-lg leading-relaxed">

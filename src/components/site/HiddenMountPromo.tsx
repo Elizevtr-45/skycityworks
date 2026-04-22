@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Layers, Check, Tag, ShieldCheck } from "lucide-react";
+import { Layers, Wind, CircleDot, Droplets, Scroll } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -20,11 +20,11 @@ const photos = [
   { src: img5, alt: "Минималистичный санузел со скрытым монтажом" },
 ];
 
-const features = [
-  "Инсталляции и смесители без видимых коробов",
-  "Бесшовная укладка крупноформатного керамогранита",
-  "Скрытые лючки, трапы и ревизии заподлицо",
-  "Ровные швы 1,5 мм и идеальная геометрия",
+const items = [
+  { icon: Wind, title: "Скрытая вытяжка", desc: "Вентиляция заподлицо со стеной без видимых решёток" },
+  { icon: CircleDot, title: "Кнопка инсталляции", desc: "Из керамогранита в один уровень с плиткой" },
+  { icon: Droplets, title: "Ниша под гигиенический душ", desc: "Аккуратное место для венчика без коробов" },
+  { icon: Scroll, title: "Держатель туалетной бумаги", desc: "Встроенная ниша из керамогранита" },
 ];
 
 export function HiddenMountPromo() {
@@ -47,38 +47,28 @@ export function HiddenMountPromo() {
           <div className="relative grid lg:grid-cols-2 gap-10 p-8 md:p-12 lg:p-16 items-center">
             <div className="reveal">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/15 border border-primary/40 text-primary text-xs uppercase tracking-[0.25em] font-semibold rounded-sm mb-5">
-                <Layers className="h-3.5 w-3.5" /> Акция месяца
+                <Layers className="h-3.5 w-3.5" /> Наша специализация
               </div>
               <h2 className="font-display font-bold uppercase text-3xl md:text-4xl lg:text-5xl leading-tight">
-                Скрытый монтаж из <span className="text-gradient-gold">керамогранита</span>
+                Изделия из <span className="text-gradient-gold">керамогранита</span> и скрытый монтаж
               </h2>
               <p className="mt-5 text-white/70 text-lg leading-relaxed max-w-lg">
-                Премиальный санузел без лишних деталей: инсталляции, смесители и коммуникации
-                спрятаны в стене, а крупноформатный керамогранит уложен бесшовно. Закажите
-                до конца месяца и получите скидку{" "}
-                <span className="text-primary font-semibold">10%</span> на работы.
+                Профессионально изготавливаем и монтируем элементы санузла из керамогранита:
+                всё лишнее спрятано в стене, на виду — только идеальная плоскость и чистая
+                геометрия. Работаем с крупноформатными плитами и сложными раскладками.
               </p>
 
-              <div className="mt-8 flex items-baseline gap-4 flex-wrap">
-                <div className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-gradient-gold leading-none whitespace-nowrap">
-                  −10%
-                </div>
-                <div className="text-white/60 text-base sm:text-lg whitespace-nowrap">
-                  на работы по скрытому монтажу
-                </div>
-              </div>
-              <div className="mt-2 text-white/50 text-sm">
-                {"Расчёт стоимости — после бесплатного замера"}
-              </div>
-
               <ul className="mt-8 grid sm:grid-cols-2 gap-3">
-                {features.map((f) => (
+                {items.map(({ icon: Icon, title, desc }) => (
                   <li
-                    key={f}
+                    key={title}
                     className="flex items-start gap-3 bg-white/5 border border-white/10 p-4 rounded-sm"
                   >
-                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                    <span className="text-sm text-white/90">{f}</span>
+                    <Icon className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <div>
+                      <div className="text-sm font-semibold text-white">{title}</div>
+                      <div className="text-xs text-white/60 mt-1 leading-relaxed">{desc}</div>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -89,7 +79,7 @@ export function HiddenMountPromo() {
                   onClick={() => window.dispatchEvent(new CustomEvent("open-lead-form"))}
                   className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5"
                 >
-                  Получить скидку 10%
+                  Обсудить проект
                 </button>
                 <a
                   href="#calculator"
@@ -97,15 +87,6 @@ export function HiddenMountPromo() {
                 >
                   Рассчитать
                 </a>
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-6 text-sm text-white/70">
-                <div className="flex items-center gap-2">
-                  <Tag className="h-4 w-4 text-primary" /> Фиксированная цена
-                </div>
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-primary" /> Гарантия на работы
-                </div>
               </div>
             </div>
 
@@ -135,8 +116,7 @@ export function HiddenMountPromo() {
                 </CarouselContent>
               </Carousel>
               <div className="mt-4 text-white/50 text-xs leading-relaxed">
-                * Реальные работы наших мастеров. Скидка 10% действует на работы
-                по скрытому монтажу при заключении договора в текущем месяце.
+                * Реальные работы наших мастеров — скрытый монтаж и изделия из керамогранита.
               </div>
             </div>
           </div>

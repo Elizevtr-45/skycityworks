@@ -10,13 +10,19 @@ const TIERS: Record<TierKey, { name: string; price: number }> = {
   premium: { name: "Премиум", price: 30000 },
 };
 
-const OPTIONS = [
-  { id: "design", label: "Дизайн-проект", price: 1500 },
-  { id: "demolition", label: "Демонтаж старой отделки", price: 1200 },
-  { id: "electrical", label: "Полная замена электрики", price: 2200 },
-  { id: "plumbing", label: "Полная замена сантехники", price: 1800 },
-  { id: "smart", label: "Умный дом", price: 2500 },
-  { id: "furniture", label: "Меблировка под ключ", price: 3500 },
+type OptionItem = {
+  id: string;
+  label: string;
+  price: number;
+  /** "perM2" умножается на площадь, "flat" — фиксированная сумма */
+  mode: "perM2" | "flat";
+};
+
+const OPTIONS: OptionItem[] = [
+  { id: "design", label: "Дизайн-проект", price: 3000, mode: "perM2" },
+  { id: "demolition", label: "Демонтаж отделки", price: 1500, mode: "perM2" },
+  { id: "ceiling", label: "Натяжной потолок", price: 2000, mode: "perM2" },
+  { id: "furniture", label: "Меблировка под ключ", price: 900000, mode: "flat" },
 ];
 
 const fmt = (n: number) => new Intl.NumberFormat("ru-RU").format(Math.round(n)) + " ₽";
@@ -34,7 +40,7 @@ export function Calculator() {
     const tierPrice = TIERS[tier].price;
     const base = tierPrice * area;
     const extras = OPTIONS.filter((o) => opts.includes(o.id)).reduce(
-      (acc, o) => acc + o.price * area,
+      (acc, o) => acc + (o.mode === "perM2" ? o.price * area : o.price),
       0,
     );
     const total = base + extras;
@@ -144,7 +150,7 @@ export function Calculator() {
                       <span className="flex-1 text-sm">
                         <span className="block font-medium">{o.label}</span>
                         <span className="text-xs text-muted-foreground">
-                          +{fmt(o.price)}/м²
+                          {o.mode === "perM2" ? `от ${fmt(o.price)}/м²` : `от ${fmt(o.price)}`}
                         </span>
                       </span>
                     </button>

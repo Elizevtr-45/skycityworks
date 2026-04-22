@@ -90,54 +90,30 @@ export function Furniture() {
             </a>
           </div>
 
-          <div className="reveal order-1 lg:order-2 relative aspect-[4/3] overflow-hidden rounded-sm">
-            <img
-              src={furnitureImg}
-              alt="Мебель на заказ во Владивостоке — собственное производство СКАЙСИТИ: кухни, шкафы и гардеробные под ключ"
-              title="Мебель на заказ во Владивостоке — СКАЙСИТИ"
-              width={1280}
-              height={960}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-            />
+          <div className="reveal order-1 lg:order-2 relative">
+            <Carousel opts={{ align: "start", loop: true }} className="relative">
+              <CarouselContent>
+                {gallery.map((p, i) => (
+                  <CarouselItem key={i}>
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-sm border border-border bg-card">
+                      <img
+                        src={p.src}
+                        alt={p.alt}
+                        title={p.alt}
+                        loading="lazy"
+                        decoding="async"
+                        width={1280}
+                        height={960}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex -left-4" />
+              <CarouselNext className="hidden md:flex -right-4" />
+            </Carousel>
           </div>
-        </div>
-
-        <div className="reveal mt-14 md:mt-20">
-          <div className="flex items-end justify-between mb-6">
-            <div className="font-display font-bold uppercase text-sm tracking-wider text-primary">
-              Наши работы
-            </div>
-            <div className="text-xs text-muted-foreground hidden sm:block">
-              Листайте галерею →
-            </div>
-          </div>
-          <Carousel opts={{ align: "start", loop: true }} className="relative">
-            <CarouselContent className="-ml-4">
-              {gallery.map((p, i) => (
-                <CarouselItem key={i} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
-                  <div
-                    className="relative overflow-hidden border border-border bg-card"
-                    style={{ borderRadius: "10px" }}
-                  >
-                    <img
-                      src={p.src}
-                      alt={p.alt}
-                      title={p.alt}
-                      loading="lazy"
-                      decoding="async"
-                      width={1200}
-                      height={900}
-                      className="w-full h-[320px] md:h-[380px] object-cover hover:scale-105 transition-transform duration-700"
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex -left-4" />
-            <CarouselNext className="hidden md:flex -right-4" />
-          </Carousel>
         </div>
       </div>
     </section>

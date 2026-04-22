@@ -29,9 +29,11 @@ import p3g from "@/assets/portfolio-3g.jpg";
 import p3h from "@/assets/portfolio-3h.jpg";
 import p3i from "@/assets/portfolio-3i.jpg";
 import p3j from "@/assets/portfolio-3j.jpg";
-import p4 from "@/assets/portfolio-4.jpg";
-import p4b from "@/assets/portfolio-4b.jpg";
-import p4c from "@/assets/portfolio-4c.jpg";
+import p4 from "@/assets/bathroom-premium-1.jpg";
+import p4b from "@/assets/bathroom-premium-2.jpg";
+import p4c from "@/assets/bathroom-premium-3.jpg";
+import p4d from "@/assets/bathroom-premium-4.jpg";
+import p4e from "@/assets/bathroom-premium-5.jpg";
 import { SectionHeader } from "./SectionHeader";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Dialog, DialogPortal, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -114,21 +116,22 @@ const projects: Project[] = [
     ],
   },
   {
-    images: [p4, p4b, p4c],
+    images: [p4, p4b, p4c, p4d, p4e],
     title: "Премиальный санузел",
-    type: "Санузел премиум · 9 м²",
+    type: "Каркасный дом · Санузел · 4,5 м²",
     price: "390 000 ₽",
     tier: "Премиум",
     duration: "3 недели",
-    area: "9 м²",
+    area: "4,5 м²",
     description:
-      "Премиальный санузел с использованием итальянского керамогранита под мрамор, подвесной сантехники и встроенных инсталляций. Скрытая подсветка и стеклянное ограждение душевой зоны.",
+      "Премиальный санузел в каркасном доме: керамогранит под дерево и бетон в раскладке «ёлочкой», отдельностоящая ванна с декоративными рёбрами, чёрная сантехника, скрытая подсветка по периметру потолка и дизайнерский декор.",
     works: [
-      "Гидроизоляция и стяжка",
-      "Укладка крупноформатного керамогранита",
-      "Монтаж инсталляций и сантехники",
-      "Тёплый пол и полотенцесушитель",
-      "Декоративное освещение",
+      "Гидроизоляция и подготовка оснований",
+      "Раскладка керамогранита под дерево и бетон «ёлочкой»",
+      "Монтаж отдельностоящей ванны и смесителя",
+      "Установка чёрной сантехники и раковины",
+      "Скрытая подсветка по периметру потолка",
+      "Полотенцесушитель и аксессуары",
     ],
   },
 ];

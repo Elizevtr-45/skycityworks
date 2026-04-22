@@ -20,16 +20,39 @@ const features = [
 ];
 
 const gallery = [
-  { src: f1, alt: "Мебель на заказ — работа СКАЙСИТИ" },
-  { src: f2, alt: "Мебель на заказ — работа СКАЙСИТИ" },
-  { src: f3, alt: "Мебель на заказ — работа СКАЙСИТИ" },
-  { src: f4, alt: "Мебель на заказ — работа СКАЙСИТИ" },
-  { src: f5, alt: "Мебель на заказ — работа СКАЙСИТИ" },
+  { src: f1, alt: "Кухонный гарнитур на заказ во Владивостоке — фасады МДФ, столешница из камня (СКАЙСИТИ)" },
+  { src: f2, alt: "Корпусная мебель на заказ — встроенный шкаф под потолок, проект СКАЙСИТИ" },
+  { src: f3, alt: "Гардеробная под заказ — индивидуальное наполнение и подсветка, СКАЙСИТИ" },
+  { src: f4, alt: "Кухня на заказ — встроенная техника и скрытая фурнитура, работа СКАЙСИТИ" },
+  { src: f5, alt: "Мебель на заказ для квартиры — премиальная фурнитура и точные размеры, СКАЙСИТИ Владивосток" },
 ];
 
 export function Furniture() {
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Мебель на заказ во Владивостоке — СКАЙСИТИ",
+    description:
+      "Кухонные гарнитуры, гардеробные и корпусная мебель на заказ под ваш ремонт. Собственное производство, премиальные материалы, точные размеры.",
+    itemListElement: gallery.map((p, i) => ({
+      "@type": "ImageObject",
+      position: i + 1,
+      contentUrl: p.src,
+      description: p.alt,
+    })),
+  };
+
   return (
-    <section className="py-20 md:py-32 bg-background">
+    <section
+      id="furniture"
+      aria-labelledby="furniture-heading"
+      className="py-20 md:py-32 bg-background"
+    >
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
       <div className="container-px mx-auto max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div className="reveal order-2 lg:order-1">
@@ -37,7 +60,7 @@ export function Furniture() {
               <span className="gold-divider" />
               <span className="text-primary uppercase tracking-[0.3em] text-xs font-semibold">Новое направление</span>
             </div>
-            <h2 className="font-display font-bold uppercase text-3xl md:text-4xl lg:text-5xl leading-tight">
+            <h2 id="furniture-heading" className="font-display font-bold uppercase text-3xl md:text-4xl lg:text-5xl leading-tight">
               Изготавливаем мебель <span className="text-gradient-gold">на заказ</span>
             </h2>
             <p className="mt-6 text-muted-foreground text-lg leading-relaxed">
@@ -70,10 +93,12 @@ export function Furniture() {
           <div className="reveal order-1 lg:order-2 relative aspect-[4/3] overflow-hidden rounded-sm">
             <img
               src={furnitureImg}
-              alt="Изготовление мебели на заказ СКАЙСИТИ"
+              alt="Мебель на заказ во Владивостоке — собственное производство СКАЙСИТИ: кухни, шкафы и гардеробные под ключ"
+              title="Мебель на заказ во Владивостоке — СКАЙСИТИ"
               width={1280}
               height={960}
               loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />
           </div>
@@ -99,7 +124,11 @@ export function Furniture() {
                     <img
                       src={p.src}
                       alt={p.alt}
+                      title={p.alt}
                       loading="lazy"
+                      decoding="async"
+                      width={1200}
+                      height={900}
                       className="w-full h-[320px] md:h-[380px] object-cover hover:scale-105 transition-transform duration-700"
                     />
                   </div>

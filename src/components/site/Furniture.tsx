@@ -122,7 +122,11 @@ export function Furniture() {
                     <img
                       src={p.src}
                       alt={p.alt}
+                      title={p.alt}
                       loading="lazy"
+                      decoding="async"
+                      width={1200}
+                      height={900}
                       className="w-full h-[320px] md:h-[380px] object-cover hover:scale-105 transition-transform duration-700"
                     />
                   </div>

@@ -1,12 +1,14 @@
 import { Bath, Check, Users, Tag } from "lucide-react";
 
 const includes = [
-  "Демонтаж и вывоз мусора",
-  "Замена сантехники и труб",
-  "Электрика, тёплый пол",
-  "Плитка премиум-сегмента",
-  "Подвесной потолок",
-  "Установка мебели и аксессуаров",
+  "Гидроизоляция стен с оклейкой углов",
+  "Монтаж душевого поддона в уровень с полом",
+  "Сантехника с инсталляцией",
+  "Коллекторная разводка",
+  "Монтаж керамогранита",
+  "Эпоксидная затирка",
+  "Формирование наружных углов 45°",
+  "Сантехнические установки и подключение",
 ];
 
 export function BathroomPromo() {
@@ -21,22 +23,27 @@ export function BathroomPromo() {
                 <Bath className="h-3.5 w-3.5" /> Акция «Приведи друга»
               </div>
               <h2 className="font-display font-bold uppercase text-3xl md:text-4xl lg:text-5xl leading-tight">
-                Акция <span className="text-gradient-gold">«Приведи друга»</span>
+                Приведи друга — <span className="text-gradient-gold">получи 10%</span>
               </h2>
               <p className="mt-5 text-white/70 text-lg leading-relaxed max-w-lg">
-                Закажите ремонт квартиры под ключ и приведите друга — вы получите дополнительную
-                скидку <span className="text-primary font-semibold">10%</span> на ремонт под ключ,
-                а друг — скидку <span className="text-primary font-semibold">30%</span> на ремонт
-                санузла от компании СКАЙСИТИ.
+                Приведите друга на ремонт санузла — вы получаете{" "}
+                <span className="text-primary font-semibold">10%</span> с его договора, а друг —{" "}
+                <span className="text-primary font-semibold">15%</span> скидки на ремонт санузла
+                под ключ. Итоговая выгода для друга — <span className="text-primary font-semibold">15%</span>,
+                из которых ваши 10% начисляются при подписании договора.
               </p>
 
               <div className="mt-8 flex items-baseline gap-4 flex-wrap">
                 <div className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-gradient-gold leading-none whitespace-nowrap">
-                  {"от\u00A0155\u00A0400\u00A0₽"}
+                  {"от\u00A0300\u00A0000\u00A0₽"}
                 </div>
-                <div className="text-white/40 text-xl line-through whitespace-nowrap">{"от\u00A0222\u00A0000\u00A0₽"}</div>
+                <div className="text-white/40 text-xl line-through whitespace-nowrap">
+                  {"от\u00A0345\u00A0000\u00A0₽"}
+                </div>
               </div>
-              <div className="mt-2 text-white/50 text-sm">{"Цена санузла для друга со\u00A0скидкой 30% · работа без\u00A0материалов"}</div>
+              <div className="mt-2 text-white/50 text-sm">
+                {"Цена санузла под\u00A0ключ для друга со\u00A0скидкой 15%"}
+              </div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <button
@@ -56,7 +63,7 @@ export function BathroomPromo() {
 
               <div className="mt-8 flex flex-wrap gap-6 text-sm text-white/70">
                 <div className="flex items-center gap-2">
-                  <Users className="h-4 w-4 text-primary" /> Действует для друга
+                  <Users className="h-4 w-4 text-primary" /> 10% вам · 15% другу
                 </div>
                 <div className="flex items-center gap-2">
                   <Tag className="h-4 w-4 text-primary" /> Фиксированная цена
@@ -66,7 +73,7 @@ export function BathroomPromo() {
 
             <div className="reveal">
               <div className="font-display font-bold uppercase text-sm tracking-wider text-primary mb-5">
-                Что входит
+                Что входит в санузел под ключ
               </div>
               <ul className="grid sm:grid-cols-2 gap-3">
                 {includes.map((item) => (
@@ -80,10 +87,9 @@ export function BathroomPromo() {
                 ))}
               </ul>
               <div className="mt-5 text-white/50 text-xs leading-relaxed">
-                * В акционную стоимость включена только работа. Материалы (плитка, сантехника,
-                мебель) оплачиваются отдельно по закупочной цене. Скидка 10% на ремонт под ключ
-                начисляется заказчику, скидка 30% на ремонт санузла — приведённому другу при
-                заключении им договора.
+                * Скидка 10% начисляется вам с договора друга при его подписании. Скидка 15% —
+                другу на ремонт санузла под ключ. Стоимость указана за работу; материалы
+                рассчитываются отдельно.
               </div>
             </div>
           </div>

@@ -27,10 +27,7 @@ export function BathroomPromo() {
               </h2>
               <p className="mt-5 text-white/70 text-lg leading-relaxed max-w-lg">
                 Приведите друга на ремонт санузла — вы получаете{" "}
-                <span className="text-primary font-semibold">10%</span> с его договора, а друг —{" "}
-                <span className="text-primary font-semibold">15%</span> скидки на ремонт санузла
-                под ключ. Итоговая выгода для друга — <span className="text-primary font-semibold">15%</span>,
-                из которых ваши 10% начисляются при подписании договора.
+                <span className="text-primary font-semibold">10%</span> с его договора.
               </p>
 
               <div className="mt-8 flex items-baseline gap-4 flex-wrap">

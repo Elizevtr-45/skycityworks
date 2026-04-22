@@ -2,6 +2,13 @@ import { useState } from "react";
 import p1 from "@/assets/portfolio-1.jpg";
 import p1b from "@/assets/portfolio-1b.jpg";
 import p1c from "@/assets/portfolio-1c.jpg";
+import p1d from "@/assets/portfolio-1d.jpg";
+import p1e from "@/assets/portfolio-1e.jpg";
+import p1f from "@/assets/portfolio-1f.jpg";
+import p1g from "@/assets/portfolio-1g.jpg";
+import p1h from "@/assets/portfolio-1h.jpg";
+import p1i from "@/assets/portfolio-1i.jpg";
+import p1j from "@/assets/portfolio-1j.jpg";
 import p2 from "@/assets/portfolio-2.jpg";
 import p2b from "@/assets/portfolio-2b.jpg";
 import p2c from "@/assets/portfolio-2c.jpg";
@@ -40,7 +47,7 @@ type Project = {
 
 const projects: Project[] = [
   {
-    images: [p1, p1b, p1c],
+    images: [p1, p1b, p1c, p1d, p1e, p1f, p1g, p1h, p1i, p1j],
     title: "Современный ремонт под ключ",
     type: "Новостройка · 98 м²",
     price: "3 700 000 ₽",

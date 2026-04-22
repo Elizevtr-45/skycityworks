@@ -76,7 +76,7 @@ const projects: Project[] = [
     images: [p3, p3b, p3c],
     title: "Уютная однушка для жизни",
     type: "Новостройка · 1-комнатная · 40 м²",
-    price: "950 000 ₽",
+    price: "1 100 000 ₽",
     tier: "Базовый",
     duration: "3 месяца",
     area: "40 м²",

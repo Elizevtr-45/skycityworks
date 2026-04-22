@@ -48,7 +48,7 @@ export function Calculator() {
   }, [area, tier, opts]);
 
   return (
-    <section id="calculator" className="py-20 md:py-32 bg-background">
+    <section id="calculator" className="scroll-mt-24 md:scroll-mt-32 py-20 md:py-32 bg-background">
       <div className="container-px mx-auto max-w-7xl">
         <SectionHeader
           eyebrow="Калькулятор"

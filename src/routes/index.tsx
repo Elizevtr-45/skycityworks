@@ -21,6 +21,7 @@ import { FAQ } from "@/components/site/FAQ";
 import { Footer } from "@/components/site/Footer";
 import { CookieBanner } from "@/components/site/CookieBanner";
 import { BathroomPromo } from "@/components/site/BathroomPromo";
+import { ApartmentPromo } from "@/components/site/ApartmentPromo";
 import { HiddenMountPromo } from "@/components/site/HiddenMountPromo";
 import { SocialCTA } from "@/components/site/SocialCTA";
 import { ScrollToTop } from "@/components/site/ScrollToTop";
@@ -65,6 +66,7 @@ function Index() {
       <Showroom />
       <Furniture />
       <BathroomPromo />
+      <ApartmentPromo />
       <HiddenMountPromo />
       <SocialProof />
       <Process />

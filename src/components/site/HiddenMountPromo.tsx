@@ -11,6 +11,12 @@ import img2 from "@/assets/hidden-mount-2.jpg";
 import img3 from "@/assets/hidden-mount-3.jpg";
 import img4 from "@/assets/hidden-mount-4.jpg";
 import img5 from "@/assets/hidden-mount-5.jpg";
+import img6 from "@/assets/hidden-mount-6.jpg";
+import img7 from "@/assets/hidden-mount-7.jpg";
+import img8 from "@/assets/hidden-mount-8.jpg";
+import img9 from "@/assets/hidden-mount-9.jpg";
+import img10 from "@/assets/hidden-mount-10.jpg";
+import img11 from "@/assets/hidden-mount-11.jpg";
 
 const photos = [
   { src: img1, alt: "Скрытый монтаж — мраморный керамогранит и душевая зона" },
@@ -18,6 +24,12 @@ const photos = [
   { src: img3, alt: "Скрытый монтаж смесителя и душа на керамограните" },
   { src: img4, alt: "Санузел со скрытой инсталляцией и крупноформатным керамогранитом" },
   { src: img5, alt: "Минималистичный санузел со скрытым монтажом" },
+  { src: img6, alt: "Кухонный фартук из крупноформатного керамогранита под мрамор" },
+  { src: img7, alt: "Ванная зона с керамогранитом под мрамор и отдельностоящей ванной" },
+  { src: img8, alt: "Изделие из керамогранита — скрытый монтаж" },
+  { src: img9, alt: "Изделие из керамогранита — скрытый монтаж" },
+  { src: img10, alt: "Изделие из керамогранита — скрытый монтаж" },
+  { src: img11, alt: "Изделие из керамогранита — скрытый монтаж" },
 ];
 
 const items = [

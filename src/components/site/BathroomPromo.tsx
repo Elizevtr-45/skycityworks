@@ -39,7 +39,7 @@ export function BathroomPromo() {
                 </div>
               </div>
               <div className="mt-2 text-white/50 text-sm">
-                {"Цена санузла под\u00A0ключ для друга со\u00A0скидкой 15%"}
+                {"Цена санузла под\u00A0ключ для друга со\u00A0скидкой 10%"}
               </div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
@@ -60,7 +60,7 @@ export function BathroomPromo() {
 
               <div className="mt-8 flex flex-wrap gap-6 text-sm text-white/70">
                 <div className="flex items-center gap-2">
-                  <Users className="h-4 w-4 text-primary" /> 10% вам · 15% другу
+                  <Users className="h-4 w-4 text-primary" /> Скидка 10%
                 </div>
                 <div className="flex items-center gap-2">
                   <Tag className="h-4 w-4 text-primary" /> Фиксированная цена
@@ -84,9 +84,8 @@ export function BathroomPromo() {
                 ))}
               </ul>
               <div className="mt-5 text-white/50 text-xs leading-relaxed">
-                * Скидка 10% начисляется вам с договора друга при его подписании. Скидка 15% —
-                другу на ремонт санузла под ключ. Стоимость указана за работу; материалы
-                рассчитываются отдельно.
+                * Скидка 10% — другу на ремонт санузла под ключ при подписании договора.
+                Стоимость указана за работу; материалы рассчитываются отдельно.
               </div>
             </div>
           </div>

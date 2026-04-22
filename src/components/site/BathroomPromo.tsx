@@ -1,4 +1,24 @@
-import { Bath, Check, Users, Tag } from "lucide-react";
+import { Bath, Check, Users, Tag, Ruler, Home, Wallet } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import bp1 from "@/assets/bathroom-premium-1.jpg";
+import bp2 from "@/assets/bathroom-premium-2.jpg";
+import bp3 from "@/assets/bathroom-premium-3.jpg";
+import bp4 from "@/assets/bathroom-premium-4.jpg";
+import bp5 from "@/assets/bathroom-premium-5.jpg";
+
+const premiumGallery = [
+  { src: bp1, alt: "Премиальный санузел под ключ во Владивостоке — каркасный дом, 4,5 м², СКАЙСИТИ" },
+  { src: bp2, alt: "Дизайнерский санузел с отдельностоящей ванной — каркасный дом, проект СКАЙСИТИ" },
+  { src: bp3, alt: "Санузел премиум — комбинация керамогранита под дерево и бетон, СКАЙСИТИ Владивосток" },
+  { src: bp4, alt: "Премиальный санузел 4,5 м² — скрытая подсветка и чёрная сантехника, СКАЙСИТИ" },
+  { src: bp5, alt: "Декор санузла премиум — раскладка ёлочкой, полотенцесушитель, СКАЙСИТИ" },
+];
 
 const includes = [
   "Гидроизоляция стен с оклейкой углов",

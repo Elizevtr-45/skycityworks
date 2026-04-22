@@ -1,25 +1,4 @@
-import { Bath, Check, Users, Tag, Ruler, Home, Wallet } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import bp1 from "@/assets/bathroom-premium-1.jpg";
-import bp2 from "@/assets/bathroom-premium-2.jpg";
-import bp3 from "@/assets/bathroom-premium-3.jpg";
-import bp4 from "@/assets/bathroom-premium-4.jpg";
-import bp5 from "@/assets/bathroom-premium-5.jpg";
-
-const premiumGallery = [
-  { src: bp1, alt: "Премиальный санузел под ключ во Владивостоке — каркасный дом, 4,5 м², СКАЙСИТИ" },
-  { src: bp2, alt: "Дизайнерский санузел с отдельностоящей ванной — каркасный дом, проект СКАЙСИТИ" },
-  { src: bp3, alt: "Санузел премиум — комбинация керамогранита под дерево и бетон, СКАЙСИТИ Владивосток" },
-  { src: bp4, alt: "Премиальный санузел 4,5 м² — скрытая подсветка и чёрная сантехника, СКАЙСИТИ" },
-  { src: bp5, alt: "Декор санузла премиум — раскладка ёлочкой, полотенцесушитель, СКАЙСИТИ" },
-];
-
+import { Bath, Check, Users, Tag } from "lucide-react";
 const includes = [
   "Гидроизоляция стен с оклейкой углов",
   "Монтаж душевого поддона в уровень с полом",
@@ -108,76 +87,6 @@ export function BathroomPromo() {
                 Стоимость указана за работу; материалы рассчитываются отдельно.
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="reveal mt-10 grid lg:grid-cols-2 gap-8 lg:gap-10 items-center bg-card border border-border rounded-[10px] p-6 md:p-10">
-          <div className="relative">
-            <Carousel opts={{ align: "start", loop: true }} className="relative">
-              <CarouselContent>
-                {premiumGallery.map((p, i) => (
-                  <CarouselItem key={i}>
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-muted">
-                      <img
-                        src={p.src}
-                        alt={p.alt}
-                        title={p.alt}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden md:flex -left-4" />
-              <CarouselNext className="hidden md:flex -right-4" />
-            </Carousel>
-          </div>
-
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/30 text-primary text-xs uppercase tracking-[0.25em] font-semibold rounded-sm mb-4">
-              Реализованный проект
-            </div>
-            <h3 className="font-display font-bold uppercase text-2xl md:text-3xl lg:text-4xl leading-tight">
-              Премиальный санузел <span className="text-gradient-gold">«под ключ»</span>
-            </h3>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
-              Дизайнерское решение с керамогранитом под дерево и бетон, скрытой подсветкой,
-              чёрной сантехникой и отдельностоящей ванной с декоративными рёбрами.
-            </p>
-
-            <div className="mt-6 grid sm:grid-cols-3 gap-3">
-              <div className="flex items-start gap-3 p-4 bg-background border border-border rounded-sm">
-                <Ruler className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-xs text-muted-foreground uppercase tracking-wider">Площадь</div>
-                  <div className="font-display font-bold mt-0.5">4,5 м²</div>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 p-4 bg-background border border-border rounded-sm">
-                <Home className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-xs text-muted-foreground uppercase tracking-wider">Объект</div>
-                  <div className="font-display font-bold mt-0.5">Каркасный дом</div>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 p-4 bg-background border border-border rounded-sm">
-                <Wallet className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-xs text-muted-foreground uppercase tracking-wider">Стоимость</div>
-                  <div className="font-display font-bold mt-0.5 whitespace-nowrap">390 000 ₽</div>
-                </div>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => window.dispatchEvent(new CustomEvent("open-lead-form"))}
-              className="mt-6 inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5"
-            >
-              Хочу такой же санузел
-            </button>
           </div>
         </div>
       </div>

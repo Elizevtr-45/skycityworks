@@ -63,7 +63,7 @@ export function BathroomPromo() {
                   <Users className="h-4 w-4 text-primary" /> Скидка 10%
                 </div>
                 <div className="flex items-center gap-2">
-                  <Tag className="h-4 w-4 text-primary" /> Фиксированная цена
+                  <Tag className="h-4 w-4 text-primary" /> Цена закреплена в договоре
                 </div>
               </div>
             </div>

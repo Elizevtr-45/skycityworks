@@ -12,6 +12,13 @@ import p1j from "@/assets/portfolio-1j.jpg";
 import p2 from "@/assets/portfolio-2.jpg";
 import p2b from "@/assets/portfolio-2b.jpg";
 import p2c from "@/assets/portfolio-2c.jpg";
+import p2d from "@/assets/portfolio-2d.jpg";
+import p2e from "@/assets/portfolio-2e.jpg";
+import p2f from "@/assets/portfolio-2f.jpg";
+import p2g from "@/assets/portfolio-2g.jpg";
+import p2h from "@/assets/portfolio-2h.jpg";
+import p2i from "@/assets/portfolio-2i.jpg";
+import p2j from "@/assets/portfolio-2j.jpg";
 import p3 from "@/assets/portfolio-3.jpg";
 import p3b from "@/assets/portfolio-3b.jpg";
 import p3c from "@/assets/portfolio-3c.jpg";
@@ -67,7 +74,7 @@ const projects: Project[] = [
     ],
   },
   {
-    images: [p2, p2b, p2c],
+    images: [p2, p2b, p2c, p2d, p2e, p2f, p2g, p2h, p2i, p2j],
     title: "Стильная квартира под ключ",
     type: "Новостройка · 57 м²",
     price: "1 750 000 ₽",

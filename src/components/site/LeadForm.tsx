@@ -8,10 +8,12 @@ function LeadFormFields({
   onDone,
   dark = true,
   source,
+  defaultObjectType,
 }: {
   onDone: () => void;
   dark?: boolean;
   source?: string;
+  defaultObjectType?: string;
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -68,14 +70,15 @@ function LeadFormFields({
       <input required name="name" placeholder="Имя *" className={inputCls} maxLength={100} />
       <input required name="phone" type="tel" placeholder="Телефон *" className={inputCls} maxLength={30} />
       <input required name="area_m2" type="number" min={5} max={10000} placeholder="Площадь, м² *" className={inputCls} />
-      <select name="object_type" className={selectCls} defaultValue="">
+      <select name="object_type" className={selectCls} defaultValue={defaultObjectType ?? ""}>
         <option value="" disabled className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>
-          Тип объекта (необязательно)
+          Тип объекта / услуга (необязательно)
         </option>
         <option value="Квартира" className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>Квартира</option>
         <option value="Дом" className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>Дом</option>
         <option value="Санузел" className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>Санузел</option>
         <option value="Кухня" className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>Кухня</option>
+        <option value="Изделия из керамогранита" className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>Изделия из керамогранита</option>
         <option value="Коммерческое" className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>Коммерческое</option>
       </select>
 
@@ -138,9 +141,14 @@ export function LeadForm() {
 
 export function LeadPopup() {
   const [open, setOpen] = useState(false);
+  const [preset, setPreset] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    const handler = () => setOpen(true);
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail as { objectType?: string } | undefined;
+      setPreset(detail?.objectType);
+      setOpen(true);
+    };
     window.addEventListener("open-lead-form", handler);
     return () => window.removeEventListener("open-lead-form", handler);
   }, []);
@@ -176,13 +184,19 @@ export function LeadPopup() {
             Бесплатная консультация
           </div>
           <h3 className="font-display font-bold uppercase text-2xl md:text-3xl">
-            Оставьте заявку
+            {preset ? `Заявка: ${preset}` : "Оставьте заявку"}
           </h3>
           <p className="text-muted-foreground text-sm mt-2">
             Перезвоним в течение 15 минут и ответим на все вопросы.
           </p>
         </div>
-        <LeadFormFields onDone={() => setOpen(false)} dark={false} source="popup" />
+        <LeadFormFields
+          key={preset ?? "default"}
+          onDone={() => setOpen(false)}
+          dark={false}
+          source={preset ? `popup:${preset}` : "popup"}
+          defaultObjectType={preset}
+        />
       </div>
     </div>
   );

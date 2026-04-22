@@ -62,6 +62,8 @@ function Index() {
       <TrustBlock />
       <About />
       <Services />
+      <Pricing />
+      <Calculator />
       <Portfolio />
       <Showroom />
       <Furniture />
@@ -73,8 +75,6 @@ function Index() {
       <Reviews />
       <Team />
       
-      <Pricing />
-      <Calculator />
       <LeadForm />
       <SocialCTA />
       <FAQ />

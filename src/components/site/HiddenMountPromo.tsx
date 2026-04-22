@@ -127,7 +127,22 @@ export function HiddenMountPromo() {
                   ))}
                 </CarouselContent>
               </Carousel>
-              <div className="mt-4 text-white/50 text-xs leading-relaxed">
+              <div className="mt-6 flex justify-center">
+                <button
+                  type="button"
+                  onClick={() =>
+                    window.dispatchEvent(
+                      new CustomEvent("open-lead-form", {
+                        detail: { objectType: "Изделия из керамогранита" },
+                      }),
+                    )
+                  }
+                  className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5 text-center"
+                >
+                  Запросить консультацию по изделиям из керамогранита
+                </button>
+              </div>
+              <div className="mt-4 text-white/50 text-xs leading-relaxed text-center">
                 * Реальные работы наших мастеров — скрытый монтаж и изделия из керамогранита.
               </div>
             </div>

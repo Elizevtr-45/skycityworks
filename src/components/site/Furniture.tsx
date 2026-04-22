@@ -93,10 +93,12 @@ export function Furniture() {
           <div className="reveal order-1 lg:order-2 relative aspect-[4/3] overflow-hidden rounded-sm">
             <img
               src={furnitureImg}
-              alt="Изготовление мебели на заказ СКАЙСИТИ"
+              alt="Мебель на заказ во Владивостоке — собственное производство СКАЙСИТИ: кухни, шкафы и гардеробные под ключ"
+              title="Мебель на заказ во Владивостоке — СКАЙСИТИ"
               width={1280}
               height={960}
               loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />
           </div>

@@ -52,16 +52,16 @@ export function Navbar() {
           <Phone className="h-5 w-5 text-primary shrink-0" />
           <div className="flex flex-col leading-tight">
             <a
-              href="tel:+79693077772"
-              className="text-white text-sm font-semibold hover:text-primary transition-colors"
-            >
-              8 969 307 77 72
-            </a>
-            <a
               href="tel:+79644455525"
               className="text-white text-sm font-semibold hover:text-primary transition-colors"
             >
               8 964 445 55 25
+            </a>
+            <a
+              href="tel:+79693077772"
+              className="text-white text-sm font-semibold hover:text-primary transition-colors"
+            >
+              8 969 307 77 72
             </a>
           </div>
         </div>
@@ -95,11 +95,11 @@ export function Navbar() {
                 </a>
               ))}
               <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
-                <a href="tel:+79693077772" className="inline-flex items-center gap-2 text-primary font-semibold">
-                  <Phone className="h-4 w-4" /> 8 969 307 77 72 — Денис
-                </a>
                 <a href="tel:+79644455525" className="inline-flex items-center gap-2 text-primary font-semibold">
                   <Phone className="h-4 w-4" /> 8 964 445 55 25 — Николай
+                </a>
+                <a href="tel:+79693077772" className="inline-flex items-center gap-2 text-primary font-semibold">
+                  <Phone className="h-4 w-4" /> 8 969 307 77 72 — Денис
                 </a>
               </div>
             </div>

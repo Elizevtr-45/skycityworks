@@ -2,6 +2,25 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 
 import appCss from "../styles.css?url";
 
+const yandexMetrikaScript = `(function(m,e,t,r,i,k,a){
+  m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+  m[i].l=1*new Date();
+  for (var j = 0; j < document.scripts.length; j++) {
+    if (document.scripts[j].src === r) { return; }
+  }
+  k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+})(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=108729615', 'ym');
+ym(108729615, 'init', {
+  ssr: true,
+  webvisor: true,
+  clickmap: true,
+  ecommerce: 'dataLayer',
+  referrer: document.referrer,
+  url: location.href,
+  accurateTrackBounce: true,
+  trackLinks: true,
+});`;
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -86,9 +105,19 @@ function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru">
       <head>
+        <script dangerouslySetInnerHTML={{ __html: yandexMetrikaScript }} />
         <HeadContent />
       </head>
       <body suppressHydrationWarning>
+        <noscript>
+          <div>
+            <img
+              src="https://mc.yandex.ru/watch/108729615"
+              style={{ position: "absolute", left: "-9999px" }}
+              alt=""
+            />
+          </div>
+        </noscript>
         {children}
         <Scripts />
       </body>

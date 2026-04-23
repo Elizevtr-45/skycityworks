@@ -26,8 +26,8 @@ export function ApartmentPromo() {
                 Ремонт квартиры — <span className="text-gradient-gold">скидка 10%</span>
               </h2>
               <p className="mt-5 text-white/70 text-lg leading-relaxed max-w-lg">
-                Приведите друга на ремонт квартиры под ключ — он получает{" "}
-                <span className="text-primary font-semibold">10%</span> с договора.
+                Приведите друга на ремонт квартиры под ключ — и получите{" "}
+                <span className="text-primary font-semibold">10%</span> с его договора.
                 Расчёт по базовому тарифу для квартиры ≈&nbsp;50&nbsp;м².
               </p>
 

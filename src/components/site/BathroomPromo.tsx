@@ -71,11 +71,11 @@ export function BathroomPromo() {
               <div className="font-display font-bold uppercase text-sm tracking-wider text-primary mb-5">
                 Что входит в санузел под ключ
               </div>
-              <ul className="grid sm:grid-cols-2 gap-3">
+              <ul className="grid sm:grid-cols-2 gap-2.5 sm:gap-3">
                 {includes.map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-3 bg-white/5 border border-white/10 p-4 rounded-sm"
+                    className="flex items-start gap-3 bg-white/5 border border-white/10 p-3 sm:p-4 rounded-sm"
                   >
                     <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                     <span className="text-sm text-white/90">{item}</span>

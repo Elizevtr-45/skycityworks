@@ -41,9 +41,9 @@ function LeadFormFields({
       website: String(fd.get("website") || ""),
     };
 
-    if (!payload.name || !payload.phone || !payload.area_m2) {
+    if (!payload.name || !payload.phone || (!tier && !payload.area_m2)) {
       setStatus("error");
-      setErrorMsg("Заполните имя, телефон и площадь");
+      setErrorMsg(tier ? "Заполните имя и телефон" : "Заполните имя, телефон и площадь");
       return;
     }
 
@@ -68,16 +68,20 @@ function LeadFormFields({
   };
 
   const inputCls = dark
-    ? "bg-transparent border border-white/20 text-white placeholder:text-white/40 px-4 py-4 rounded-sm focus:outline-none focus:border-primary transition-colors"
-    : "bg-transparent border border-border text-foreground placeholder:text-muted-foreground px-4 py-4 rounded-sm focus:outline-none focus:border-primary transition-colors";
+    ? "w-full min-w-0 bg-transparent border border-white/20 text-white placeholder:text-white/40 px-4 py-4 rounded-sm focus:outline-none focus:border-primary transition-colors"
+    : "w-full min-w-0 bg-transparent border border-border text-foreground placeholder:text-muted-foreground px-4 py-4 rounded-sm focus:outline-none focus:border-primary transition-colors";
 
   const selectCls = `${inputCls} appearance-none cursor-pointer`;
 
+  // Если тариф пришёл из калькулятора — площадь уже включена в название тарифа,
+  // отдельное поле не показываем, чтобы не перегружать форму.
+  const hideAreaField = Boolean(tier);
+
   return (
-    <form onSubmit={onSubmit} className="grid gap-4">
+    <form onSubmit={onSubmit} className="grid gap-4 w-full min-w-0">
       {tierName && (
         <div
-          className={`flex items-center justify-between gap-3 px-4 py-3 rounded-sm border ${
+          className={`flex items-center justify-between gap-3 px-4 py-3 rounded-sm border min-w-0 ${
             dark
               ? "border-primary/40 bg-primary/10 text-white"
               : "border-primary/40 bg-primary/5 text-foreground"
@@ -87,18 +91,20 @@ function LeadFormFields({
             <div className={`text-[10px] uppercase tracking-[0.2em] font-semibold ${dark ? "text-white/60" : "text-muted-foreground"}`}>
               Выбранный тариф
             </div>
-            <div className="font-display font-bold uppercase text-sm sm:text-base truncate">
+            <div className="font-display font-bold uppercase text-sm sm:text-base break-words leading-tight">
               {tierName}
             </div>
           </div>
-          <span className="text-primary text-xs font-semibold uppercase tracking-wider whitespace-nowrap">✓ Выбрано</span>
+          <span className="text-primary text-xs font-semibold uppercase tracking-wider whitespace-nowrap shrink-0">✓</span>
         </div>
       )}
       <input type="hidden" name="tier" value={tier ?? ""} />
       <input type="hidden" name="tier_name" value={tierName ?? ""} />
       <input required name="name" placeholder="Имя *" className={inputCls} maxLength={100} />
       <input required name="phone" type="tel" placeholder="Телефон *" className={inputCls} maxLength={30} />
-      <input required name="area_m2" type="number" min={5} max={10000} placeholder="Площадь, м² *" className={inputCls} />
+      {!hideAreaField && (
+        <input required name="area_m2" type="number" min={5} max={10000} placeholder="Площадь, м² *" className={inputCls} />
+      )}
       <select name="object_type" className={selectCls} defaultValue={defaultObjectType ?? ""}>
         <option value="" disabled className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>
           Тип объекта / услуга (необязательно)
@@ -153,27 +159,33 @@ function LeadFormFields({
         >
           Также можете связаться с нами самостоятельно
         </div>
-        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-stretch sm:items-center">
           <a
             href="tel:+79644455525"
-            className={`inline-flex items-center gap-2 font-semibold text-sm hover:text-primary transition-colors ${
+            className={`flex flex-col items-center gap-0.5 hover:text-primary transition-colors ${
               dark ? "text-white" : "text-foreground"
             }`}
           >
-            <Phone className="h-4 w-4 text-primary" /> 8 964 445 55 25
-            <span className={dark ? "text-white/40 font-normal" : "text-muted-foreground font-normal"}>
-              — Николай
+            <span className="inline-flex items-center gap-2 font-semibold text-sm whitespace-nowrap">
+              <Phone className="h-4 w-4 text-primary shrink-0" />
+              8 964 445 55 25
+            </span>
+            <span className={`text-[11px] ${dark ? "text-white/50" : "text-muted-foreground"}`}>
+              Николай
             </span>
           </a>
           <a
             href="tel:+79693077772"
-            className={`inline-flex items-center gap-2 font-semibold text-sm hover:text-primary transition-colors ${
+            className={`flex flex-col items-center gap-0.5 hover:text-primary transition-colors ${
               dark ? "text-white" : "text-foreground"
             }`}
           >
-            <Phone className="h-4 w-4 text-primary" /> 8 969 307 77 72
-            <span className={dark ? "text-white/40 font-normal" : "text-muted-foreground font-normal"}>
-              — Денис
+            <span className="inline-flex items-center gap-2 font-semibold text-sm whitespace-nowrap">
+              <Phone className="h-4 w-4 text-primary shrink-0" />
+              8 969 307 77 72
+            </span>
+            <span className={`text-[11px] ${dark ? "text-white/50" : "text-muted-foreground"}`}>
+              Денис
             </span>
           </a>
         </div>
@@ -198,7 +210,7 @@ export function LeadForm() {
             Перезвоним в течение 15 минут. Бесплатный осмотр, замер и смета — без обязательств.
           </p>
         </div>
-        <div className="reveal bg-white/5 border border-white/10 p-6 md:p-10 rounded-sm">
+        <div className="reveal bg-white/5 border border-white/10 p-4 sm:p-6 md:p-10 rounded-sm overflow-hidden">
           <LeadFormFields onDone={() => {}} dark source="contact-section" />
         </div>
       </div>

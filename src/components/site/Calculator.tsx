@@ -109,10 +109,10 @@ export function Calculator() {
                           : "border-border hover:border-primary/50"
                       }`}
                     >
-                      <div className="font-display font-bold uppercase text-xs sm:text-sm break-words">
+                      <div className="font-display font-bold uppercase text-[11px] sm:text-sm break-words leading-tight">
                         {TIERS[k].name}
                       </div>
-                      <div className={`text-[11px] sm:text-xs mt-1 break-words ${active ? "text-primary" : "text-muted-foreground"}`}>
+                      <div className={`text-[10px] sm:text-xs mt-1 break-words leading-tight ${active ? "text-primary" : "text-muted-foreground"}`}>
                         от {fmt(TIERS[k].price)}/м²
                       </div>
                     </button>

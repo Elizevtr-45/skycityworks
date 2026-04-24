@@ -75,6 +75,27 @@ function LeadFormFields({
 
   return (
     <form onSubmit={onSubmit} className="grid gap-4">
+      {tierName && (
+        <div
+          className={`flex items-center justify-between gap-3 px-4 py-3 rounded-sm border ${
+            dark
+              ? "border-primary/40 bg-primary/10 text-white"
+              : "border-primary/40 bg-primary/5 text-foreground"
+          }`}
+        >
+          <div className="min-w-0">
+            <div className={`text-[10px] uppercase tracking-[0.2em] font-semibold ${dark ? "text-white/60" : "text-muted-foreground"}`}>
+              Выбранный тариф
+            </div>
+            <div className="font-display font-bold uppercase text-sm sm:text-base truncate">
+              {tierName}
+            </div>
+          </div>
+          <span className="text-primary text-xs font-semibold uppercase tracking-wider whitespace-nowrap">✓ Выбрано</span>
+        </div>
+      )}
+      <input type="hidden" name="tier" value={tier ?? ""} />
+      <input type="hidden" name="tier_name" value={tierName ?? ""} />
       <input required name="name" placeholder="Имя *" className={inputCls} maxLength={100} />
       <input required name="phone" type="tel" placeholder="Телефон *" className={inputCls} maxLength={30} />
       <input required name="area_m2" type="number" min={5} max={10000} placeholder="Площадь, м² *" className={inputCls} />

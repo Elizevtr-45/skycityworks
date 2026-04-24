@@ -62,9 +62,9 @@ function Index() {
       <TrustBlock />
       <About />
       <Services />
+      <Portfolio />
       <Pricing />
       <Calculator />
-      <Portfolio />
       <Showroom />
       <Furniture />
       <BathroomPromo />

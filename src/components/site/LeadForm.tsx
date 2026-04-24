@@ -28,11 +28,15 @@ function LeadFormFields({
     const form = e.currentTarget;
     const fd = new FormData(form);
 
+    const tierFromForm = String(fd.get("tier") || "").trim();
+    const tierNameFromForm = String(fd.get("tier_name") || "").trim();
+
     const payload = {
       name: String(fd.get("name") || "").trim(),
       phone: String(fd.get("phone") || "").trim(),
       area_m2: Number(fd.get("area_m2") || 0) || null,
       object_type: (String(fd.get("object_type") || "").trim() || null) as string | null,
+      message: tierNameFromForm ? `Выбран тариф: ${tierNameFromForm}${tierFromForm ? ` (${tierFromForm})` : ""}` : undefined,
       source: source ?? "site",
       website: String(fd.get("website") || ""),
     };

@@ -14,17 +14,17 @@ export function TrustBlock() {
         {items.map((it, i) => (
           <div
             key={it.title}
-            className="reveal flex items-center gap-3"
+            className="reveal flex items-center gap-2 sm:gap-3 min-w-0"
             style={{ transitionDelay: `${i * 60}ms` }}
           >
-            <div className="h-10 w-10 shrink-0 rounded-sm border border-primary/40 flex items-center justify-center">
-              <it.icon className="h-4 w-4 text-primary" />
+            <div className="h-8 w-8 sm:h-10 sm:w-10 shrink-0 rounded-sm border border-primary/40 flex items-center justify-center">
+              <it.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
             </div>
-            <div className="min-w-0">
-              <div className="font-display font-bold uppercase text-white text-sm md:text-base leading-tight">
+            <div className="min-w-0 flex-1">
+              <div className="font-display font-bold uppercase text-white text-[11px] sm:text-sm md:text-base leading-tight break-words">
                 {it.title}
               </div>
-              <div className="text-white/60 text-xs mt-0.5 leading-tight">{it.text}</div>
+              <div className="text-white/60 text-[10px] sm:text-xs mt-0.5 leading-tight break-words">{it.text}</div>
             </div>
           </div>
         ))}

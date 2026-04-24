@@ -159,27 +159,33 @@ function LeadFormFields({
         >
           Также можете связаться с нами самостоятельно
         </div>
-        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-stretch sm:items-center">
           <a
             href="tel:+79644455525"
-            className={`inline-flex items-center gap-2 font-semibold text-sm hover:text-primary transition-colors ${
+            className={`flex flex-col items-center gap-0.5 hover:text-primary transition-colors ${
               dark ? "text-white" : "text-foreground"
             }`}
           >
-            <Phone className="h-4 w-4 text-primary" /> 8 964 445 55 25
-            <span className={dark ? "text-white/40 font-normal" : "text-muted-foreground font-normal"}>
-              — Николай
+            <span className="inline-flex items-center gap-2 font-semibold text-sm whitespace-nowrap">
+              <Phone className="h-4 w-4 text-primary shrink-0" />
+              8 964 445 55 25
+            </span>
+            <span className={`text-[11px] ${dark ? "text-white/50" : "text-muted-foreground"}`}>
+              Николай
             </span>
           </a>
           <a
             href="tel:+79693077772"
-            className={`inline-flex items-center gap-2 font-semibold text-sm hover:text-primary transition-colors ${
+            className={`flex flex-col items-center gap-0.5 hover:text-primary transition-colors ${
               dark ? "text-white" : "text-foreground"
             }`}
           >
-            <Phone className="h-4 w-4 text-primary" /> 8 969 307 77 72
-            <span className={dark ? "text-white/40 font-normal" : "text-muted-foreground font-normal"}>
-              — Денис
+            <span className="inline-flex items-center gap-2 font-semibold text-sm whitespace-nowrap">
+              <Phone className="h-4 w-4 text-primary shrink-0" />
+              8 969 307 77 72
+            </span>
+            <span className={`text-[11px] ${dark ? "text-white/50" : "text-muted-foreground"}`}>
+              Денис
             </span>
           </a>
         </div>

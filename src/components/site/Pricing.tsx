@@ -190,13 +190,14 @@ export function Pricing() {
               <button
                 type="button"
                 onClick={() => selectTier(t.id, t.name)}
-                className={`mt-auto block w-full text-center px-4 sm:px-6 py-3 font-semibold uppercase tracking-wider text-xs sm:text-sm rounded-sm transition-all hover:-translate-y-0.5 break-words ${
+                className={`mt-auto block w-full text-center px-3 sm:px-6 py-3 font-semibold uppercase tracking-wide sm:tracking-wider text-xs sm:text-sm rounded-sm transition-all hover:-translate-y-0.5 leading-tight ${
                   t.featured
                     ? "bg-primary text-white hover:bg-accent hover:shadow-[0_10px_30px_-10px_oklch(0.7_0.08_65/0.6)]"
                     : "bg-dark text-white hover:bg-primary"
                 }`}
               >
-                Выбрать «{t.name}»
+                <span className="hidden sm:inline">Выбрать «{t.name}»</span>
+                <span className="sm:hidden">Выбрать тариф</span>
               </button>
             </div>
           ))}

@@ -127,7 +127,7 @@ export function HiddenMountPromo() {
                   ))}
                 </CarouselContent>
               </Carousel>
-              <div className="mt-6 flex justify-center">
+              <div className="mt-5 sm:mt-6 flex justify-center">
                 <button
                   type="button"
                   onClick={() =>
@@ -137,7 +137,7 @@ export function HiddenMountPromo() {
                       }),
                     )
                   }
-                  className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5 text-center"
+                  className="inline-flex items-center justify-center w-full sm:w-auto px-5 sm:px-8 py-3.5 sm:py-4 bg-primary text-white font-semibold uppercase tracking-wider text-xs sm:text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5 text-center leading-snug"
                 >
                   Запросить консультацию по изделиям из керамогранита
                 </button>

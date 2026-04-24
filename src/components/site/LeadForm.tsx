@@ -248,41 +248,43 @@ export function LeadPopup() {
 
   return (
     <div
-      className="fixed inset-0 z-[100] bg-dark/70 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in"
+      className="fixed inset-0 z-[100] bg-dark/70 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 animate-in fade-in overflow-y-auto"
       onClick={() => setOpen(false)}
     >
       <div
-        className="bg-background w-full max-w-md p-6 md:p-8 relative"
-        style={{ borderRadius: "10px" }}
+        className="bg-background w-full max-w-md max-h-[90vh] sm:max-h-[85vh] flex flex-col relative my-auto shadow-2xl"
+        style={{ borderRadius: "12px" }}
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={() => setOpen(false)}
-          className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
+          className="absolute top-3 right-3 z-10 h-9 w-9 flex items-center justify-center rounded-full bg-background/80 backdrop-blur text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
           aria-label="Закрыть"
         >
           <X className="h-5 w-5" />
         </button>
-        <div className="mb-6">
-          <div className="text-primary uppercase tracking-[0.3em] text-xs font-semibold mb-2">
-            Бесплатная консультация
+        <div className="overflow-y-auto px-5 sm:px-7 py-6 sm:py-7">
+          <div className="mb-5 pr-8">
+            <div className="text-primary uppercase tracking-[0.25em] text-[10px] sm:text-xs font-semibold mb-2">
+              Бесплатная консультация
+            </div>
+            <h3 className="font-display font-bold uppercase text-xl sm:text-2xl md:text-3xl leading-tight">
+              {heading}
+            </h3>
+            <p className="text-muted-foreground text-xs sm:text-sm mt-2">
+              Перезвоним в течение 15 минут и ответим на все вопросы.
+            </p>
           </div>
-          <h3 className="font-display font-bold uppercase text-2xl md:text-3xl">
-            {heading}
-          </h3>
-          <p className="text-muted-foreground text-sm mt-2">
-            Перезвоним в течение 15 минут и ответим на все вопросы.
-          </p>
+          <LeadFormFields
+            key={`${tier ?? ""}-${preset ?? "default"}`}
+            onDone={() => setOpen(false)}
+            dark={false}
+            source={computedSource}
+            defaultObjectType={preset}
+            tier={tier}
+            tierName={tierName}
+          />
         </div>
-        <LeadFormFields
-          key={`${tier ?? ""}-${preset ?? "default"}`}
-          onDone={() => setOpen(false)}
-          dark={false}
-          source={computedSource}
-          defaultObjectType={preset}
-          tier={tier}
-          tierName={tierName}
-        />
       </div>
     </div>
   );

@@ -68,16 +68,20 @@ function LeadFormFields({
   };
 
   const inputCls = dark
-    ? "bg-transparent border border-white/20 text-white placeholder:text-white/40 px-4 py-4 rounded-sm focus:outline-none focus:border-primary transition-colors"
-    : "bg-transparent border border-border text-foreground placeholder:text-muted-foreground px-4 py-4 rounded-sm focus:outline-none focus:border-primary transition-colors";
+    ? "w-full min-w-0 bg-transparent border border-white/20 text-white placeholder:text-white/40 px-4 py-4 rounded-sm focus:outline-none focus:border-primary transition-colors"
+    : "w-full min-w-0 bg-transparent border border-border text-foreground placeholder:text-muted-foreground px-4 py-4 rounded-sm focus:outline-none focus:border-primary transition-colors";
 
   const selectCls = `${inputCls} appearance-none cursor-pointer`;
 
+  // Если тариф пришёл из калькулятора — площадь уже включена в название тарифа,
+  // отдельное поле не показываем, чтобы не перегружать форму.
+  const hideAreaField = Boolean(tier);
+
   return (
-    <form onSubmit={onSubmit} className="grid gap-4">
+    <form onSubmit={onSubmit} className="grid gap-4 w-full min-w-0">
       {tierName && (
         <div
-          className={`flex items-center justify-between gap-3 px-4 py-3 rounded-sm border ${
+          className={`flex items-center justify-between gap-3 px-4 py-3 rounded-sm border min-w-0 ${
             dark
               ? "border-primary/40 bg-primary/10 text-white"
               : "border-primary/40 bg-primary/5 text-foreground"
@@ -87,18 +91,20 @@ function LeadFormFields({
             <div className={`text-[10px] uppercase tracking-[0.2em] font-semibold ${dark ? "text-white/60" : "text-muted-foreground"}`}>
               Выбранный тариф
             </div>
-            <div className="font-display font-bold uppercase text-sm sm:text-base truncate">
+            <div className="font-display font-bold uppercase text-sm sm:text-base break-words leading-tight">
               {tierName}
             </div>
           </div>
-          <span className="text-primary text-xs font-semibold uppercase tracking-wider whitespace-nowrap">✓ Выбрано</span>
+          <span className="text-primary text-xs font-semibold uppercase tracking-wider whitespace-nowrap shrink-0">✓</span>
         </div>
       )}
       <input type="hidden" name="tier" value={tier ?? ""} />
       <input type="hidden" name="tier_name" value={tierName ?? ""} />
       <input required name="name" placeholder="Имя *" className={inputCls} maxLength={100} />
       <input required name="phone" type="tel" placeholder="Телефон *" className={inputCls} maxLength={30} />
-      <input required name="area_m2" type="number" min={5} max={10000} placeholder="Площадь, м² *" className={inputCls} />
+      {!hideAreaField && (
+        <input required name="area_m2" type="number" min={5} max={10000} placeholder="Площадь, м² *" className={inputCls} />
+      )}
       <select name="object_type" className={selectCls} defaultValue={defaultObjectType ?? ""}>
         <option value="" disabled className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>
           Тип объекта / услуга (необязательно)

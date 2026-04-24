@@ -9,15 +9,23 @@ const items = [
 
 export function TrustBlock() {
   return (
-    <section className="bg-dark py-16 md:py-20">
-      <div className="container-px mx-auto max-w-7xl grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+    <section className="bg-dark py-8 md:py-10">
+      <div className="container-px mx-auto max-w-7xl grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {items.map((it, i) => (
-          <div key={it.title} className="reveal flex flex-col items-start" style={{ transitionDelay: `${i * 80}ms` }}>
-            <div className="h-14 w-14 rounded-sm border border-primary/40 flex items-center justify-center mb-4">
-              <it.icon className="h-6 w-6 text-primary" />
+          <div
+            key={it.title}
+            className="reveal flex items-center gap-3"
+            style={{ transitionDelay: `${i * 60}ms` }}
+          >
+            <div className="h-10 w-10 shrink-0 rounded-sm border border-primary/40 flex items-center justify-center">
+              <it.icon className="h-4 w-4 text-primary" />
             </div>
-            <div className="font-display font-bold uppercase text-white text-lg md:text-xl">{it.title}</div>
-            <div className="text-white/60 text-sm mt-1">{it.text}</div>
+            <div className="min-w-0">
+              <div className="font-display font-bold uppercase text-white text-sm md:text-base leading-tight">
+                {it.title}
+              </div>
+              <div className="text-white/60 text-xs mt-0.5 leading-tight">{it.text}</div>
+            </div>
           </div>
         ))}
       </div>

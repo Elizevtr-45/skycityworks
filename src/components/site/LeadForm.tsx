@@ -210,7 +210,7 @@ export function LeadForm() {
             Перезвоним в течение 15 минут. Бесплатный осмотр, замер и смета — без обязательств.
           </p>
         </div>
-        <div className="reveal bg-white/5 border border-white/10 p-6 md:p-10 rounded-sm">
+        <div className="reveal bg-white/5 border border-white/10 p-4 sm:p-6 md:p-10 rounded-sm overflow-hidden">
           <LeadFormFields onDone={() => {}} dark source="contact-section" />
         </div>
       </div>

@@ -9,11 +9,15 @@ function LeadFormFields({
   dark = true,
   source,
   defaultObjectType,
+  tier,
+  tierName,
 }: {
   onDone: () => void;
   dark?: boolean;
   source?: string;
   defaultObjectType?: string;
+  tier?: string;
+  tierName?: string;
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);

@@ -119,7 +119,7 @@ export function HiddenMountPromo() {
                           src={p.src}
                           alt={p.alt}
                           loading="lazy"
-                          className="w-full h-[420px] md:h-[520px] object-cover"
+                          className="w-full h-[280px] sm:h-[420px] md:h-[520px] object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                       </div>

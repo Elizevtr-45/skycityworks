@@ -9,11 +9,15 @@ function LeadFormFields({
   dark = true,
   source,
   defaultObjectType,
+  tier,
+  tierName,
 }: {
   onDone: () => void;
   dark?: boolean;
   source?: string;
   defaultObjectType?: string;
+  tier?: string;
+  tierName?: string;
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -24,11 +28,15 @@ function LeadFormFields({
     const form = e.currentTarget;
     const fd = new FormData(form);
 
+    const tierFromForm = String(fd.get("tier") || "").trim();
+    const tierNameFromForm = String(fd.get("tier_name") || "").trim();
+
     const payload = {
       name: String(fd.get("name") || "").trim(),
       phone: String(fd.get("phone") || "").trim(),
       area_m2: Number(fd.get("area_m2") || 0) || null,
       object_type: (String(fd.get("object_type") || "").trim() || null) as string | null,
+      message: tierNameFromForm ? `Выбран тариф: ${tierNameFromForm}${tierFromForm ? ` (${tierFromForm})` : ""}` : undefined,
       source: source ?? "site",
       website: String(fd.get("website") || ""),
     };
@@ -67,6 +75,27 @@ function LeadFormFields({
 
   return (
     <form onSubmit={onSubmit} className="grid gap-4">
+      {tierName && (
+        <div
+          className={`flex items-center justify-between gap-3 px-4 py-3 rounded-sm border ${
+            dark
+              ? "border-primary/40 bg-primary/10 text-white"
+              : "border-primary/40 bg-primary/5 text-foreground"
+          }`}
+        >
+          <div className="min-w-0">
+            <div className={`text-[10px] uppercase tracking-[0.2em] font-semibold ${dark ? "text-white/60" : "text-muted-foreground"}`}>
+              Выбранный тариф
+            </div>
+            <div className="font-display font-bold uppercase text-sm sm:text-base truncate">
+              {tierName}
+            </div>
+          </div>
+          <span className="text-primary text-xs font-semibold uppercase tracking-wider whitespace-nowrap">✓ Выбрано</span>
+        </div>
+      )}
+      <input type="hidden" name="tier" value={tier ?? ""} />
+      <input type="hidden" name="tier_name" value={tierName ?? ""} />
       <input required name="name" placeholder="Имя *" className={inputCls} maxLength={100} />
       <input required name="phone" type="tel" placeholder="Телефон *" className={inputCls} maxLength={30} />
       <input required name="area_m2" type="number" min={5} max={10000} placeholder="Площадь, м² *" className={inputCls} />
@@ -142,11 +171,19 @@ export function LeadForm() {
 export function LeadPopup() {
   const [open, setOpen] = useState(false);
   const [preset, setPreset] = useState<string | undefined>(undefined);
+  const [tier, setTier] = useState<string | undefined>(undefined);
+  const [tierName, setTierName] = useState<string | undefined>(undefined);
+  const [sourceOverride, setSourceOverride] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     const handler = (e: Event) => {
-      const detail = (e as CustomEvent).detail as { objectType?: string } | undefined;
+      const detail = (e as CustomEvent).detail as
+        | { objectType?: string; tier?: string; tierName?: string; source?: string }
+        | undefined;
       setPreset(detail?.objectType);
+      setTier(detail?.tier);
+      setTierName(detail?.tierName);
+      setSourceOverride(detail?.source);
       setOpen(true);
     };
     window.addEventListener("open-lead-form", handler);
@@ -161,6 +198,15 @@ export function LeadPopup() {
   }, [open]);
 
   if (!open) return null;
+
+  const computedSource =
+    sourceOverride ?? (tier ? `popup:tier:${tier}` : preset ? `popup:${preset}` : "popup");
+
+  const heading = tierName
+    ? `Тариф «${tierName}»`
+    : preset
+    ? `Заявка: ${preset}`
+    : "Оставьте заявку";
 
   return (
     <div
@@ -184,18 +230,20 @@ export function LeadPopup() {
             Бесплатная консультация
           </div>
           <h3 className="font-display font-bold uppercase text-2xl md:text-3xl">
-            {preset ? `Заявка: ${preset}` : "Оставьте заявку"}
+            {heading}
           </h3>
           <p className="text-muted-foreground text-sm mt-2">
             Перезвоним в течение 15 минут и ответим на все вопросы.
           </p>
         </div>
         <LeadFormFields
-          key={preset ?? "default"}
+          key={`${tier ?? ""}-${preset ?? "default"}`}
           onDone={() => setOpen(false)}
           dark={false}
-          source={preset ? `popup:${preset}` : "popup"}
+          source={computedSource}
           defaultObjectType={preset}
+          tier={tier}
+          tierName={tierName}
         />
       </div>
     </div>

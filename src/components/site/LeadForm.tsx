@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { X } from "lucide-react";
+import { X, Phone } from "lucide-react";
 import { submitLead } from "@/lib/leads";
 
 type Status = "idle" | "sending" | "success" | "error";

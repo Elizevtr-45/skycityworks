@@ -140,6 +140,44 @@ function LeadFormFields({
       <p className={`text-xs text-center ${dark ? "text-white/40" : "text-muted-foreground"}`}>
         Нажимая «Получить консультацию», вы соглашаетесь с политикой обработки персональных данных.
       </p>
+
+      <div
+        className={`mt-2 pt-4 border-t text-center ${
+          dark ? "border-white/10" : "border-border"
+        }`}
+      >
+        <div
+          className={`text-[10px] uppercase tracking-[0.25em] font-semibold mb-2 ${
+            dark ? "text-white/50" : "text-muted-foreground"
+          }`}
+        >
+          Также можете связаться с нами самостоятельно
+        </div>
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center items-center">
+          <a
+            href="tel:+79644455525"
+            className={`inline-flex items-center gap-2 font-semibold text-sm hover:text-primary transition-colors ${
+              dark ? "text-white" : "text-foreground"
+            }`}
+          >
+            <Phone className="h-4 w-4 text-primary" /> 8 964 445 55 25
+            <span className={dark ? "text-white/40 font-normal" : "text-muted-foreground font-normal"}>
+              — Николай
+            </span>
+          </a>
+          <a
+            href="tel:+79693077772"
+            className={`inline-flex items-center gap-2 font-semibold text-sm hover:text-primary transition-colors ${
+              dark ? "text-white" : "text-foreground"
+            }`}
+          >
+            <Phone className="h-4 w-4 text-primary" /> 8 969 307 77 72
+            <span className={dark ? "text-white/40 font-normal" : "text-muted-foreground font-normal"}>
+              — Денис
+            </span>
+          </a>
+        </div>
+      </div>
     </form>
   );
 }

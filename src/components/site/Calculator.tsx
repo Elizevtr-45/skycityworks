@@ -189,12 +189,23 @@ export function Calculator() {
                 </div>
               </div>
 
-              <a
-                href="#contact"
-                className="block text-center px-6 py-4 bg-primary text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5"
+              <button
+                type="button"
+                onClick={() =>
+                  window.dispatchEvent(
+                    new CustomEvent("open-lead-form", {
+                      detail: {
+                        tier: tier,
+                        tierName: `${TIERS[tier].name} · ${area} м² · ${fmt(total)}`,
+                        source: `calculator:${tier}`,
+                      },
+                    }),
+                  )
+                }
+                className="block w-full text-center px-6 py-4 bg-primary text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5"
               >
                 Получить точную смету
-              </a>
+              </button>
               <p className="text-white/40 text-xs text-center mt-4 leading-relaxed">
                 Расчёт носит ориентировочный характер. Финальная стоимость
                 фиксируется в договоре после бесплатного замера.

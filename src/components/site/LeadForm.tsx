@@ -41,9 +41,9 @@ function LeadFormFields({
       website: String(fd.get("website") || ""),
     };
 
-    if (!payload.name || !payload.phone || !payload.area_m2) {
+    if (!payload.name || !payload.phone || (!tier && !payload.area_m2)) {
       setStatus("error");
-      setErrorMsg("Заполните имя, телефон и площадь");
+      setErrorMsg(tier ? "Заполните имя и телефон" : "Заполните имя, телефон и площадь");
       return;
     }
 

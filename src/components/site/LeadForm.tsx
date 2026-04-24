@@ -171,11 +171,19 @@ export function LeadForm() {
 export function LeadPopup() {
   const [open, setOpen] = useState(false);
   const [preset, setPreset] = useState<string | undefined>(undefined);
+  const [tier, setTier] = useState<string | undefined>(undefined);
+  const [tierName, setTierName] = useState<string | undefined>(undefined);
+  const [sourceOverride, setSourceOverride] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     const handler = (e: Event) => {
-      const detail = (e as CustomEvent).detail as { objectType?: string } | undefined;
+      const detail = (e as CustomEvent).detail as
+        | { objectType?: string; tier?: string; tierName?: string; source?: string }
+        | undefined;
       setPreset(detail?.objectType);
+      setTier(detail?.tier);
+      setTierName(detail?.tierName);
+      setSourceOverride(detail?.source);
       setOpen(true);
     };
     window.addEventListener("open-lead-form", handler);
@@ -190,6 +198,15 @@ export function LeadPopup() {
   }, [open]);
 
   if (!open) return null;
+
+  const computedSource =
+    sourceOverride ?? (tier ? `popup:tier:${tier}` : preset ? `popup:${preset}` : "popup");
+
+  const heading = tierName
+    ? `Тариф «${tierName}»`
+    : preset
+    ? `Заявка: ${preset}`
+    : "Оставьте заявку";
 
   return (
     <div
@@ -213,18 +230,20 @@ export function LeadPopup() {
             Бесплатная консультация
           </div>
           <h3 className="font-display font-bold uppercase text-2xl md:text-3xl">
-            {preset ? `Заявка: ${preset}` : "Оставьте заявку"}
+            {heading}
           </h3>
           <p className="text-muted-foreground text-sm mt-2">
             Перезвоним в течение 15 минут и ответим на все вопросы.
           </p>
         </div>
         <LeadFormFields
-          key={preset ?? "default"}
+          key={`${tier ?? ""}-${preset ?? "default"}`}
           onDone={() => setOpen(false)}
           dark={false}
-          source={preset ? `popup:${preset}` : "popup"}
+          source={computedSource}
           defaultObjectType={preset}
+          tier={tier}
+          tierName={tierName}
         />
       </div>
     </div>

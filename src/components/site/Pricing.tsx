@@ -91,22 +91,28 @@ export function Pricing() {
           center
         />
 
-        <div className="reveal max-w-3xl mx-auto mb-12 -mt-4 bg-dark text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4" style={{ borderRadius: "10px" }}>
-          <div>
-            <div className="text-primary uppercase tracking-[0.3em] text-xs font-semibold mb-2">Бесплатно</div>
-            <div className="font-display font-bold uppercase text-xl md:text-2xl">
-              Осмотр · Замер · Смета
+        <div className="reveal max-w-3xl mx-auto mb-10 sm:mb-12 -mt-4 bg-dark text-white p-5 sm:p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4" style={{ borderRadius: "10px" }}>
+          <div className="flex items-center justify-between gap-4 md:block">
+            <div>
+              <div className="text-primary uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[10px] sm:text-xs font-semibold mb-1.5 sm:mb-2">Бесплатно</div>
+              <div className="font-display font-bold uppercase text-lg sm:text-xl md:text-2xl leading-tight">
+                Осмотр · Замер · Смета
+              </div>
+              <div className="text-white/60 text-xs sm:text-sm mt-1.5 sm:mt-2">Без обязательств. Выезд по Приморскому краю.</div>
             </div>
-            <div className="text-white/60 text-sm mt-2">Без обязательств. Выезд по Приморскому краю.</div>
+            <div className="flex items-baseline gap-1.5 md:hidden shrink-0">
+              <span className="font-display font-bold text-3xl text-primary leading-none">0</span>
+              <span className="text-white/60 text-sm">₽</span>
+            </div>
           </div>
-          <div className="flex items-baseline gap-2">
+          <div className="hidden md:flex items-baseline gap-2">
             <span className="font-display font-bold text-4xl md:text-5xl text-primary">0</span>
             <span className="text-white/60 text-sm">₽</span>
           </div>
           <button
             type="button"
             onClick={() => selectTier("free-measure", "Бесплатный замер")}
-            className="px-6 py-3 bg-primary text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-colors text-center whitespace-nowrap"
+            className="px-5 sm:px-6 py-3 bg-primary text-white font-semibold uppercase tracking-wider text-xs sm:text-sm rounded-sm hover:bg-accent transition-colors text-center whitespace-nowrap"
           >
             Вызвать замерщика
           </button>

@@ -105,17 +105,24 @@ function LeadFormFields({
       {!hideAreaField && (
         <input required name="area_m2" type="number" min={5} max={10000} placeholder="Площадь, м² *" className={inputCls} />
       )}
-      <select name="object_type" className={selectCls} defaultValue={defaultObjectType ?? ""}>
-        <option value="" disabled className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>
-          Тип объекта / услуга (необязательно)
-        </option>
-        <option value="Квартира" className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>Квартира</option>
-        <option value="Дом" className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>Дом</option>
-        <option value="Санузел" className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>Санузел</option>
-        <option value="Кухня" className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>Кухня</option>
-        <option value="Изделия из керамогранита" className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>Изделия из керамогранита</option>
-        <option value="Коммерческое" className={dark ? "bg-dark text-white" : "bg-background text-foreground"}>Коммерческое</option>
-      </select>
+      <>
+        <input
+          name="object_type"
+          list="object-type-options"
+          className={inputCls}
+          defaultValue={defaultObjectType ?? ""}
+          placeholder="Тип объекта / услуга (необязательно)"
+          maxLength={50}
+        />
+        <datalist id="object-type-options">
+          <option value="Квартира" />
+          <option value="Дом" />
+          <option value="Санузел" />
+          <option value="Кухня" />
+          <option value="Изделия из керамогранита" />
+          <option value="Коммерческое" />
+        </datalist>
+      </>
 
       {/* honeypot — скрыт от пользователей */}
       <input

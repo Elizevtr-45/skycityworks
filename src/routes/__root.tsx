@@ -11,12 +11,9 @@ const yandexMetrikaScript = `(function(m,e,t,r,i,k,a){
   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
 })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=108729615', 'ym');
 ym(108729615, 'init', {
-  ssr: true,
   webvisor: true,
   clickmap: true,
   ecommerce: 'dataLayer',
-  referrer: document.referrer,
-  url: location.href,
   accurateTrackBounce: true,
   trackLinks: true,
 });`;

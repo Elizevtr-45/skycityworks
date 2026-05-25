@@ -1,10 +1,12 @@
-import { defineConfig } from "vite";
-import { tanstackStart } from "@tanstack/react-start/plugin/vite";
-import tsconfigPaths from "vite-tsconfig-paths";
+import { defineConfig } from 'vite'
+import { configDefaults } from 'vitest/config'
 
 export default defineConfig({
-  plugins: [
-    tsconfigPaths(),
-    tanstackStart()
-  ]
-});
+  // Настройка указывает фреймворку собирать проект под серверную среду Vercel
+  server: {
+    preset: 'vercel'
+  },
+  test: {
+    exclude: [...configDefaults.exclude, 'e2e/*']
+  }
+})

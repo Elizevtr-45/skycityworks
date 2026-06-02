@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
 const STORAGE_KEY = "svo-discount-dismissed";
+const EASE = "cubic-bezier(0.16, 1, 0.3, 1)"; // very smooth ease-out-expo-like
 
 export function SvoDiscountBadge() {
   const [visible, setVisible] = useState(false);
@@ -22,8 +23,8 @@ export function SvoDiscountBadge() {
 
   useEffect(() => {
     if (!visible || dismissed) return;
-    const t = setTimeout(() => setExpanded(true), 600);
-    const t2 = setTimeout(() => setExpanded(false), 6000);
+    const t = setTimeout(() => setExpanded(true), 800);
+    const t2 = setTimeout(() => setExpanded(false), 6500);
     return () => {
       clearTimeout(t);
       clearTimeout(t2);
@@ -40,18 +41,24 @@ export function SvoDiscountBadge() {
 
   const handleClick = () => {
     const el = document.getElementById("contact");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   if (dismissed) return null;
 
+  const EXPANDED_W = 300;
+  const COLLAPSED_W = 56;
+
   return (
     <div
-      className={`fixed bottom-6 left-6 z-50 transition-all duration-700 ease-out ${
-        visible ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-6 pointer-events-none"
-      }`}
+      style={{
+        transition: `opacity 900ms ${EASE}, transform 900ms ${EASE}`,
+        transform: visible ? "translateY(0)" : "translateY(24px)",
+        opacity: visible ? 1 : 0,
+        pointerEvents: visible ? "auto" : "none",
+        willChange: "transform, opacity",
+      }}
+      className="fixed bottom-6 left-6 z-50"
     >
       <button
         type="button"
@@ -59,17 +66,27 @@ export function SvoDiscountBadge() {
         onMouseEnter={() => setExpanded(true)}
         onMouseLeave={() => setExpanded(false)}
         aria-label="Скидка 10% участникам СВО и их семьям"
-        className={`group relative flex items-center rounded-full bg-primary text-primary-foreground shadow-[0_10px_30px_-10px_oklch(0.7_0.08_65/0.6)] overflow-hidden transition-[width,padding,box-shadow,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 ${
-          expanded ? "w-[280px] sm:w-[320px] pl-2 pr-4 py-2" : "w-14 h-14 p-0 justify-center"
-        }`}
+        style={{
+          width: expanded ? EXPANDED_W : COLLAPSED_W,
+          height: 56,
+          transition: `width 1100ms ${EASE}, box-shadow 600ms ease, transform 400ms ease`,
+          willChange: "width",
+        }}
+        className="relative flex items-center rounded-full bg-primary text-primary-foreground shadow-[0_10px_30px_-10px_oklch(0.7_0.08_65/0.6)] overflow-hidden hover:-translate-y-0.5"
       >
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-foreground/15 text-sm font-bold leading-none animate-pulse">
+        <span
+          className="absolute left-2 top-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-primary-foreground/15 text-sm font-bold leading-none"
+          style={{ transform: "translateY(-50%)" }}
+        >
           −10%
         </span>
         <span
-          className={`ml-3 text-left text-xs sm:text-sm leading-tight whitespace-normal transition-all duration-500 ease-out ${
-            expanded ? "opacity-100 translate-x-0 delay-150" : "opacity-0 -translate-x-2 pointer-events-none"
-          }`}
+          style={{
+            opacity: expanded ? 1 : 0,
+            transform: expanded ? "translateX(0)" : "translateX(-8px)",
+            transition: `opacity 700ms ${EASE} ${expanded ? "300ms" : "0ms"}, transform 700ms ${EASE} ${expanded ? "300ms" : "0ms"}`,
+          }}
+          className="absolute left-[56px] right-4 text-left text-xs sm:text-sm leading-tight whitespace-normal pointer-events-none"
         >
           Участникам СВО и их семьям —<br />
           <b>скидка 10%</b> на ремонт и строительство
@@ -79,9 +96,13 @@ export function SvoDiscountBadge() {
         type="button"
         onClick={handleDismiss}
         aria-label="Закрыть"
-        className={`absolute -top-2 -right-2 h-6 w-6 rounded-full bg-background text-foreground border border-border shadow flex items-center justify-center hover:bg-muted transition-all duration-300 ${
-          expanded ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
-        }`}
+        style={{
+          opacity: expanded ? 1 : 0,
+          transform: expanded ? "scale(1)" : "scale(0.6)",
+          transition: `opacity 500ms ${EASE} ${expanded ? "500ms" : "0ms"}, transform 500ms ${EASE} ${expanded ? "500ms" : "0ms"}`,
+          pointerEvents: expanded ? "auto" : "none",
+        }}
+        className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-background text-foreground border border-border shadow flex items-center justify-center hover:bg-muted"
       >
         <X className="h-3.5 w-3.5" />
       </button>

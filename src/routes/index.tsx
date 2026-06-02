@@ -85,6 +85,7 @@ function Index() {
       <CookieBanner />
       <LeadPopup />
       <ScrollToTop />
+      <SvoDiscountBadge />
     </main>
   );
 }

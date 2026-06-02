@@ -8,10 +8,7 @@ export default defineConfig({
   plugins: [
     viteTsConfigPaths(),
     tailwindcss(),
-    tanstackStart({
-      // Сборка под обычный Node.js сервер (для self-hosting на VPS)
-      target: "node-server",
-    }),
+    tanstackStart(),
     react(),
   ],
 });

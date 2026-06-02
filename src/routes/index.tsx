@@ -77,8 +77,6 @@ function Index() {
       <Process />
       <Reviews />
       <Team />
-      <LeadMagnet />
-      
       <LeadForm />
       <SocialCTA />
       

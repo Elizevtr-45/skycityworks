@@ -26,7 +26,7 @@ import { HiddenMountPromo } from "@/components/site/HiddenMountPromo";
 import { SocialCTA } from "@/components/site/SocialCTA";
 import { ScrollToTop } from "@/components/site/ScrollToTop";
 import { SvoDiscountBadge } from "@/components/site/SvoDiscountBadge";
-import { DnsDiagnostics } from "@/components/site/DnsDiagnostics";
+
 
 export const Route = createFileRoute("/")({
   component: Index,

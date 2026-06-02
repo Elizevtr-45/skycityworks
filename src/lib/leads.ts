@@ -20,4 +20,3 @@ export async function submitLead(payload: LeadPayload): Promise<{ ok: boolean; s
     return { ok: false, status: 0 };
   }
 }
-}

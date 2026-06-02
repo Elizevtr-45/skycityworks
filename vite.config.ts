@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     viteTsConfigPaths(),
     tailwindcss(),
-    tanstackStart(),
+    tanstackStart({ target: "node-server" }),
     react(),
   ],
 });

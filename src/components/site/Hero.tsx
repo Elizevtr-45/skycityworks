@@ -25,13 +25,13 @@ export function Hero() {
           </div>
 
           <h1 className="font-display font-bold uppercase text-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] break-words">
-            <span>Ремонт под ключ </span>
-            <span>{"без\u00A0сюрпризов "}</span>
-            <span className="text-gradient-gold">{"во\u00A0Владивостоке"}</span>
+            <span className="block">Строительство</span>
+            <span className="block">{"и\u00A0ремонт под\u00A0ключ"}</span>
+            <span className="block text-gradient-gold">{"во\u00A0Владивостоке"}</span>
           </h1>
 
           <p className="mt-6 text-base sm:text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">
-            {"Цена в смете = цена в договоре. 2\u00A0800+ квартир сдано в срок. Наш косяк — исправим бесплатно, даже через 10 лет. Полный цикл от проекта до мебели."}
+            {"Безупречное качество и\u00A0архитектурная точность. Полный цикл работ — от\u00A0проекта до\u00A0изготовления мебели. Гарантия 2\u00A0года +\u00A0расширенная\u00A0пожизненная."}
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4">

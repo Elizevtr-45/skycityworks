@@ -99,11 +99,11 @@ export function Furniture() {
                       <img
                         src={p.src}
                         alt={p.alt}
-                        title={p.alt}
                         loading="lazy"
                         decoding="async"
                         width={1280}
                         height={960}
+                        data-nosnippet
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                       />
                     </div>

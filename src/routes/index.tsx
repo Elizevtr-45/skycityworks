@@ -79,7 +79,7 @@ function Index() {
       
       <LeadForm />
       <SocialCTA />
-      <DnsDiagnostics />
+      
       <FAQ />
       <Footer />
       <CookieBanner />

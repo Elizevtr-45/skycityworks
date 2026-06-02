@@ -25,9 +25,9 @@ export function Hero() {
           </div>
 
           <h1 className="font-display font-bold uppercase text-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] break-words">
-            <span className="block">Ремонт под ключ</span>
-            <span className="block">{"без\u00A0сюрпризов"}</span>
-            <span className="block text-gradient-gold">{"во\u00A0Владивостоке"}</span>
+            <span>Ремонт под ключ </span>
+            <span>{"без\u00A0сюрпризов "}</span>
+            <span className="text-gradient-gold">{"во\u00A0Владивостоке"}</span>
           </h1>
 
           <p className="mt-6 text-base sm:text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">

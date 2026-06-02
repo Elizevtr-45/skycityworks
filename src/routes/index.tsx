@@ -7,7 +7,7 @@ import { TrustBlock } from "@/components/site/TrustBlock";
 import { About } from "@/components/site/About";
 import { Services } from "@/components/site/Services";
 import { Portfolio } from "@/components/site/Portfolio";
-import { Showroom } from "@/components/site/Showroom";
+import { Calculator } from "@/components/site/Calculator";
 import { Furniture } from "@/components/site/Furniture";
 import { SocialProof } from "@/components/site/SocialProof";
 import { Process } from "@/components/site/Process";
@@ -15,7 +15,6 @@ import { Reviews } from "@/components/site/Reviews";
 import { Team } from "@/components/site/Team";
 
 import { Pricing } from "@/components/site/Pricing";
-import { Calculator } from "@/components/site/Calculator";
 import { LeadForm, LeadPopup } from "@/components/site/LeadForm";
 import { FAQ } from "@/components/site/FAQ";
 import { Footer } from "@/components/site/Footer";
@@ -64,11 +63,10 @@ function Index() {
       <Hero />
       <TrustBlock />
       <About />
+      <Calculator />
       <Services />
       <Portfolio />
       <Pricing />
-      <Calculator />
-      <Showroom />
       <Furniture />
       <BathroomPromo />
       <ApartmentPromo />

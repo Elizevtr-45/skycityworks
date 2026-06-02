@@ -26,7 +26,6 @@ import { HiddenMountPromo } from "@/components/site/HiddenMountPromo";
 import { SocialCTA } from "@/components/site/SocialCTA";
 import { ScrollToTop } from "@/components/site/ScrollToTop";
 import { SvoDiscountBadge } from "@/components/site/SvoDiscountBadge";
-import { SeoSnippets } from "@/components/site/SeoSnippets";
 
 
 

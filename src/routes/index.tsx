@@ -26,7 +26,6 @@ import { HiddenMountPromo } from "@/components/site/HiddenMountPromo";
 import { SocialCTA } from "@/components/site/SocialCTA";
 import { ScrollToTop } from "@/components/site/ScrollToTop";
 import { SvoDiscountBadge } from "@/components/site/SvoDiscountBadge";
-import { SeoSnippets } from "@/components/site/SeoSnippets";
 
 
 
@@ -63,7 +62,6 @@ function Index() {
     <main className="min-h-screen bg-background">
       <Navbar />
       <Hero />
-      <SeoSnippets />
       <TrustBlock />
       <About />
       <Services />

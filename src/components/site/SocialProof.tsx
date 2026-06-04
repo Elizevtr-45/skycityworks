@@ -1,6 +1,8 @@
+import type { ReactNode } from "react";
+
 type Logo = {
   name: string;
-  mark: JSX.Element;
+  mark: ReactNode;
   font: string;
   tracking?: string;
   weight?: string;

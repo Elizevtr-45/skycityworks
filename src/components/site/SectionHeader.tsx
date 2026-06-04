@@ -22,7 +22,7 @@ export function SectionHeader({
         </div>
       )}
       <h2
-        className={`font-display font-bold uppercase text-3xl md:text-4xl lg:text-5xl leading-tight ${
+        className={`font-display font-black uppercase text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight ${
           light ? "text-white" : "text-foreground"
         }`}
       >

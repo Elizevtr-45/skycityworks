@@ -22,14 +22,15 @@ export function Services() {
           {services.map((s, i) => (
             <div
               key={s.title}
-              className="reveal hover-lift group bg-card border border-border p-8 rounded-sm"
+              className="reveal hover-lift group surface-elevated p-8 rounded-2xl relative overflow-hidden"
               style={{ transitionDelay: `${i * 80}ms` }}
             >
-              <div className="h-14 w-14 rounded-sm bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-                <s.icon className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
+              <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-primary/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative h-14 w-14 rounded-xl bg-primary/15 ring-1 ring-primary/30 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:ring-primary transition-all">
+                <s.icon className="h-6 w-6 text-primary group-hover:text-primary-foreground transition-colors" />
               </div>
-              <h3 className="font-display font-bold uppercase text-lg mb-3">{s.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{s.text}</p>
+              <h3 className="relative font-display font-bold uppercase text-lg mb-3 text-foreground">{s.title}</h3>
+              <p className="relative text-muted-foreground text-sm leading-relaxed">{s.text}</p>
             </div>
           ))}
         </div>

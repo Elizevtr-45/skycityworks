@@ -17,11 +17,12 @@ export function Process() {
           {steps.map((s, i) => (
             <div
               key={s.n}
-              className="reveal relative bg-card border border-border p-6 rounded-sm hover-lift"
+              className="reveal relative surface-elevated p-6 rounded-2xl hover-lift overflow-hidden"
               style={{ transitionDelay: `${i * 80}ms` }}
             >
-              <div className="font-display font-bold text-5xl text-primary/30 mb-3">{s.n}</div>
-              <div className="font-display font-bold uppercase text-lg mb-2">{s.title}</div>
+              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-primary to-accent opacity-60" />
+              <div className="font-display font-black text-6xl text-gradient-gold mb-3 leading-none">{s.n}</div>
+              <div className="font-display font-bold uppercase text-lg mb-2 text-foreground">{s.title}</div>
               <p className="text-sm text-muted-foreground">{s.text}</p>
             </div>
           ))}

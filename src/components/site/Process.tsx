@@ -10,7 +10,7 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="process" className="py-20 md:py-32 bg-background">
+    <section id="process" className="pt-0 pb-20 md:pb-32 bg-background">
       <div className="container-px mx-auto max-w-7xl">
         <SectionHeader eyebrow="Процесс" title="Как мы работаем" center />
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">

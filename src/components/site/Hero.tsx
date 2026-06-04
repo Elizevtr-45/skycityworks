@@ -25,8 +25,8 @@ export function Hero() {
           </div>
 
           <h1 className="font-display font-bold uppercase text-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] break-words">
-            <span className="block">Строительство</span>
-            <span className="block">{"и\u00A0ремонт под\u00A0ключ"}</span>
+            <span className="block">Ремонт квартир</span>
+            <span className="block">{"под\u00A0ключ"}</span>
             <span className="block text-gradient-gold">{"во\u00A0Владивостоке"}</span>
           </h1>
 

@@ -172,20 +172,52 @@
   }
 
   .surface-elevated {
-    background: var(--gradient-surface);
-    border: 1px solid oklch(1 0 0 / 0.06);
-    box-shadow: var(--shadow-card), inset 0 1px 0 oklch(1 0 0 / 0.04);
+    position: relative;
+    background:
+      linear-gradient(160deg, oklch(0.22 0.008 260 / 0.85), oklch(0.14 0.006 260 / 0.85));
+    border: 1px solid oklch(1 0 0 / 0.08);
+    backdrop-filter: blur(20px) saturate(140%);
+    box-shadow:
+      0 20px 50px -20px oklch(0 0 0 / 0.6),
+      inset 0 1px 0 oklch(1 0 0 / 0.08),
+      inset 0 -1px 0 oklch(0 0 0 / 0.3);
   }
 
   .glow-orange {
     box-shadow: var(--shadow-glow);
   }
 
+  /* Liquid glass — Apple-style frosted surface */
   .glass {
-    background: oklch(0.18 0.008 260 / 0.65);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid oklch(1 0 0 / 0.08);
+    background:
+      linear-gradient(135deg, oklch(1 0 0 / 0.08), oklch(1 0 0 / 0.02));
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid oklch(1 0 0 / 0.12);
+    box-shadow:
+      inset 0 1px 0 oklch(1 0 0 / 0.15),
+      0 10px 30px -10px oklch(0 0 0 / 0.4);
+  }
+
+  .liquid-glass {
+    position: relative;
+    background:
+      linear-gradient(135deg, oklch(1 0 0 / 0.10) 0%, oklch(1 0 0 / 0.04) 50%, oklch(1 0 0 / 0.08) 100%);
+    backdrop-filter: blur(32px) saturate(200%);
+    border: 1px solid oklch(1 0 0 / 0.14);
+    box-shadow:
+      inset 0 1px 0 oklch(1 0 0 / 0.2),
+      inset 0 -1px 0 oklch(0 0 0 / 0.2),
+      0 30px 80px -30px oklch(0 0 0 / 0.5);
+    overflow: hidden;
+  }
+  .liquid-glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(60% 80% at 20% 0%, oklch(1 0 0 / 0.10), transparent 60%),
+      radial-gradient(50% 60% at 100% 100%, oklch(0.72 0.2 50 / 0.10), transparent 60%);
   }
 
   .ring-accent {

@@ -52,7 +52,7 @@ export function SocialProof() {
   return (
     <section className="pt-4 md:pt-6 pb-0 bg-background overflow-hidden">
       <div className="container-px mx-auto max-w-7xl">
-        <div className="text-center mb-1">
+        <div className="text-center mb-0">
           <span className="text-foreground/60 uppercase tracking-[0.3em] text-[10px] md:text-xs font-semibold">
             ЖК, в которых мы работаем
           </span>

@@ -4,10 +4,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
+  --radius-sm: calc(var(--radius) - 6px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -32,42 +33,44 @@
   --color-light: var(--light);
   --font-display: "Montserrat", sans-serif;
   --font-body: "Inter", sans-serif;
-  --shadow-elegant: 0 20px 60px -20px color-mix(in oklab, var(--primary) 30%, transparent);
-  --shadow-card: 0 10px 40px -15px oklch(0 0 0 / 0.15);
-  --gradient-primary: linear-gradient(135deg, var(--primary), var(--accent));
-  --gradient-dark: linear-gradient(180deg, oklch(0.18 0 0), oklch(0.07 0 0));
+  --shadow-elegant: 0 30px 80px -25px oklch(0.68 0.19 45 / 0.45);
+  --shadow-card: 0 20px 50px -20px oklch(0 0 0 / 0.6);
+  --shadow-glow: 0 0 60px -10px oklch(0.7 0.2 45 / 0.55);
+  --gradient-primary: linear-gradient(135deg, oklch(0.72 0.2 50), oklch(0.62 0.21 35));
+  --gradient-dark: linear-gradient(180deg, oklch(0.16 0.005 260), oklch(0.08 0.005 260));
+  --gradient-surface: linear-gradient(160deg, oklch(0.20 0.008 260), oklch(0.13 0.006 260));
 }
 
 :root {
-  --radius: 0.5rem;
+  --radius: 1rem;
 
-  /* Brand palette */
-  --background: oklch(0.97 0.005 80);          /* #F5F5F5-ish */
-  --foreground: oklch(0.22 0 0);               /* #222 */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0 0);
+  /* Premium dark palette: graphite + orange */
+  --background: oklch(0.13 0.006 260);          /* deep graphite */
+  --foreground: oklch(0.97 0.005 80);           /* near-white */
+  --card: oklch(0.18 0.008 260);                /* elevated surface */
+  --card-foreground: oklch(0.97 0.005 80);
+  --popover: oklch(0.18 0.008 260);
+  --popover-foreground: oklch(0.97 0.005 80);
 
-  --primary: oklch(0.7 0.08 65);               /* #C89B6D warm gold/bronze */
-  --primary-foreground: oklch(1 0 0);
-  --accent: oklch(0.6 0.075 55);               /* #A67C52 */
-  --accent-foreground: oklch(1 0 0);
+  --primary: oklch(0.72 0.2 50);                /* vibrant orange */
+  --primary-foreground: oklch(0.13 0.006 260);
+  --accent: oklch(0.62 0.21 35);                /* deeper orange */
+  --accent-foreground: oklch(0.98 0 0);
 
-  --secondary: oklch(0.94 0.005 80);
-  --secondary-foreground: oklch(0.22 0 0);
-  --muted: oklch(0.94 0.005 80);
-  --muted-foreground: oklch(0.45 0.005 80);
+  --secondary: oklch(0.22 0.008 260);
+  --secondary-foreground: oklch(0.97 0.005 80);
+  --muted: oklch(0.22 0.008 260);
+  --muted-foreground: oklch(0.68 0.01 260);
 
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.62 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
 
-  --border: oklch(0.9 0.005 80);
-  --input: oklch(0.9 0.005 80);
-  --ring: oklch(0.7 0.08 65);
+  --border: oklch(0.28 0.008 260 / 0.6);
+  --input: oklch(0.28 0.008 260);
+  --ring: oklch(0.72 0.2 50);
 
-  --dark: oklch(0.15 0 0);                     /* #111 */
-  --dark-foreground: oklch(1 0 0);
+  --dark: oklch(0.09 0.005 260);                /* near black */
+  --dark-foreground: oklch(0.98 0 0);
   --light: oklch(0.97 0.005 80);
 }
 
@@ -90,6 +93,10 @@
     color: var(--color-foreground);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(1200px 600px at 80% -10%, oklch(0.72 0.2 50 / 0.10), transparent 60%),
+      radial-gradient(900px 500px at -10% 30%, oklch(0.62 0.21 35 / 0.08), transparent 60%);
+    background-attachment: fixed;
   }
 
   /* Слова никогда не переносятся по слогам */
@@ -105,6 +112,12 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     letter-spacing: -0.01em;
+  }
+
+  /* Универсальное стеклянное-объёмное оформление любых карточек по умолчанию */
+  ::selection {
+    background: oklch(0.72 0.2 50 / 0.35);
+    color: var(--color-foreground);
   }
 }
 
@@ -134,15 +147,19 @@
   }
 
   .hover-lift {
-    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.4s ease;
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
+                box-shadow 0.4s ease,
+                border-color 0.4s ease,
+                background-color 0.4s ease;
   }
   .hover-lift:hover {
     transform: translateY(-6px);
     box-shadow: var(--shadow-elegant);
+    border-color: oklch(0.72 0.2 50 / 0.45);
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: linear-gradient(135deg, oklch(0.78 0.18 55), oklch(0.6 0.22 32));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -151,7 +168,29 @@
   .gold-divider {
     width: 60px;
     height: 2px;
-    background: var(--primary);
+    background: linear-gradient(90deg, var(--primary), transparent);
+  }
+
+  .surface-elevated {
+    background: var(--gradient-surface);
+    border: 1px solid oklch(1 0 0 / 0.06);
+    box-shadow: var(--shadow-card), inset 0 1px 0 oklch(1 0 0 / 0.04);
+  }
+
+  .glow-orange {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glass {
+    background: oklch(0.18 0.008 260 / 0.65);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid oklch(1 0 0 / 0.08);
+  }
+
+  .ring-accent {
+    box-shadow: 0 0 0 1px oklch(0.72 0.2 50 / 0.4),
+                0 20px 60px -20px oklch(0.72 0.2 50 / 0.35);
   }
 }
 
@@ -165,3 +204,5 @@
   width: max-content;
 }
 
+/* Make all default rounded-sm utilities visually softer/modern site-wide */
+.rounded-sm { border-radius: 0.75rem !important; }

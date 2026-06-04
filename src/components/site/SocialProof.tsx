@@ -75,7 +75,7 @@ export function SocialProof() {
               <span className="shrink-0 flex items-center justify-center h-full">
                 {l.mark}
               </span>
-              <span className={`${l.font} ${l.weight ?? ""} ${l.tracking ?? ""} ${l.transform ?? ""} text-sm md:text-base leading-none`}>
+              <span className={`${l.font} ${l.weight ?? ""} ${l.tracking ?? ""} ${l.transform ?? ""} text-base md:text-lg leading-none`}>
                 {l.name}
               </span>
             </div>

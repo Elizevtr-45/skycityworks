@@ -1,69 +1,75 @@
-import { Building2 } from "lucide-react";
-
 const complexes = [
+  "ДНС Сити",
+  "Формат",
+  "MORE",
+  "Молодёжный",
+  "Посейдония",
+  "Андерсен",
+  "Весна",
   "Айвазовский",
   "Восточный Луч",
   "Маринист",
   "Семь Ветров",
   "Da Vinci",
   "Аквамарин",
-  "Чайка",
   "Босфорский",
+  "Чайка",
   "Облака",
-  "Зелёный Угол",
-  "Тихий",
-  "Цемзаводская",
 ];
 
 export function SocialProof() {
+  // Duplicate for seamless loop
+  const loop = [...complexes, ...complexes];
+
   return (
-    <section className="relative py-24 md:py-32 bg-dark overflow-hidden">
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_50%_50%,_var(--primary),_transparent_60%)]" />
-      <div className="container-px mx-auto max-w-5xl text-center relative">
-        <div className="reveal">
-          <div className="inline-flex items-center gap-3 mb-6">
+    <section className="py-16 md:py-20 bg-dark border-y border-white/5 overflow-hidden">
+      <div className="container-px mx-auto max-w-7xl">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-3">
             <span className="gold-divider" />
             <span className="text-primary uppercase tracking-[0.3em] text-xs font-semibold">
-              Знаем каждый ЖК Владивостока
+              ЖК, в которых мы работаем
             </span>
             <span className="gold-divider" />
           </div>
+        </div>
+      </div>
 
-          <h2 className="font-display font-bold uppercase text-white text-3xl md:text-5xl lg:text-6xl leading-tight">
-            Работаем в&nbsp;<span className="text-gradient-gold">новостройках</span> вашего ЖК
-          </h2>
-
-          <p className="mt-6 text-white/70 text-base md:text-lg max-w-2xl mx-auto">
-            Знаем планировки, инженерные особенности и требования управляющих компаний
-            ключевых жилых комплексов Владивостока — заходим на объект и сразу начинаем работу.
-          </p>
-
-          <div className="mt-12 flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
-            {complexes.map((name) => (
-              <div
-                key={name}
-                className="inline-flex items-center gap-2 px-4 py-2.5 border border-white/15 bg-white/5 rounded-sm hover:border-primary/50 hover:bg-primary/5 transition-colors"
+      <div
+        className="relative"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+        }}
+      >
+        <div className="flex gap-12 md:gap-16 animate-marquee whitespace-nowrap">
+          {loop.map((name, i) => (
+            <div
+              key={`${name}-${i}`}
+              className="flex items-center gap-3 text-white/40 hover:text-primary transition-colors shrink-0"
+            >
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 32 32"
+                fill="none"
+                className="shrink-0"
+                aria-hidden
               >
-                <Building2 className="h-3.5 w-3.5 text-primary" />
-                <span className="font-display uppercase text-white text-sm tracking-wider">
-                  ЖК «{name}»
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-10 text-white/60 text-sm">
-            Вашего ЖК нет в списке? Мы работаем во всех районах Владивостока —
-            Первореченском, Ленинском, Фрунзенском, Советском и Первомайском.
-          </p>
-
-          <button
-            type="button"
-            onClick={() => window.dispatchEvent(new CustomEvent("open-lead-form"))}
-            className="mt-10 inline-flex items-center justify-center px-10 py-4 bg-primary text-primary-foreground font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5 hover:shadow-[0_10px_40px_-10px_oklch(0.7_0.08_65/0.6)]"
-          >
-            Узнать стоимость для моего ЖК
-          </button>
+                <path
+                  d="M4 28V14L16 5l12 9v14h-8v-9h-8v9H4z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span className="font-display uppercase tracking-[0.18em] text-lg md:text-xl font-semibold">
+                ЖК «{name}»
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

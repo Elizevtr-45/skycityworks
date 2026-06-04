@@ -151,26 +151,48 @@ export function Portfolio() {
 
         <div className="grid sm:grid-cols-2 gap-6">
           {projects.map((p, i) => (
-            <button
-              type="button"
+            <div
               key={p.title}
-              onClick={() => setActive(p)}
-              className="reveal group relative overflow-hidden rounded-2xl aspect-[4/3] cursor-pointer text-left ring-1 ring-white/5 hover:ring-primary/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_80px_-25px_oklch(0.72_0.2_50/0.55)]"
+              className="reveal group relative overflow-hidden rounded-2xl aspect-[4/3] ring-1 ring-white/5 hover:ring-primary/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_80px_-25px_oklch(0.72_0.2_50/0.55)]"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
-              <img
-                src={p.images[0]}
-                alt={p.title}
-                width={1024}
-                height={768}
-                loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/55 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-transparent to-primary/0 group-hover:from-primary/15 group-hover:to-accent/10 transition-all duration-500" />
+              <Carousel opts={{ loop: true, align: "start" }} className="absolute inset-0">
+                <CarouselContent className="ml-0 h-full">
+                  {p.images.map((src, idx) => (
+                    <CarouselItem key={idx} className="pl-0 basis-full">
+                      <button
+                        type="button"
+                        onClick={() => setActive(p)}
+                        aria-label={`${p.title} — открыть проект`}
+                        className="relative block w-full h-full aspect-[4/3] overflow-hidden cursor-pointer text-left"
+                      >
+                        <img
+                          src={src}
+                          alt={`${p.title} — фото ${idx + 1}`}
+                          width={1024}
+                          height={768}
+                          loading="lazy"
+                          className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                        />
+                      </button>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious
+                  onClick={(e) => e.stopPropagation()}
+                  className="left-3 h-9 w-9 bg-background/70 backdrop-blur border-white/15 text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary z-20 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
+                />
+                <CarouselNext
+                  onClick={(e) => e.stopPropagation()}
+                  className="right-3 h-9 w-9 bg-background/70 backdrop-blur border-white/15 text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary z-20 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
+                />
+              </Carousel>
+
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-dark via-dark/55 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/0 via-transparent to-primary/0 group-hover:from-primary/15 group-hover:to-accent/10 transition-all duration-500" />
 
               {/* Top tags */}
-              <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+              <div className="pointer-events-none absolute top-4 left-4 right-4 flex items-center justify-between gap-2 z-10">
                 <span className="px-3 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold bg-primary text-primary-foreground shadow-lg">
                   {p.tier}
                 </span>
@@ -179,7 +201,11 @@ export function Portfolio() {
                 </span>
               </div>
 
-              <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+              <button
+                type="button"
+                onClick={() => setActive(p)}
+                className="absolute inset-x-0 bottom-0 p-6 md:p-8 text-left z-10 cursor-pointer"
+              >
                 <div className="text-primary uppercase tracking-widest text-xs mb-2 font-semibold">{p.type}</div>
                 <h3 className="font-display font-black uppercase text-white text-xl md:text-2xl leading-tight">{p.title}</h3>
                 <div className="mt-4 flex items-center justify-between gap-3">
@@ -187,13 +213,13 @@ export function Portfolio() {
                     <Wallet className="h-3.5 w-3.5 text-primary" />
                     {p.price}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 text-primary text-xs uppercase tracking-wider font-bold opacity-0 group-hover:opacity-100 translate-x-[-8px] group-hover:translate-x-0 transition-all duration-500">
+                  <span className="inline-flex items-center gap-1.5 text-primary text-xs uppercase tracking-wider font-bold">
                     Смотреть
                     <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
                   </span>
                 </div>
-              </div>
-            </button>
+              </button>
+            </div>
           ))}
         </div>
       </div>

@@ -52,7 +52,7 @@ export function HiddenMountPromo() {
   }, [api]);
 
   return (
-    <section className="py-14 md:py-28 bg-background">
+    <section className="pt-14 md:pt-28 pb-0 bg-background">
       <div className="container-px mx-auto max-w-7xl">
         <div className="relative overflow-hidden bg-dark text-white" style={{ borderRadius: "10px" }}>
           <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,_var(--primary),_transparent_60%)]" />

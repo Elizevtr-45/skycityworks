@@ -50,9 +50,9 @@ export function SocialProof() {
   const loop = [...logos, ...logos];
 
   return (
-    <section className="py-8 md:py-10 bg-background overflow-hidden">
+    <section className="py-4 md:py-6 bg-background overflow-hidden">
       <div className="container-px mx-auto max-w-7xl">
-        <div className="text-center mb-5">
+        <div className="text-center mb-1">
           <span className="text-foreground/60 uppercase tracking-[0.3em] text-[10px] md:text-xs font-semibold">
             ЖК, в которых мы работаем
           </span>
@@ -62,20 +62,20 @@ export function SocialProof() {
       <div
         className="relative"
         style={{
-          maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-          WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+          WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
         }}
       >
         <div className="flex items-center animate-marquee whitespace-nowrap">
           {loop.map((l, i) => (
             <div
               key={`${l.name}-${i}`}
-              className="flex items-center gap-2.5 h-8 px-7 md:px-9 text-foreground/70 shrink-0 select-none pointer-events-none"
+              className="flex items-center gap-2 h-8 px-4 md:px-5 text-foreground/70 shrink-0 select-none pointer-events-none"
             >
               <span className="shrink-0 flex items-center justify-center h-full">
                 {l.mark}
               </span>
-              <span className={`${l.font} ${l.weight ?? ""} ${l.tracking ?? ""} ${l.transform ?? ""} text-sm md:text-base leading-none`}>
+              <span className={`${l.font} ${l.weight ?? ""} ${l.tracking ?? ""} ${l.transform ?? ""} text-base md:text-lg leading-none`}>
                 {l.name}
               </span>
             </div>

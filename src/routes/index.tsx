@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useReveal } from "@/hooks/useReveal";
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
@@ -25,8 +25,8 @@ import { HiddenMountPromo } from "@/components/site/HiddenMountPromo";
 import { SocialCTA } from "@/components/site/SocialCTA";
 import { ScrollToTop } from "@/components/site/ScrollToTop";
 import { SvoDiscountBadge } from "@/components/site/SvoDiscountBadge";
-import { RedesignedHome } from "@/components/redesign/RedesignedHome";
-import { DesignToggle } from "@/components/redesign/DesignToggle";
+
+
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -51,41 +51,12 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   useReveal();
-  const [isV2, setIsV2] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
-    setMounted(true);
-    try {
-      const stored = localStorage.getItem("design-v2");
-      if (stored === "0") setIsV2(false);
-      else setIsV2(true); // default to new design
-    } catch {
-      setIsV2(true);
-    }
     if (typeof window !== "undefined" && window.location.hash) {
       history.replaceState(null, "", window.location.pathname + window.location.search);
       window.scrollTo({ top: 0, behavior: "auto" });
     }
   }, []);
-
-  const toggle = () => {
-    setIsV2((prev) => {
-      const next = !prev;
-      try { localStorage.setItem("design-v2", next ? "1" : "0"); } catch {}
-      return next;
-    });
-  };
-
-  if (mounted && isV2) {
-    return (
-      <>
-        <RedesignedHome />
-        <DesignToggle isV2={true} onToggle={toggle} />
-      </>
-    );
-  }
-
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
@@ -106,13 +77,13 @@ function Index() {
       <Team />
       <LeadForm />
       <SocialCTA />
+      
       <FAQ />
       <Footer />
       <CookieBanner />
       <LeadPopup />
       <ScrollToTop />
       <SvoDiscountBadge />
-      {mounted && <DesignToggle isV2={false} onToggle={toggle} />}
     </main>
   );
 }

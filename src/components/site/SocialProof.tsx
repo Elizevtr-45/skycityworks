@@ -50,7 +50,7 @@ export function SocialProof() {
   const loop = [...logos, ...logos];
 
   return (
-    <section className="pt-4 md:pt-6 pb-[30px] bg-background overflow-hidden">
+    <section className="pt-[30px] pb-[30px] bg-background overflow-hidden">
       <div className="container-px mx-auto max-w-7xl">
       <div className="text-center mb-[30px]">
           <span className="text-foreground/60 uppercase tracking-[0.3em] text-[10px] md:text-xs font-semibold">

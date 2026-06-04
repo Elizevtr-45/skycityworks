@@ -165,6 +165,3 @@
   width: max-content;
 }
 
-.animate-marquee:hover {
-  animation-play-state: paused;
-}

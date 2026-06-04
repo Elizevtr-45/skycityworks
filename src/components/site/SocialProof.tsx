@@ -70,12 +70,12 @@ export function SocialProof() {
           {loop.map((l, i) => (
             <div
               key={`${l.name}-${i}`}
-              className="flex items-center gap-2 h-8 px-7 md:px-9 text-foreground/70 hover:text-primary transition-colors shrink-0"
+              className="flex items-center gap-2.5 h-8 px-7 md:px-9 text-foreground/70 shrink-0 select-none pointer-events-none"
             >
               <span className="shrink-0 flex items-center justify-center h-full">
                 {l.mark}
               </span>
-              <span className={`${l.font} ${l.weight ?? ""} ${l.tracking ?? ""} ${l.transform ?? ""} text-[13px] leading-none`}>
+              <span className={`${l.font} ${l.weight ?? ""} ${l.tracking ?? ""} ${l.transform ?? ""} text-sm md:text-base leading-none`}>
                 {l.name}
               </span>
             </div>

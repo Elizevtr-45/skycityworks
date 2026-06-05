@@ -50,7 +50,7 @@ export function Hero() {
               { n: "2 года", t: "гарантии" },
             ].map((s) => (
               <div key={s.t}>
-                <div className="font-display text-3xl md:text-4xl font-bold text-primary">{s.n}</div>
+                <div className="font-display text-3xl md:text-4xl font-bold text-white">{s.n}</div>
                 <div className="text-white/70 text-xs md:text-sm uppercase tracking-wider mt-1">{s.t}</div>
               </div>
             ))}

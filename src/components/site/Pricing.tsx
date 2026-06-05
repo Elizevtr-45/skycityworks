@@ -1,72 +1,102 @@
 import { useMemo, useState } from "react";
-import { Check, Clock, ShieldCheck, Lock, Sparkles } from "lucide-react";
+import { Check, Clock, ShieldCheck, Lock, Sparkles, Crown, Wrench, Settings2 } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { Slider } from "@/components/ui/slider";
 
+type TierId = "econom" | "basic" | "premium";
+
 type Tier = {
-  id: string;
+  id: TierId;
   name: string;
+  tagline: string;
   pricePerM2: number;
+  forWho: string;
   features: string[];
   trust: { icon: typeof Clock; label: string; value: string }[];
   highlight: string;
   featured: boolean;
+  icon: typeof Sparkles;
 };
 
 const tiers: Tier[] = [
   {
-    id: "basic",
-    name: "Базовый",
+    id: "econom",
+    name: "Эконом",
+    tagline: "Предчистовой White Box + простая чистовая отделка",
     pricePerM2: 22000,
+    forWho:
+      "Инвестиционные квартиры под сдачу, коммерческие пространства, надёжная база без переплаты за сложный дизайн.",
     features: [
-      "Черновые работы",
-      "Стандартная отделка",
-      "Гарантия 2 года",
-      "Сроки от 2 месяцев",
+      "Кладка перегородок (пеноблок / ПГП) с армированием",
+      "Штукатурка по маякам, вывод углов под 90°",
+      "Полусухая или цементно-песчаная стяжка с демпфер-лентой",
+      "Электромонтаж ВВГнг-LS, сборка щита с УЗО",
+      "Шпатлевание стен под плотные обои или под покраску",
+      "Укладка ламината / кварцвинила со стыковочными порожками",
+      "Санузел под ключ: тройниковая разводка, гидроизоляция, плитка 30×30–60×60",
+      "Стандартная чистовая сантехника",
     ],
     trust: [
       { icon: Clock, label: "Срок", value: "от 2 мес." },
-      { icon: Lock, label: "Цена", value: "Фиксирована" },
+      { icon: Lock, label: "Цена", value: "Фикс в договоре" },
       { icon: ShieldCheck, label: "Гарантия", value: "2 года" },
     ],
-    highlight: "Идеально под сдачу в аренду или быстрое заселение",
+    highlight: "Надёжная база без визуальных излишеств — идеально под сдачу.",
     featured: false,
+    icon: Wrench,
   },
   {
-    id: "standard",
-    name: "Стандарт",
-    pricePerM2: 25000,
+    id: "basic",
+    name: "Базовый",
+    tagline: "Комфорт и современный стиль — самый востребованный",
+    pricePerM2: 28000,
+    forWho:
+      "Современное жильё «для себя»: скрытые двери, единый пол без порогов, покраска. Без избыточного инженерного усложнения.",
     features: [
-      "Дизайн-проект включён",
-      "Премиальные материалы",
-      "Авторский надзор",
-      "Гарантия 3 года",
+      "Весь объём работ тарифа «Эконом»",
+      "Шпатлевание под покраску с проклейкой стеклохолстом",
+      "Двери скрытого монтажа на алюминиевом коробе (заподлицо со стеной)",
+      "Паркетная / инженерная доска / кварцвинил единым контуром без порогов",
+      "Теневой плинтус — эффект «парящих стен»",
+      "Санузел: керамогранит 60×60 или 60×120, единый уровень с коридором",
+      "Скрытая инсталляция подвесного унитаза",
+      "Внутристенный смеситель скрытого монтажа для раковины",
     ],
     trust: [
       { icon: Clock, label: "Срок", value: "от 3 мес." },
-      { icon: Lock, label: "Цена", value: "Фиксирована в договоре" },
-      { icon: ShieldCheck, label: "Гарантия", value: "3 года + пожизненная" },
+      { icon: Lock, label: "Цена", value: "Фикс в договоре" },
+      { icon: ShieldCheck, label: "Гарантия", value: "3 года + пожизн." },
     ],
-    highlight: "Выбор 7 из 10 наших клиентов — баланс цены и качества",
+    highlight: "Выбор 7 из 10 клиентов — баланс эстетики и бюджета.",
     featured: true,
+    icon: Sparkles,
   },
   {
     id: "premium",
     name: "Премиум",
-    pricePerM2: 30000,
+    tagline: "Эксклюзив / High-End по дизайн-проекту",
+    pricePerM2: 38000,
+    forWho:
+      "Бескомпромиссный ремонт для ценителей эксклюзивных материалов, сложных решений и умной инженерии.",
     features: [
-      "Индивидуальный дизайн",
-      "Эксклюзивные материалы",
-      "Персональный менеджер",
-      "Гарантия 5 лет",
+      "Весь объём работ «Эконом» и «Базовый»",
+      "Идеальные стены под покраску с приёмкой под «Лампу Лосева»",
+      "Авторская декор. штукатурка, шпон, камень, латунные / хром-вставки",
+      "Канальный кондиционер, скрытая приточно-вытяжная вентиляция",
+      "Внутрипольные конвекторы вдоль панорамных окон",
+      "Коллекторная разводка водоснабжения — стабильный напор во всех точках",
+      "Облицовка крупноформатным керамогранитом 120×120 / 120×240",
+      "Запил внешних углов под 45° без накладных уголков",
+      "Скрытые смесители экстра-класса для раковины и ванны",
     ],
     trust: [
       { icon: Clock, label: "Срок", value: "по проекту" },
-      { icon: Lock, label: "Цена", value: "Фиксирована, без доплат" },
-      { icon: ShieldCheck, label: "Гарантия", value: "5 лет + пожизненная" },
+      { icon: Lock, label: "Цена", value: "Фикс, без доплат" },
+      { icon: ShieldCheck, label: "Гарантия", value: "5 лет + пожизн." },
     ],
-    highlight: "Для тех, кто хочет уникальный интерьер «под себя»",
+    highlight: "Для тех, кто хочет уникальный интерьер «под себя».",
     featured: false,
+    icon: Crown,
   },
 ];
 
@@ -84,24 +114,45 @@ export function Pricing() {
     );
   };
 
+  const scrollToCalc = (tierId: TierId) => {
+    window.dispatchEvent(
+      new CustomEvent("calc-preset-tier", { detail: { tier: tierId, area } }),
+    );
+    const el = document.getElementById("calculator");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   const totals = useMemo(
     () => tiers.map((t) => ({ id: t.id, total: t.pricePerM2 * area })),
     [area],
   );
 
   return (
-    <section id="pricing" className="relative scroll-mt-24 md:scroll-mt-32 py-20 md:py-32 bg-aurora-orange overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none opacity-60 bg-[radial-gradient(circle_at_15%_15%,_oklch(0.72_0.2_50/0.12),_transparent_55%),radial-gradient(circle_at_85%_85%,_oklch(0.62_0.21_35/0.10),_transparent_55%)]" />
+    <section
+      id="pricing"
+      className="relative scroll-mt-24 md:scroll-mt-32 py-20 md:py-32 bg-aurora-orange overflow-hidden"
+    >
+      <div className="absolute inset-0 pointer-events-none opacity-60 bg-[radial-gradient(circle_at_15%_15%,_oklch(0.72_0.2_50/0.10),_transparent_55%),radial-gradient(circle_at_85%_85%,_oklch(0.62_0.21_35/0.08),_transparent_55%)]" />
       <div className="relative container-px mx-auto max-w-7xl">
         <SectionHeader
           eyebrow="Тарифы"
-          title="Наши тарифы"
-          subtitle="Прозрачное ценообразование. Двигайте площадь — стоимость пересчитается мгновенно."
+          title="Три тарифа под ключ"
+          subtitle="Эконом · Базовый · Премиум. Цена фиксируется в договоре. Двигайте площадь — стоимость пересчитается мгновенно."
           center
         />
 
+        {/* UX-маркер: санузел в каждом тарифе */}
+        <div className="reveal max-w-4xl mx-auto mb-8 sm:mb-10 -mt-4 rounded-2xl border border-primary/30 bg-primary/5 px-5 sm:px-6 py-4 flex items-start gap-3">
+          <ShieldCheck className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+          <p className="text-sm sm:text-base text-foreground/90 leading-relaxed">
+            <span className="font-semibold text-foreground">В каждый тариф уже включён полный цикл санузла под ключ</span>{" "}
+            — инженерия, гидроизоляция, плитка и чистовая сантехника. Мы не скрываем стоимость самой
+            сложной зоны квартиры. Чистовой потолок рассчитывается отдельно по проекту.
+          </p>
+        </div>
+
         {/* Area calculator */}
-        <div className="reveal liquid-glass max-w-3xl mx-auto mb-10 sm:mb-12 -mt-2 rounded-3xl p-6 sm:p-8">
+        <div className="reveal liquid-glass max-w-3xl mx-auto mb-10 sm:mb-12 rounded-3xl p-6 sm:p-8">
           <div className="flex items-center justify-between gap-4 mb-5">
             <div>
               <div className="text-primary uppercase tracking-[0.25em] text-[10px] sm:text-xs font-semibold mb-1.5">
@@ -150,6 +201,7 @@ export function Pricing() {
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:pt-4 items-stretch">
           {tiers.map((t, i) => {
             const total = totals.find((x) => x.id === t.id)?.total ?? 0;
+            const Icon = t.icon;
             return (
               <div
                 key={t.id}
@@ -166,11 +218,17 @@ export function Pricing() {
                   </div>
                 )}
 
-                <div className="relative font-display font-bold uppercase text-lg sm:text-xl mb-4 sm:mb-5 text-foreground">
-                  {t.name}
+                <div className="relative flex items-center gap-2.5 mb-2">
+                  <Icon className="h-5 w-5 text-primary" />
+                  <div className="font-display font-bold uppercase text-lg sm:text-xl text-foreground">
+                    {t.name}
+                  </div>
+                </div>
+                <div className="relative text-xs sm:text-sm text-muted-foreground mb-5 leading-snug">
+                  {t.tagline}
                 </div>
 
-                <div className="relative mb-5 sm:mb-6">
+                <div className="relative mb-4">
                   <div className="flex items-baseline flex-wrap gap-x-2 gap-y-1">
                     <span className="font-display font-bold text-3xl sm:text-4xl text-primary leading-none">
                       от {fmt(t.pricePerM2)}
@@ -187,15 +245,19 @@ export function Pricing() {
                   </div>
                 </div>
 
+                <div className="relative text-xs sm:text-sm italic leading-snug text-muted-foreground/90 mb-5 pb-5 border-b border-white/10">
+                  {t.forWho}
+                </div>
+
                 <div className="relative grid grid-cols-3 gap-1.5 sm:gap-2 mb-5 sm:mb-6 pb-5 sm:pb-6 border-b border-white/10">
                   {t.trust.map((tr) => {
-                    const Icon = tr.icon;
+                    const TIcon = tr.icon;
                     return (
                       <div
                         key={tr.label}
                         className="flex flex-col items-center text-center px-1 py-2 rounded-xl transition-colors duration-300 min-w-0 group-hover:bg-primary/10"
                       >
-                        <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary mb-1.5 shrink-0" />
+                        <TIcon className="h-4 w-4 sm:h-5 sm:w-5 text-primary mb-1.5 shrink-0" />
                         <div className="text-[9px] sm:text-[10px] uppercase tracking-wider mb-0.5 text-muted-foreground">
                           {tr.label}
                         </div>
@@ -207,9 +269,12 @@ export function Pricing() {
                   })}
                 </div>
 
-                <ul className="relative space-y-2.5 sm:space-y-3 mb-5 sm:mb-6">
+                <ul className="relative space-y-2.5 mb-5 sm:mb-6">
                   {t.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 sm:gap-3 text-sm leading-snug text-foreground/90">
+                    <li
+                      key={f}
+                      className="flex items-start gap-2.5 sm:gap-3 text-sm leading-snug text-foreground/90"
+                    >
                       <Check className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0 mt-0.5" />
                       <span>{f}</span>
                     </li>
@@ -220,19 +285,28 @@ export function Pricing() {
                   {t.highlight}
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => selectTier(t.id, t.name)}
-                  className={`relative mt-auto block w-full text-center px-3 sm:px-6 py-3 font-semibold uppercase tracking-wide sm:tracking-wider text-xs sm:text-sm rounded-xl transition-all hover:-translate-y-0.5 leading-tight ${
-                    t.featured
-                      ? "btn-cta hover:btn-cta-hover"
-                      : "bg-white/10 text-foreground hover:bg-cta hover:text-cta-foreground"
-                  }`}
-                >
-                  <span className="hidden sm:inline">Выбрать «{t.name}»</span>
-                  <span className="sm:hidden">Выбрать тариф</span>
-                </button>
-
+                <div className="relative mt-auto flex flex-col gap-2.5">
+                  <button
+                    type="button"
+                    onClick={() => selectTier(t.id, t.name)}
+                    className={`block w-full text-center px-3 sm:px-6 py-3 font-semibold uppercase tracking-wide sm:tracking-wider text-xs sm:text-sm rounded-xl transition-all hover:-translate-y-0.5 leading-tight ${
+                      t.featured
+                        ? "btn-cta hover:btn-cta-hover"
+                        : "bg-white/10 text-foreground hover:bg-cta hover:text-cta-foreground"
+                    }`}
+                  >
+                    <span className="hidden sm:inline">Выбрать «{t.name}»</span>
+                    <span className="sm:hidden">Выбрать тариф</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => scrollToCalc(t.id)}
+                    className="flex items-center justify-center gap-2 w-full text-center px-3 py-2.5 font-semibold uppercase tracking-wider text-[11px] sm:text-xs rounded-xl border border-primary/40 text-primary hover:bg-primary/10 transition-all"
+                  >
+                    <Settings2 className="h-3.5 w-3.5" />
+                    Сконфигурировать под себя
+                  </button>
+                </div>
               </div>
             );
           })}

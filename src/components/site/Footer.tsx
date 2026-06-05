@@ -12,11 +12,8 @@ export function Footer() {
           <div className="md:col-span-2">
             <img src={logo} alt="СКАЙСИТИ" className="h-10 w-auto brightness-0 invert" />
             <p className="mt-4 text-white/60 max-w-md text-sm leading-relaxed">
-              Ремонт квартир под ключ во Владивостоке без переплат — эконом, стандарт, премиум.
-              Капитальный, косметический и дизайнерский ремонт в новостройках и на вторичке.
+              Ремонт квартир под ключ во Владивостоке — эконом, стандарт, премиум.
               Мебель на заказ, столешницы из камня, изделия из керамогранита.
-              Работаем во Владивостоке, Артёме, Уссурийске, Находке и по Приморскому краю.
-              Скидка 10% участникам СВО, кэшбэк 10%.
             </p>
             <div className="mt-6 flex gap-3">
               <a
@@ -83,15 +80,7 @@ export function Footer() {
               <li><a href="#about" className="hover:text-primary transition-colors">О компании</a></li>
               <li><a href="#portfolio" className="hover:text-primary transition-colors">Портфолио</a></li>
               <li><a href="#pricing" className="hover:text-primary transition-colors">Тарифы</a></li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => window.dispatchEvent(new CustomEvent("open-lead-form"))}
-                  className="hover:text-primary transition-colors duration-300 text-left"
-                >
-                  Контакты
-                </button>
-              </li>
+              <li><a href="#contact" className="hover:text-primary transition-colors">Контакты</a></li>
             </ul>
             <div className="font-display font-bold uppercase text-white text-sm tracking-wider mb-3 mt-6">
               Документы

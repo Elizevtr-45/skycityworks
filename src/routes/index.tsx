@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useReveal } from "@/hooks/useReveal";
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
-import { TrustBlock } from "@/components/site/TrustBlock";
 import { About } from "@/components/site/About";
 import { Services } from "@/components/site/Services";
 import { Portfolio } from "@/components/site/Portfolio";
@@ -19,8 +18,7 @@ import { LeadForm, LeadPopup } from "@/components/site/LeadForm";
 import { FAQ } from "@/components/site/FAQ";
 import { Footer } from "@/components/site/Footer";
 import { CookieBanner } from "@/components/site/CookieBanner";
-import { BathroomPromo } from "@/components/site/BathroomPromo";
-import { ApartmentPromo } from "@/components/site/ApartmentPromo";
+import { Promotions } from "@/components/site/Promotions";
 import { HiddenMountPromo } from "@/components/site/HiddenMountPromo";
 import { SocialCTA } from "@/components/site/SocialCTA";
 import { ScrollToTop } from "@/components/site/ScrollToTop";
@@ -61,15 +59,13 @@ function Index() {
     <main className="min-h-screen bg-background">
       <Navbar />
       <Hero />
-      <TrustBlock />
       <About />
       <Calculator />
       <Services />
       <Portfolio />
       <Pricing />
       <Furniture />
-      <BathroomPromo />
-      <ApartmentPromo />
+      <Promotions />
       <HiddenMountPromo />
       <SocialProof />
       <Process />

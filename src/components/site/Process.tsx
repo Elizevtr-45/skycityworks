@@ -35,25 +35,25 @@ export function Process() {
           {steps.map((s, i) => (
             <div
               key={s.n}
-              className="reveal group relative liquid-glass rounded-3xl p-8 md:p-10 hover-lift transition-all duration-500"
+              className="reveal group relative liquid-glass rounded-2xl md:rounded-3xl p-5 md:p-10 hover-lift transition-all duration-500"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent rounded-t-3xl opacity-80 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent rounded-t-2xl md:rounded-t-3xl opacity-80 group-hover:opacity-100 transition-opacity" />
               <div className="absolute -top-12 -right-12 h-48 w-48 rounded-full bg-primary/15 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-              <div className="relative flex items-start justify-between mb-6">
-                <div className="h-16 w-16 rounded-2xl bg-primary/15 ring-1 ring-primary/40 flex items-center justify-center group-hover:bg-primary group-hover:ring-primary transition-all duration-500">
-                  <s.icon className="h-7 w-7 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
+              <div className="relative flex items-start justify-between mb-4 md:mb-6">
+                <div className="h-12 w-12 md:h-16 md:w-16 rounded-xl md:rounded-2xl bg-primary/15 ring-1 ring-primary/40 flex items-center justify-center group-hover:bg-primary group-hover:ring-primary transition-all duration-500">
+                  <s.icon className="h-5 w-5 md:h-7 md:w-7 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
                 </div>
-                <div className="font-display font-black text-5xl md:text-6xl text-gradient-gold leading-none opacity-90">
+                <div className="font-display font-black text-4xl md:text-6xl text-gradient-gold leading-none opacity-90">
                   {s.n}
                 </div>
               </div>
 
-              <h3 className="relative font-display font-bold uppercase text-xl md:text-2xl mb-3 text-foreground">
+              <h3 className="relative font-display font-bold uppercase text-lg md:text-2xl mb-2 md:mb-3 text-foreground">
                 {s.title}
               </h3>
-              <p className="relative text-muted-foreground leading-relaxed">{s.text}</p>
+              <p className="relative text-sm md:text-base text-muted-foreground leading-relaxed">{s.text}</p>
             </div>
           ))}
         </div>

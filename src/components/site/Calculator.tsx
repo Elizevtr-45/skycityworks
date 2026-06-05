@@ -500,6 +500,8 @@ export function Calculator() {
                       {items.map((o) => {
                         const included = isIncluded(o);
                         const active = isActive(o);
+                        const includedActive = included && active;
+                        const includedDisabled = included && !active;
                         const needsQty =
                           o.mode === "perWallM2" ||
                           o.mode === "perBathM2" ||
@@ -510,17 +512,18 @@ export function Calculator() {
                           <div
                             key={o.id}
                             className={`p-3.5 rounded-2xl border transition-all ${
-                              included
+                              includedActive
                                 ? "border-primary/60 bg-primary/10"
                                 : active
                                   ? "border-primary bg-primary/5"
-                                  : "border-border hover:border-primary/50"
+                                  : includedDisabled
+                                    ? "border-dashed border-primary/30 bg-primary/[0.03] opacity-80"
+                                    : "border-border hover:border-primary/50"
                             }`}
                           >
                             <button
                               type="button"
                               onClick={() => toggle(o)}
-                              disabled={included}
                               className="flex items-start gap-3 text-left w-full"
                               aria-pressed={active}
                             >
@@ -529,24 +532,26 @@ export function Calculator() {
                                   active ? "bg-primary border-primary" : "border-border"
                                 }`}
                               >
-                                {active && !included && (
-                                  <Check className="h-3 w-3 text-primary-foreground" />
-                                )}
-                                {included && <Lock className="h-3 w-3 text-primary-foreground" />}
+                                {active && <Check className="h-3 w-3 text-primary-foreground" />}
                               </span>
                               <span className="flex-1 min-w-0">
                                 <span className="flex items-center gap-2 flex-wrap">
                                   <span className="font-semibold text-sm leading-tight text-foreground">
                                     {o.label}
                                   </span>
-                                  {included && (
-                                    <span className="text-[10px] uppercase font-bold tracking-wider text-primary bg-primary/15 px-1.5 py-0.5 rounded">
-                                      Включено
+                                  {includedActive && (
+                                    <span className="text-[10px] uppercase font-bold tracking-wider text-primary bg-primary/15 px-1.5 py-0.5 rounded inline-flex items-center gap-1">
+                                      <Lock className="h-2.5 w-2.5" /> Включено
+                                    </span>
+                                  )}
+                                  {includedDisabled && (
+                                    <span className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground bg-muted/40 px-1.5 py-0.5 rounded">
+                                      Отключено
                                     </span>
                                   )}
                                 </span>
                                 <span className="block text-[11px] text-muted-foreground mt-1 leading-snug">
-                                  {unitLabel(o)}
+                                  {includedActive ? "Входит в тариф · 0 ₽" : unitLabel(o)}
                                 </span>
                                 <span className="flex items-start gap-1 text-[11px] text-muted-foreground/80 mt-1 leading-snug">
                                   <Info className="h-3 w-3 shrink-0 mt-0.5 text-primary/70" />

@@ -3,12 +3,11 @@ import { Menu, X, Phone } from "lucide-react";
 import logo from "@/assets/logo.svg";
 
 const links = [
-  { href: "#services", label: "Услуги" },
-  { href: "#about", label: "О компании" },
   { href: "#portfolio", label: "Портфолио" },
-  { href: "#process", label: "Процесс" },
   { href: "#pricing", label: "Тарифы" },
   { href: "#calculator", label: "Калькулятор" },
+  { href: "#process", label: "Процесс" },
+  { href: "#about", label: "О компании" },
   { href: "#contact", label: "Контакты" },
 ];
 

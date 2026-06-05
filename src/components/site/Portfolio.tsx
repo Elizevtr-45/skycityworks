@@ -233,13 +233,12 @@ export function Portfolio() {
                     <CarouselContent className="ml-0">
                       {active.images.map((src, idx) => (
                         <CarouselItem key={idx} className="pl-0">
-                          <div className="relative aspect-video w-full overflow-hidden">
+                          <div className="relative aspect-[4/3] sm:aspect-video w-full overflow-hidden">
                             <img
                               src={src}
                               alt={`${active.title} — фото ${idx + 1}`}
                               className="w-full h-full object-cover"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/20 to-transparent pointer-events-none" />
                           </div>
                         </CarouselItem>
                       ))}
@@ -247,18 +246,18 @@ export function Portfolio() {
                     <CarouselPrevious className="left-3 h-9 w-9 bg-background/80 border-border text-foreground hover:bg-background" />
                     <CarouselNext className="right-3 h-9 w-9 bg-background/80 border-border text-foreground hover:bg-background" />
                   </Carousel>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 pointer-events-none">
-                    <div className="text-primary uppercase tracking-widest text-xs mb-1.5">
-                      {active.type}
-                    </div>
-                    <DialogTitle className="font-display font-bold uppercase text-white text-xl md:text-2xl">
-                      {active.title}
-                    </DialogTitle>
-                  </div>
                 </div>
 
                 <div className="p-5 md:p-6 space-y-5 bg-gradient-to-b from-card to-card/95">
+                  <div>
+                    <div className="text-primary uppercase tracking-widest text-[10px] md:text-xs mb-1.5 font-semibold">
+                      {active.type}
+                    </div>
+                    <DialogTitle className="font-display font-bold uppercase text-foreground text-lg md:text-2xl leading-tight">
+                      {active.title}
+                    </DialogTitle>
+                  </div>
+
                   <div className="grid grid-cols-3 gap-3">
                     <div className="flex flex-col items-center text-center p-3 bg-background/80 rounded-xl ring-1 ring-border/60 transition-all duration-300 hover:ring-primary/40 hover:-translate-y-0.5">
                       <Ruler className="h-4 w-4 text-primary mb-1.5" />

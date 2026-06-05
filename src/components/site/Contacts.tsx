@@ -1,4 +1,6 @@
-import { Phone, Mail, MapPin, Send, MessageCircle, MessagesSquare } from "lucide-react";
+import { useState } from "react";
+import { Phone, Mail, MapPin, Send, MessageCircle, MessagesSquare, ExternalLink, Navigation } from "lucide-react";
+
 
 const phones = [
   { name: "Николай — руководитель", label: "8 964 445 55 25", href: "tel:+79644455525" },
@@ -12,6 +14,11 @@ const socials = [
 ];
 
 export function Contacts() {
+  const [mapLoaded, setMapLoaded] = useState(false);
+  const mapSrc = "https://yandex.ru/map-widget/v1/?ll=132.029134%2C43.370350&z=16&pt=132.029134%2C43.370350~pm2rdl";
+  const mapLink = "https://yandex.ru/maps/?ll=132.029134%2C43.370350&z=17&pt=132.029134%2C43.370350";
+  const routeLink = "https://yandex.ru/maps/?rtext=~43.370350%2C132.029134&rtt=auto";
+
   return (
     <section id="contact" className="relative scroll-mt-24 py-16 md:py-28 bg-aurora-orange overflow-hidden">
       <div className="container-px mx-auto max-w-7xl relative">
@@ -107,15 +114,58 @@ export function Contacts() {
           </div>
 
           {/* Map */}
-          <div className="reveal surface-elevated rounded-3xl overflow-hidden min-h-[460px] lg:min-h-full p-1.5">
-            <iframe
-              title="Карта — пос. Новый, ул. Хрустальная, 14"
-              src="https://yandex.ru/map-widget/v1/?ll=132.029134%2C43.370350&z=16&pt=132.029134%2C43.370350~pm2rdl"
-              className="w-full h-full min-h-[460px] block rounded-[22px]"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+          <div className="reveal flex flex-col gap-3">
+            <div className="surface-elevated rounded-3xl overflow-hidden p-1.5 relative">
+              <div className="relative w-full rounded-[22px] overflow-hidden h-[280px] sm:h-[360px] md:h-[460px] lg:h-[560px] bg-muted/40">
+                {mapLoaded ? (
+                  <iframe
+                    title="Карта — пос. Новый, ул. Хрустальная, 14"
+                    src={mapSrc}
+                    className="w-full h-full block border-0"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setMapLoaded(true)}
+                    className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-primary/10 to-accent/10 hover:from-primary/15 hover:to-accent/15 transition-colors"
+                    aria-label="Загрузить карту"
+                  >
+                    <div className="h-14 w-14 rounded-2xl bg-primary/15 border border-primary/30 flex items-center justify-center">
+                      <MapPin className="h-7 w-7 text-primary" />
+                    </div>
+                    <div className="text-sm font-semibold text-foreground">Показать карту</div>
+                    <div className="text-xs text-muted-foreground px-6 text-center">
+                      пос. Новый, ул. Хрустальная, 14
+                    </div>
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <a
+                href={routeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 h-12 rounded-2xl bg-gradient-to-br from-primary to-accent text-primary-foreground text-sm font-semibold shadow-[0_15px_40px_-15px_oklch(0.72_0.2_50/0.6)] hover:-translate-y-0.5 transition-transform"
+              >
+                <Navigation className="h-4 w-4" />
+                Построить маршрут
+              </a>
+              <a
+                href={mapLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 h-12 rounded-2xl border border-primary/30 bg-primary/5 text-foreground text-sm font-semibold hover:bg-primary/10 transition-colors"
+              >
+                <ExternalLink className="h-4 w-4 text-primary" />
+                Открыть в Я.Картах
+              </a>
+            </div>
           </div>
+
         </div>
       </div>
     </section>

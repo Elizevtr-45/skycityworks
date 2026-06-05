@@ -61,6 +61,7 @@ const OPTIONS: Option[] = [
     unit: "м²",
     hint: "Матовая краска вместо обоев. 2 слоя шпатлевки + базовая шлифовка.",
     includedIn: ["basic", "premium"],
+    group: "paint",
   },
   {
     id: "paint-comfort",
@@ -70,6 +71,7 @@ const OPTIONS: Option[] = [
     mode: "perFloorM2",
     unit: "м²",
     hint: "Армирование стеклохолстом + финишная шпатлевка — защита от микротрещин при усадке.",
+    group: "paint",
   },
   {
     id: "paint-losev",
@@ -80,6 +82,7 @@ const OPTIONS: Option[] = [
     unit: "м²",
     hint: "Приёмка стен под мощным боковым прожектором — эффект зеркала под любым светом.",
     includedIn: ["premium"],
+    group: "paint",
   },
   {
     id: "decor-plaster",
@@ -156,6 +159,7 @@ const OPTIONS: Option[] = [
     unit: "м²",
     hint: "Сложная укладка плитки малого размера — много подрезок.",
     defaultQty: 12,
+    group: "tile",
   },
   {
     id: "large-porcelain",
@@ -167,6 +171,7 @@ const OPTIONS: Option[] = [
     hint: "Облицовка плитами 120×120 / 120×240, подгонка рисунка, запил под 45°.",
     defaultQty: 12,
     includedIn: ["premium"],
+    group: "tile",
   },
   {
     id: "manifold",
@@ -177,15 +182,6 @@ const OPTIONS: Option[] = [
     unit: "",
     hint: "Распределительный коллектор — независимый стабильный напор во всех точках.",
     includedIn: ["premium"],
-  },
-  {
-    id: "rehau-node",
-    category: "Санузел и плитка",
-    label: "Премиум-узел на Rehau / Stout",
-    price: 180000,
-    mode: "flat",
-    unit: "",
-    hint: "Трубы Rehau/Stout, магистральные фильтры, редукторы давления, автозащита от протечек.",
   },
   {
     id: "hidden-mixer-bath",
@@ -205,9 +201,8 @@ const OPTIONS: Option[] = [
     price: 12000,
     mode: "perCount",
     unit: "шт.",
-    hint: "Излив выходит напрямую из стены над раковиной.",
+    hint: "Излив выходит напрямую из стены над раковиной. Опция-апгрейд для любого тарифа.",
     defaultQty: 1,
-    includedIn: ["basic", "premium"],
   },
 
   // Инженерия и климат

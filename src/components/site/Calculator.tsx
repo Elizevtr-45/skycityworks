@@ -301,16 +301,24 @@ export function Calculator() {
   const isActive = (o: Option) =>
     enabled[o.id] !== undefined ? !!enabled[o.id] : isIncluded(o);
 
-  // Listen for "Сконфигурировать" clicks from Pricing
+  // Listen for "Сконфигурировать" clicks from Pricing — сбрасываем апгрейды,
+  // чтобы новый тариф открывался с дефолтными включениями.
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent).detail as { tier?: TierKey; area?: number };
       if (detail?.tier && TIERS[detail.tier]) setTier(detail.tier);
       if (typeof detail?.area === "number") setArea(detail.area);
+      setEnabled({});
     };
     window.addEventListener("calc-preset-tier", handler);
     return () => window.removeEventListener("calc-preset-tier", handler);
   }, []);
+
+  // Ручная смена тарифа — тоже сбрасываем переопределения.
+  const selectTier = (k: TierKey) => {
+    setTier(k);
+    setEnabled({});
+  };
 
   const toggle = (o: Option) => {
     const currentlyActive = isActive(o);

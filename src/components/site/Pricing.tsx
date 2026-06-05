@@ -286,25 +286,12 @@ export function Pricing() {
                   {t.forWho}
                 </div>
 
-                <div className="relative grid grid-cols-3 gap-1.5 sm:gap-2 mb-5 pb-5 border-b border-white/10">
-                  {t.trust.map((tr) => {
-                    const TIcon = tr.icon;
-                    return (
-                      <div
-                        key={tr.label}
-                        className="flex flex-col items-center text-center px-1 py-2 rounded-xl transition-colors duration-300 min-w-0 group-hover:bg-primary/10"
-                      >
-                        <TIcon className="h-4 w-4 sm:h-5 sm:w-5 text-primary mb-1.5 shrink-0" />
-                        <div className="text-[9px] sm:text-[10px] uppercase tracking-wider mb-0.5 text-muted-foreground">
-                          {tr.label}
-                        </div>
-                        <div className="text-[10px] sm:text-[11px] font-semibold leading-tight break-words text-foreground">
-                          {tr.value}
-                        </div>
-                      </div>
-                    );
-                  })}
+                <div className="relative flex flex-wrap items-center gap-2 mb-5 pb-5 border-b border-white/10">
+                  <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
+                    <ShieldCheck className="h-3 w-3" /> Цена фиксируется в договоре
+                  </span>
                 </div>
+
 
                 {/* Accordion toggle */}
                 <button

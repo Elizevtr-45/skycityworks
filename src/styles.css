@@ -157,9 +157,21 @@
   }
 }
 
+@utility btn-cta {
+  background: linear-gradient(135deg, var(--cta), var(--cta-hover));
+  color: var(--cta-foreground);
+  box-shadow: 0 15px 40px -15px oklch(0.6 0.2 252 / 0.55);
+  transition: transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s ease, filter 0.35s ease;
+}
+@utility btn-cta-hover {
+  filter: brightness(1.08);
+  box-shadow: 0 22px 55px -18px oklch(0.6 0.2 252 / 0.75);
+}
+
 @layer utilities {
   .font-display { font-family: var(--font-display); }
   .font-body { font-family: var(--font-body); }
+
 
   .container-px {
     padding-left: 1.25rem;

@@ -79,8 +79,9 @@ export function Contacts() {
                 </div>
               </div>
               <div className="text-xl md:text-2xl font-display font-bold text-foreground leading-snug">
-                Приморский край, Надеждинский&nbsp;район,<br />
-                посёлок Новый, ул.&nbsp;Хрустальная
+                Приморский край,<br />
+                Надеждинский&nbsp;район,<br />
+                пос.&nbsp;Новый, ул.&nbsp;Хрустальная,&nbsp;14
               </div>
 
               <div className="mt-7 pt-6 border-t border-border/60">

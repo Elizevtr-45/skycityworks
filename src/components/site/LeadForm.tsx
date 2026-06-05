@@ -1,8 +1,31 @@
-import { useEffect, useState, type FormEvent } from "react";
-import { X, Phone } from "lucide-react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { X, Phone, CheckCircle2, Loader2 } from "lucide-react";
 import { submitLead } from "@/lib/leads";
 
 type Status = "idle" | "sending" | "success" | "error";
+
+function formatPhone(value: string): string {
+  // Берём только цифры. Если первая 8 — заменяем на 7.
+  let digits = value.replace(/\D/g, "");
+  if (digits.startsWith("8")) digits = "7" + digits.slice(1);
+  if (!digits.startsWith("7")) digits = "7" + digits;
+  digits = digits.slice(0, 11);
+
+  const p = digits.slice(1);
+  let out = "+7";
+  if (p.length > 0) out += " (" + p.slice(0, 3);
+  if (p.length >= 3) out += ") " + p.slice(3, 6);
+  if (p.length >= 6) out += "-" + p.slice(6, 8);
+  if (p.length >= 8) out += "-" + p.slice(8, 10);
+  return out;
+}
+
+function isPhoneValid(value: string): boolean {
+  const digits = value.replace(/\D/g, "");
+  return digits.length === 11;
+}
+
+type Errors = Partial<Record<"name" | "phone" | "area_m2" | "messenger", string>>;
 
 function LeadFormFields({
   onDone,
@@ -21,31 +44,58 @@ function LeadFormFields({
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Errors>({});
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [area, setArea] = useState("");
+  const [messenger, setMessenger] = useState("");
+  const [objectType, setObjectType] = useState(defaultObjectType ?? "");
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (status === "sending") return;
-    const form = e.currentTarget;
-    const fd = new FormData(form);
+  const formRef = useRef<HTMLFormElement>(null);
 
-    const tierFromForm = String(fd.get("tier") || "").trim();
-    const tierNameFromForm = String(fd.get("tier_name") || "").trim();
+  const hideAreaField = Boolean(tier);
 
-    const payload = {
-      name: String(fd.get("name") || "").trim(),
-      phone: String(fd.get("phone") || "").trim(),
-      area_m2: Number(fd.get("area_m2") || 0) || null,
-      object_type: (String(fd.get("object_type") || "").trim() || null) as string | null,
-      message: tierNameFromForm ? `Выбран тариф: ${tierNameFromForm}${tierFromForm ? ` (${tierFromForm})` : ""}` : undefined,
-      source: source ?? "site",
-      website: String(fd.get("website") || ""),
-    };
+  const validate = (): Errors => {
+    const e: Errors = {};
+    if (name.trim().length < 2) e.name = "Введите имя (минимум 2 символа)";
+    if (!isPhoneValid(phone)) e.phone = "Введите телефон полностью";
+    if (!hideAreaField) {
+      const n = Number(area);
+      if (!n || n < 5 || n > 10000) e.area_m2 = "Площадь от 5 до 10000 м²";
+    }
+    if (messenger.trim().length > 100) e.messenger = "Слишком длинно";
+    return e;
+  };
 
-    if (!payload.name || !payload.phone || (!tier && !payload.area_m2)) {
+  const onSubmit = async (ev: FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
+    if (status === "sending" || status === "success") return;
+
+    const eMap = validate();
+    setErrors(eMap);
+    if (Object.keys(eMap).length > 0) {
       setStatus("error");
-      setErrorMsg(tier ? "Заполните имя и телефон" : "Заполните имя, телефон и площадь");
+      setErrorMsg("Проверьте правильность заполнения полей");
       return;
     }
+
+    const messageParts: string[] = [];
+    if (tierName) {
+      messageParts.push(`Выбран тариф: ${tierName}${tier ? ` (${tier})` : ""}`);
+    }
+    if (messenger.trim()) {
+      messageParts.push(`Мессенджер/контакт: ${messenger.trim()}`);
+    }
+
+    const payload = {
+      name: name.trim(),
+      phone: phone.trim(),
+      area_m2: hideAreaField ? null : Number(area),
+      object_type: objectType.trim() || null,
+      message: messageParts.length ? messageParts.join("\n") : undefined,
+      source: source ?? "site",
+      website: (formRef.current?.elements.namedItem("website") as HTMLInputElement | null)?.value ?? "",
+    };
 
     setStatus("sending");
     setErrorMsg(null);
@@ -53,11 +103,15 @@ function LeadFormFields({
 
     if (res.ok) {
       setStatus("success");
-      form.reset();
       setTimeout(() => {
         setStatus("idle");
+        setName("");
+        setPhone("");
+        setArea("");
+        setMessenger("");
+        setObjectType("");
         onDone();
-      }, 2500);
+      }, 2400);
     } else if (res.status === 429) {
       setStatus("error");
       setErrorMsg("Слишком много заявок. Попробуйте позже.");
@@ -67,50 +121,135 @@ function LeadFormFields({
     }
   };
 
-  const inputCls = dark
-    ? "w-full min-w-0 bg-transparent border border-white/20 text-white placeholder:text-white/40 px-4 py-4 rounded-sm focus:outline-none focus:border-primary transition-colors"
-    : "w-full min-w-0 bg-transparent border border-border text-foreground placeholder:text-muted-foreground px-4 py-4 rounded-sm focus:outline-none focus:border-primary transition-colors";
+  const baseInput = dark
+    ? "w-full min-w-0 bg-transparent border text-white placeholder:text-white/40 px-4 py-4 rounded-sm focus:outline-none transition-all duration-300"
+    : "w-full min-w-0 bg-transparent border text-foreground placeholder:text-muted-foreground px-4 py-4 rounded-sm focus:outline-none transition-all duration-300";
 
-  const selectCls = `${inputCls} appearance-none cursor-pointer`;
+  const inputCls = (field: keyof Errors) =>
+    `${baseInput} ${
+      errors[field]
+        ? "border-red-400 focus:border-red-400"
+        : dark
+        ? "border-white/20 focus:border-primary"
+        : "border-border focus:border-primary"
+    }`;
 
-  // Если тариф пришёл из калькулятора — площадь уже включена в название тарифа,
-  // отдельное поле не показываем, чтобы не перегружать форму.
-  const hideAreaField = Boolean(tier);
+  const showSuccess = status === "success";
+  const showSending = status === "sending";
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-4 w-full min-w-0">
-      {tierName && (
+    <div className="relative">
+      {showSuccess && (
         <div
-          className={`flex items-center justify-between gap-3 px-4 py-3 rounded-sm border min-w-0 ${
-            dark
-              ? "border-primary/40 bg-primary/10 text-white"
-              : "border-primary/40 bg-primary/5 text-foreground"
+          className={`absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 rounded-sm text-center px-4 animate-in fade-in zoom-in-95 duration-500 ${
+            dark ? "bg-dark/95" : "bg-background/95"
           }`}
         >
-          <div className="min-w-0">
-            <div className={`text-[10px] uppercase tracking-[0.2em] font-semibold ${dark ? "text-white/60" : "text-muted-foreground"}`}>
-              Выбранный тариф
-            </div>
-            <div className="font-display font-bold uppercase text-sm sm:text-base break-words leading-tight">
-              {tierName}
-            </div>
+          <div className="h-16 w-16 rounded-full bg-primary/15 flex items-center justify-center">
+            <CheckCircle2 className="h-9 w-9 text-primary" />
           </div>
-          <span className="text-primary text-xs font-semibold uppercase tracking-wider whitespace-nowrap shrink-0">✓</span>
+          <div className={`font-display font-bold uppercase text-xl ${dark ? "text-white" : "text-foreground"}`}>
+            Заявка отправлена
+          </div>
+          <p className={`text-sm ${dark ? "text-white/70" : "text-muted-foreground"}`}>
+            Спасибо! Перезвоним в течение 15 минут.
+          </p>
         </div>
       )}
-      <input type="hidden" name="tier" value={tier ?? ""} />
-      <input type="hidden" name="tier_name" value={tierName ?? ""} />
-      <input required name="name" placeholder="Имя *" className={inputCls} maxLength={100} />
-      <input required name="phone" type="tel" placeholder="Телефон *" className={inputCls} maxLength={30} />
-      {!hideAreaField && (
-        <input required name="area_m2" type="number" min={5} max={10000} placeholder="Площадь, м² *" className={inputCls} />
-      )}
-      <>
+
+      <form ref={formRef} onSubmit={onSubmit} className={`grid gap-4 w-full min-w-0 transition-opacity duration-300 ${showSuccess ? "opacity-30" : ""}`}>
+        {tierName && (
+          <div
+            className={`flex items-center justify-between gap-3 px-4 py-3 rounded-sm border min-w-0 ${
+              dark ? "border-primary/40 bg-primary/10 text-white" : "border-primary/40 bg-primary/5 text-foreground"
+            }`}
+          >
+            <div className="min-w-0">
+              <div className={`text-[10px] uppercase tracking-[0.2em] font-semibold ${dark ? "text-white/60" : "text-muted-foreground"}`}>
+                Выбранный тариф
+              </div>
+              <div className="font-display font-bold uppercase text-sm sm:text-base break-words leading-tight">
+                {tierName}
+              </div>
+            </div>
+            <span className="text-primary text-xs font-semibold uppercase tracking-wider whitespace-nowrap shrink-0">✓</span>
+          </div>
+        )}
+
+        <div>
+          <input
+            name="name"
+            placeholder="Имя *"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+              if (errors.name) setErrors((p) => ({ ...p, name: undefined }));
+            }}
+            className={inputCls("name")}
+            maxLength={100}
+            autoComplete="name"
+          />
+          {errors.name && <p className="text-xs text-red-400 mt-1 px-1">{errors.name}</p>}
+        </div>
+
+        <div>
+          <input
+            name="phone"
+            type="tel"
+            inputMode="tel"
+            placeholder="+7 (___) ___-__-__"
+            value={phone}
+            onChange={(e) => {
+              setPhone(formatPhone(e.target.value));
+              if (errors.phone) setErrors((p) => ({ ...p, phone: undefined }));
+            }}
+            onFocus={() => {
+              if (!phone) setPhone("+7 ");
+            }}
+            className={inputCls("phone")}
+            maxLength={20}
+            autoComplete="tel"
+          />
+          {errors.phone && <p className="text-xs text-red-400 mt-1 px-1">{errors.phone}</p>}
+        </div>
+
+        <div>
+          <input
+            name="messenger"
+            placeholder="Telegram / WhatsApp / Max (необязательно)"
+            value={messenger}
+            onChange={(e) => setMessenger(e.target.value)}
+            className={inputCls("messenger")}
+            maxLength={100}
+          />
+          {errors.messenger && <p className="text-xs text-red-400 mt-1 px-1">{errors.messenger}</p>}
+        </div>
+
+        {!hideAreaField && (
+          <div>
+            <input
+              name="area_m2"
+              type="number"
+              min={5}
+              max={10000}
+              placeholder="Площадь, м² *"
+              value={area}
+              onChange={(e) => {
+                setArea(e.target.value);
+                if (errors.area_m2) setErrors((p) => ({ ...p, area_m2: undefined }));
+              }}
+              className={inputCls("area_m2")}
+            />
+            {errors.area_m2 && <p className="text-xs text-red-400 mt-1 px-1">{errors.area_m2}</p>}
+          </div>
+        )}
+
         <input
           name="object_type"
           list="object-type-options"
-          className={inputCls}
-          defaultValue={defaultObjectType ?? ""}
+          className={inputCls("name").replace("border-red-400", "")}
+          value={objectType}
+          onChange={(e) => setObjectType(e.target.value)}
           placeholder="Тип объекта / услуга (необязательно)"
           maxLength={50}
         />
@@ -122,82 +261,78 @@ function LeadFormFields({
           <option value="Изделия из керамогранита" />
           <option value="Коммерческое" />
         </datalist>
-      </>
 
-      {/* honeypot — скрыт от пользователей */}
-      <input
-        type="text"
-        name="website"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden="true"
-        className="hidden"
-      />
+        {/* honeypot */}
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="hidden"
+        />
 
-      <button
-        type="submit"
-        disabled={status === "sending"}
-        className="mt-2 px-8 py-4 bg-primary text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
-      >
-        {status === "sending"
-          ? "Отправляем…"
-          : status === "success"
-          ? "Спасибо! Мы свяжемся с вами"
-          : "Получить консультацию"}
-      </button>
-
-      {status === "error" && errorMsg && (
-        <p className={`text-xs text-center ${dark ? "text-red-300" : "text-red-600"}`}>{errorMsg}</p>
-      )}
-
-      <p className={`text-xs text-center ${dark ? "text-white/40" : "text-muted-foreground"}`}>
-        Нажимая «Получить консультацию», вы соглашаетесь с политикой обработки персональных данных.
-      </p>
-
-      <div
-        className={`mt-2 pt-4 border-t text-center ${
-          dark ? "border-white/10" : "border-border"
-        }`}
-      >
-        <div
-          className={`text-[10px] uppercase tracking-[0.25em] font-semibold mb-2 ${
-            dark ? "text-white/50" : "text-muted-foreground"
-          }`}
+        <button
+          type="submit"
+          disabled={showSending}
+          className="relative overflow-hidden mt-2 px-8 py-4 bg-primary text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-80 disabled:hover:translate-y-0"
         >
-          Также можете связаться с нами самостоятельно
-        </div>
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-stretch sm:items-center">
-          <a
-            href="tel:+79644455525"
-            className={`flex flex-col items-center gap-0.5 hover:text-primary transition-colors ${
-              dark ? "text-white" : "text-foreground"
+          <span className={`flex items-center justify-center gap-2 transition-opacity duration-300 ${showSending ? "opacity-90" : ""}`}>
+            {showSending ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Отправляем…
+              </>
+            ) : (
+              "Получить консультацию"
+            )}
+          </span>
+          {showSending && (
+            <span className="absolute left-0 bottom-0 h-0.5 bg-white/70 animate-[lead-progress_1.4s_ease-in-out_infinite]" />
+          )}
+        </button>
+
+        {status === "error" && errorMsg && (
+          <p className={`text-xs text-center ${dark ? "text-red-300" : "text-red-600"}`}>{errorMsg}</p>
+        )}
+
+        <p className={`text-xs text-center ${dark ? "text-white/40" : "text-muted-foreground"}`}>
+          Нажимая «Получить консультацию», вы соглашаетесь с политикой обработки персональных данных.
+        </p>
+
+        <div className={`mt-2 pt-4 border-t text-center ${dark ? "border-white/10" : "border-border"}`}>
+          <div
+            className={`text-[10px] uppercase tracking-[0.25em] font-semibold mb-2 ${
+              dark ? "text-white/50" : "text-muted-foreground"
             }`}
           >
-            <span className="inline-flex items-center gap-2 font-semibold text-sm whitespace-nowrap">
-              <Phone className="h-4 w-4 text-primary shrink-0" />
-              8 964 445 55 25
-            </span>
-            <span className={`text-[11px] ${dark ? "text-white/50" : "text-muted-foreground"}`}>
-              Николай
-            </span>
-          </a>
-          <a
-            href="tel:+79693077772"
-            className={`flex flex-col items-center gap-0.5 hover:text-primary transition-colors ${
-              dark ? "text-white" : "text-foreground"
-            }`}
-          >
-            <span className="inline-flex items-center gap-2 font-semibold text-sm whitespace-nowrap">
-              <Phone className="h-4 w-4 text-primary shrink-0" />
-              8 969 307 77 72
-            </span>
-            <span className={`text-[11px] ${dark ? "text-white/50" : "text-muted-foreground"}`}>
-              Денис
-            </span>
-          </a>
+            Также можете связаться с нами самостоятельно
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-stretch sm:items-center">
+            <a
+              href="tel:+79644455525"
+              className={`flex flex-col items-center gap-0.5 hover:text-primary transition-colors ${dark ? "text-white" : "text-foreground"}`}
+            >
+              <span className="inline-flex items-center gap-2 font-semibold text-sm whitespace-nowrap">
+                <Phone className="h-4 w-4 text-primary shrink-0" />
+                8 964 445 55 25
+              </span>
+              <span className={`text-[11px] ${dark ? "text-white/50" : "text-muted-foreground"}`}>Николай</span>
+            </a>
+            <a
+              href="tel:+79693077772"
+              className={`flex flex-col items-center gap-0.5 hover:text-primary transition-colors ${dark ? "text-white" : "text-foreground"}`}
+            >
+              <span className="inline-flex items-center gap-2 font-semibold text-sm whitespace-nowrap">
+                <Phone className="h-4 w-4 text-primary shrink-0" />
+                8 969 307 77 72
+              </span>
+              <span className={`text-[11px] ${dark ? "text-white/50" : "text-muted-foreground"}`}>Денис</span>
+            </a>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
 
@@ -227,6 +362,7 @@ export function LeadForm() {
 
 export function LeadPopup() {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [preset, setPreset] = useState<string | undefined>(undefined);
   const [tier, setTier] = useState<string | undefined>(undefined);
   const [tierName, setTierName] = useState<string | undefined>(undefined);
@@ -242,6 +378,8 @@ export function LeadPopup() {
       setTierName(detail?.tierName);
       setSourceOverride(detail?.source);
       setOpen(true);
+      // следующий тик — чтобы запустилась анимация появления
+      requestAnimationFrame(() => setMounted(true));
     };
     window.addEventListener("open-lead-form", handler);
     return () => window.removeEventListener("open-lead-form", handler);
@@ -253,6 +391,11 @@ export function LeadPopup() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  const close = () => {
+    setMounted(false);
+    setTimeout(() => setOpen(false), 280);
+  };
 
   if (!open) return null;
 
@@ -267,17 +410,21 @@ export function LeadPopup() {
 
   return (
     <div
-      className="fixed inset-0 z-[100] bg-dark/70 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 animate-in fade-in overflow-y-auto"
-      onClick={() => setOpen(false)}
+      className={`fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 overflow-y-auto transition-all duration-300 ease-out ${
+        mounted ? "bg-dark/70 backdrop-blur-md opacity-100" : "bg-dark/0 backdrop-blur-0 opacity-0"
+      }`}
+      onClick={close}
     >
       <div
-        className="bg-background w-full max-w-md max-h-[90vh] sm:max-h-[85vh] flex flex-col relative my-auto shadow-2xl"
+        className={`bg-background w-full max-w-md max-h-[90vh] sm:max-h-[85vh] flex flex-col relative my-auto shadow-2xl transition-all duration-500 ease-[cubic-bezier(.22,1,.36,1)] ${
+          mounted ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-6 scale-95"
+        }`}
         style={{ borderRadius: "12px" }}
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          onClick={() => setOpen(false)}
-          className="absolute top-3 right-3 z-10 h-9 w-9 flex items-center justify-center rounded-full bg-background/80 backdrop-blur text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+          onClick={close}
+          className="absolute top-3 right-3 z-30 h-9 w-9 flex items-center justify-center rounded-full bg-background/80 backdrop-blur text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
           aria-label="Закрыть"
         >
           <X className="h-5 w-5" />
@@ -296,7 +443,7 @@ export function LeadPopup() {
           </div>
           <LeadFormFields
             key={`${tier ?? ""}-${preset ?? "default"}`}
-            onDone={() => setOpen(false)}
+            onDone={close}
             dark={false}
             source={computedSource}
             defaultObjectType={preset}

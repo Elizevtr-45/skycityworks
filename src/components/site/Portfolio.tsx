@@ -39,7 +39,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Dialog, DialogPortal, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import { Clock, Ruler, Wallet, CheckCircle2, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
 import { cn } from "@/lib/utils";
 
 type Project = {
@@ -251,23 +251,23 @@ export function Portfolio() {
                   </div>
                 </div>
 
-                <div className="p-5 md:p-6 space-y-5">
+                <div className="p-5 md:p-6 space-y-5 bg-gradient-to-b from-card to-card/95">
                   <div className="grid grid-cols-3 gap-3">
-                    <div className="flex flex-col items-center text-center p-3 bg-background rounded-sm">
+                    <div className="flex flex-col items-center text-center p-3 bg-background/80 rounded-xl ring-1 ring-border/60 transition-all duration-300 hover:ring-primary/40 hover:-translate-y-0.5">
                       <Ruler className="h-4 w-4 text-primary mb-1.5" />
                       <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Площадь</div>
                       <div className="font-display font-semibold mt-0.5 text-sm">{active.area}</div>
                     </div>
-                    <div className="flex flex-col items-center text-center p-3 bg-background rounded-sm">
+                    <div className="flex flex-col items-center text-center p-3 bg-background/80 rounded-xl ring-1 ring-border/60 transition-all duration-300 hover:ring-primary/40 hover:-translate-y-0.5">
                       <Clock className="h-4 w-4 text-primary mb-1.5" />
                       <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Срок</div>
                       <div className="font-display font-semibold mt-0.5 text-sm">{active.duration}</div>
                     </div>
-                    <div className="flex flex-col items-center text-center p-3 bg-background rounded-sm">
+                    <div className="flex flex-col items-center text-center p-3 bg-background/80 rounded-xl ring-1 ring-primary/30 transition-all duration-300 hover:ring-primary/60 hover:-translate-y-0.5">
                       <Wallet className="h-4 w-4 text-primary mb-1.5" />
                       <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Стоимость</div>
                       <div className="font-display font-semibold mt-0.5 text-xs">{active.price}</div>
-                      <div className="text-[10px] text-primary uppercase tracking-wider mt-1">Тариф «{active.tier}»</div>
+                      <div className="text-[10px] text-primary uppercase tracking-wider mt-1 font-semibold">Тариф «{active.tier}»</div>
                     </div>
                   </div>
 
@@ -275,30 +275,21 @@ export function Portfolio() {
                     {active.description}
                   </DialogDescription>
 
-                  <div>
-                    <h4 className="font-display font-semibold uppercase text-xs tracking-wider mb-2.5">
+                  <div className="rounded-xl border border-border/60 bg-background/50 p-4">
+                    <h4 className="font-display font-semibold uppercase text-xs tracking-[0.2em] mb-3 text-primary">
                       Что было сделано
                     </h4>
-                    <ul className="space-y-1.5">
+                    <ul className="space-y-2">
                       {active.works.map((w) => (
-                        <li key={w} className="flex items-start gap-2.5 text-sm text-foreground/80">
+                        <li key={w} className="flex items-start gap-2.5 text-sm text-foreground/85">
                           <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                           <span>{w}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-
-                  <Button
-                    className="w-full"
-                    onClick={() => {
-                      setActive(null);
-                      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                    }}
-                  >
-                    Хочу такой же ремонт
-                  </Button>
                 </div>
+
               </>
             )}
 

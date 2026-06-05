@@ -47,6 +47,7 @@ type Option = {
   hint: string;
   defaultQty?: number;
   includedIn?: TierKey[]; // авто-включено в эти тарифы
+  group?: string; // взаимоисключающая группа (выбор одного отключает другие)
 };
 
 const OPTIONS: Option[] = [
@@ -60,6 +61,7 @@ const OPTIONS: Option[] = [
     unit: "м²",
     hint: "Матовая краска вместо обоев. 2 слоя шпатлевки + базовая шлифовка.",
     includedIn: ["basic", "premium"],
+    group: "paint",
   },
   {
     id: "paint-comfort",
@@ -69,6 +71,7 @@ const OPTIONS: Option[] = [
     mode: "perFloorM2",
     unit: "м²",
     hint: "Армирование стеклохолстом + финишная шпатлевка — защита от микротрещин при усадке.",
+    group: "paint",
   },
   {
     id: "paint-losev",
@@ -79,6 +82,7 @@ const OPTIONS: Option[] = [
     unit: "м²",
     hint: "Приёмка стен под мощным боковым прожектором — эффект зеркала под любым светом.",
     includedIn: ["premium"],
+    group: "paint",
   },
   {
     id: "decor-plaster",
@@ -155,6 +159,7 @@ const OPTIONS: Option[] = [
     unit: "м²",
     hint: "Сложная укладка плитки малого размера — много подрезок.",
     defaultQty: 12,
+    group: "tile",
   },
   {
     id: "large-porcelain",
@@ -166,6 +171,7 @@ const OPTIONS: Option[] = [
     hint: "Облицовка плитами 120×120 / 120×240, подгонка рисунка, запил под 45°.",
     defaultQty: 12,
     includedIn: ["premium"],
+    group: "tile",
   },
   {
     id: "manifold",
@@ -176,15 +182,6 @@ const OPTIONS: Option[] = [
     unit: "",
     hint: "Распределительный коллектор — независимый стабильный напор во всех точках.",
     includedIn: ["premium"],
-  },
-  {
-    id: "rehau-node",
-    category: "Санузел и плитка",
-    label: "Премиум-узел на Rehau / Stout",
-    price: 180000,
-    mode: "flat",
-    unit: "",
-    hint: "Трубы Rehau/Stout, магистральные фильтры, редукторы давления, автозащита от протечек.",
   },
   {
     id: "hidden-mixer-bath",
@@ -204,9 +201,8 @@ const OPTIONS: Option[] = [
     price: 12000,
     mode: "perCount",
     unit: "шт.",
-    hint: "Излив выходит напрямую из стены над раковиной.",
+    hint: "Излив выходит напрямую из стены над раковиной. Опция-апгрейд для любого тарифа.",
     defaultQty: 1,
-    includedIn: ["basic", "premium"],
   },
 
   // Инженерия и климат
@@ -301,7 +297,9 @@ export function Calculator() {
   });
 
   const isIncluded = (o: Option) => !!o.includedIn?.includes(tier);
-  const isActive = (o: Option) => isIncluded(o) || !!enabled[o.id];
+  // active = пользователь явно включил/выключил; иначе — по умолчанию из тарифа
+  const isActive = (o: Option) =>
+    enabled[o.id] !== undefined ? !!enabled[o.id] : isIncluded(o);
 
   // Listen for "Сконфигурировать" clicks from Pricing
   useEffect(() => {
@@ -315,8 +313,20 @@ export function Calculator() {
   }, []);
 
   const toggle = (o: Option) => {
-    if (isIncluded(o)) return; // Уже включено в тариф — не отключаем
-    setEnabled((s) => ({ ...s, [o.id]: !s[o.id] }));
+    const currentlyActive = isActive(o);
+    const next = !currentlyActive;
+    setEnabled((s) => {
+      const updated: Record<string, boolean> = { ...s, [o.id]: next };
+      // Взаимоисключающая группа: при включении выключаем остальных
+      if (next && o.group) {
+        OPTIONS.forEach((other) => {
+          if (other.id !== o.id && other.group === o.group) {
+            updated[other.id] = false;
+          }
+        });
+      }
+      return updated;
+    });
   };
 
   const setQuantity = (id: string, v: number) =>
@@ -470,9 +480,10 @@ export function Calculator() {
             {/* STEP 2 */}
             <StepHeader n={2} title="Апгрейды и опции" />
             <p className="text-xs sm:text-sm text-muted-foreground mb-5 -mt-2">
-              Опции, уже входящие в выбранный тариф, помечены{" "}
-              <span className="text-primary font-semibold">«Включено»</span>.
-              Остальные можно добавить.
+              Опции с пометкой{" "}
+              <span className="text-primary font-semibold">«Включено»</span> уже входят в тариф —
+              их можно отключить и заменить на другие. Внутри одной группы (например, покраска
+              стен) активной может быть только одна опция.
             </p>
 
             <div className="space-y-7">
@@ -490,6 +501,8 @@ export function Calculator() {
                       {items.map((o) => {
                         const included = isIncluded(o);
                         const active = isActive(o);
+                        const includedActive = included && active;
+                        const includedDisabled = included && !active;
                         const needsQty =
                           o.mode === "perWallM2" ||
                           o.mode === "perBathM2" ||
@@ -500,17 +513,18 @@ export function Calculator() {
                           <div
                             key={o.id}
                             className={`p-3.5 rounded-2xl border transition-all ${
-                              included
+                              includedActive
                                 ? "border-primary/60 bg-primary/10"
                                 : active
                                   ? "border-primary bg-primary/5"
-                                  : "border-border hover:border-primary/50"
+                                  : includedDisabled
+                                    ? "border-dashed border-primary/30 bg-primary/[0.03] opacity-80"
+                                    : "border-border hover:border-primary/50"
                             }`}
                           >
                             <button
                               type="button"
                               onClick={() => toggle(o)}
-                              disabled={included}
                               className="flex items-start gap-3 text-left w-full"
                               aria-pressed={active}
                             >
@@ -519,24 +533,26 @@ export function Calculator() {
                                   active ? "bg-primary border-primary" : "border-border"
                                 }`}
                               >
-                                {active && !included && (
-                                  <Check className="h-3 w-3 text-primary-foreground" />
-                                )}
-                                {included && <Lock className="h-3 w-3 text-primary-foreground" />}
+                                {active && <Check className="h-3 w-3 text-primary-foreground" />}
                               </span>
                               <span className="flex-1 min-w-0">
                                 <span className="flex items-center gap-2 flex-wrap">
                                   <span className="font-semibold text-sm leading-tight text-foreground">
                                     {o.label}
                                   </span>
-                                  {included && (
-                                    <span className="text-[10px] uppercase font-bold tracking-wider text-primary bg-primary/15 px-1.5 py-0.5 rounded">
-                                      Включено
+                                  {includedActive && (
+                                    <span className="text-[10px] uppercase font-bold tracking-wider text-primary bg-primary/15 px-1.5 py-0.5 rounded inline-flex items-center gap-1">
+                                      <Lock className="h-2.5 w-2.5" /> Включено
+                                    </span>
+                                  )}
+                                  {includedDisabled && (
+                                    <span className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground bg-muted/40 px-1.5 py-0.5 rounded">
+                                      Отключено
                                     </span>
                                   )}
                                 </span>
                                 <span className="block text-[11px] text-muted-foreground mt-1 leading-snug">
-                                  {unitLabel(o)}
+                                  {includedActive ? "Входит в тариф · 0 ₽" : unitLabel(o)}
                                 </span>
                                 <span className="flex items-start gap-1 text-[11px] text-muted-foreground/80 mt-1 leading-snug">
                                   <Info className="h-3 w-3 shrink-0 mt-0.5 text-primary/70" />

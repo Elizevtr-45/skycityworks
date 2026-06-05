@@ -203,7 +203,7 @@ function LeadFormFields({
 
 export function LeadForm() {
   return (
-    <section id="contact" className="py-20 md:py-32 bg-dark">
+    <section id="contact" className="py-20 md:py-32 bg-grid-orange">
       <div className="container-px mx-auto max-w-2xl">
         <div className="reveal text-center mb-10">
           <div className="flex items-center gap-3 justify-center mb-4">

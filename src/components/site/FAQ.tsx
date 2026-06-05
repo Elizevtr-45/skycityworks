@@ -62,7 +62,7 @@ export function FAQ() {
   };
 
   return (
-    <section className="py-20 md:py-32 bg-background" aria-labelledby="faq-heading">
+    <section className="py-20 md:py-32 bg-aurora-orange" aria-labelledby="faq-heading">
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger

@@ -9,7 +9,7 @@ const reviews = [
 
 export function Reviews() {
   return (
-    <section id="reviews" className="relative py-20 md:py-32 bg-dark overflow-hidden">
+    <section id="reviews" className="relative py-20 md:py-32 bg-grid-orange overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-60 bg-[radial-gradient(circle_at_15%_20%,_oklch(0.72_0.2_50/0.18),_transparent_55%),radial-gradient(circle_at_85%_80%,_oklch(0.62_0.21_35/0.14),_transparent_55%)]" />
       <div className="relative container-px mx-auto max-w-7xl">
         <SectionHeader light eyebrow="Отзывы" title="Что говорят клиенты" center />

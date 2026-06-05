@@ -64,16 +64,16 @@ function Index() {
       <Calculator />
       <Reviews />
       <About />
+      <Promotions />
+      <Process />
       <Services />
       <Furniture />
-      <Promotions />
       <HiddenMountPromo />
       <SocialProof />
-      <Process />
       <Team />
       <LeadForm />
       <SocialCTA />
-      
+
       <FAQ />
       <Footer />
       <CookieBanner />

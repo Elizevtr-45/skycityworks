@@ -80,15 +80,7 @@ export function Footer() {
               <li><a href="#about" className="hover:text-primary transition-colors">О компании</a></li>
               <li><a href="#portfolio" className="hover:text-primary transition-colors">Портфолио</a></li>
               <li><a href="#pricing" className="hover:text-primary transition-colors">Тарифы</a></li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => window.dispatchEvent(new CustomEvent("open-lead-form"))}
-                  className="hover:text-primary transition-colors duration-300 text-left"
-                >
-                  Контакты
-                </button>
-              </li>
+              <li><a href="#contact" className="hover:text-primary transition-colors">Контакты</a></li>
             </ul>
             <div className="font-display font-bold uppercase text-white text-sm tracking-wider mb-3 mt-6">
               Документы

@@ -117,31 +117,15 @@ export function Contacts() {
           <div className="reveal flex flex-col gap-3">
             <div className="surface-elevated rounded-3xl overflow-hidden p-1.5 relative">
               <div className="relative w-full rounded-[22px] overflow-hidden h-[280px] sm:h-[360px] md:h-[460px] lg:h-[560px] bg-muted/40">
-                {mapLoaded ? (
-                  <iframe
-                    title="Карта — пос. Новый, ул. Хрустальная, 14"
-                    src={mapSrc}
-                    className="w-full h-full block border-0"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => setMapLoaded(true)}
-                    className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-primary/10 to-accent/10 hover:from-primary/15 hover:to-accent/15 transition-colors"
-                    aria-label="Загрузить карту"
-                  >
-                    <div className="h-14 w-14 rounded-2xl bg-primary/15 border border-primary/30 flex items-center justify-center">
-                      <MapPin className="h-7 w-7 text-primary" />
-                    </div>
-                    <div className="text-sm font-semibold text-foreground">Показать карту</div>
-                    <div className="text-xs text-muted-foreground px-6 text-center">
-                      пос. Новый, ул. Хрустальная, 14
-                    </div>
-                  </button>
-                )}
+                <iframe
+                  title="Карта — пос. Новый, ул. Хрустальная, 14"
+                  src={mapSrc}
+                  className="w-full h-full block border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
+
             </div>
 
             <div className="grid grid-cols-2 gap-3">

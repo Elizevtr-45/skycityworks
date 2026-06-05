@@ -97,7 +97,7 @@ export function QuickLinks() {
               style={{ transitionDelay: `${i * 50}ms` }}
             >
               {/* Badge */}
-              <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider bg-white/10 text-white px-2.5 py-1 rounded-sm border border-white/15">
+              <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider bg-foreground/10 text-foreground px-2.5 py-1 rounded-sm border border-foreground/15">
                 {link.badge}
               </span>
 

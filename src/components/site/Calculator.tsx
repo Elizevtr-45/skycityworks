@@ -462,7 +462,7 @@ export function Calculator() {
                     <button
                       key={k}
                       type="button"
-                      onClick={() => setTier(k)}
+                      onClick={() => selectTier(k)}
                       className={`p-3 sm:p-4 rounded-2xl border text-left transition-all min-w-0 ${
                         active
                           ? "border-primary bg-primary/5 shadow-[0_4px_20px_-8px_oklch(0.72_0.2_50/0.4)]"

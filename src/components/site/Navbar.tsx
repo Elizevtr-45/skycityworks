@@ -2,14 +2,18 @@ import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import logo from "@/assets/logo.svg";
 
-const links = [
+type NavLink = { href?: string; label: string; action?: "lead" };
+
+const links: NavLink[] = [
   { href: "#portfolio", label: "Портфолио" },
   { href: "#pricing", label: "Тарифы" },
   { href: "#calculator", label: "Калькулятор" },
   { href: "#process", label: "Процесс" },
   { href: "#about", label: "О компании" },
-  { href: "#contact", label: "Контакты" },
+  { label: "Контакты", action: "lead" },
 ];
+
+const openLead = () => window.dispatchEvent(new CustomEvent("open-lead-form"));
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,15 +40,26 @@ export function Navbar() {
         </a>
 
         <nav className="hidden lg:flex items-center gap-7">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-white/80 hover:text-primary transition-colors uppercase tracking-wider font-medium"
-            >
-              {l.label}
-            </a>
-          ))}
+          {links.map((l) =>
+            l.action === "lead" ? (
+              <button
+                key={l.label}
+                type="button"
+                onClick={openLead}
+                className="text-sm text-white/80 hover:text-primary transition-colors duration-300 uppercase tracking-wider font-medium"
+              >
+                {l.label}
+              </button>
+            ) : (
+              <a
+                key={l.href}
+                href={l.href}
+                className="text-sm text-white/80 hover:text-primary transition-colors duration-300 uppercase tracking-wider font-medium"
+              >
+                {l.label}
+              </a>
+            )
+          )}
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
@@ -83,16 +98,30 @@ export function Navbar() {
           />
           <div className="lg:hidden relative z-50 bg-dark border-t border-white/5">
             <div className="container-px mx-auto py-4 flex flex-col gap-4">
-              {links.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="text-white/80 hover:text-primary transition-colors uppercase tracking-wider text-sm font-medium"
-                >
-                  {l.label}
-                </a>
-              ))}
+              {links.map((l) =>
+                l.action === "lead" ? (
+                  <button
+                    key={l.label}
+                    type="button"
+                    onClick={() => {
+                      setOpen(false);
+                      openLead();
+                    }}
+                    className="text-left text-white/80 hover:text-primary transition-colors duration-300 uppercase tracking-wider text-sm font-medium"
+                  >
+                    {l.label}
+                  </button>
+                ) : (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="text-white/80 hover:text-primary transition-colors duration-300 uppercase tracking-wider text-sm font-medium"
+                  >
+                    {l.label}
+                  </a>
+                )
+              )}
               <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
                 <a href="tel:+79644455525" className="inline-flex items-center gap-2 text-primary font-semibold">
                   <Phone className="h-4 w-4" /> 8 964 445 55 25 — Николай

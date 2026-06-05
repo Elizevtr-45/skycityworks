@@ -52,57 +52,58 @@ export function HiddenMountPromo() {
   }, [api]);
 
   return (
-    <section className="pt-14 md:pt-28 pb-0 bg-background">
-      <div className="container-px mx-auto max-w-7xl">
+    <section className="pt-10 md:pt-16 pb-0 bg-background">
+      <div className="container-px mx-auto max-w-6xl">
         <div className="relative overflow-hidden bg-dark text-white" style={{ borderRadius: "10px" }}>
           <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,_var(--primary),_transparent_60%)]" />
-          <div className="relative grid lg:grid-cols-2 gap-8 lg:gap-10 p-5 sm:p-8 md:p-12 lg:p-16 items-center">
-            <div className="reveal">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/15 border border-primary/40 text-primary text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] font-semibold rounded-sm mb-4 sm:mb-5">
-                <Layers className="h-3.5 w-3.5" /> Наша специализация
+          <div className="relative grid lg:grid-cols-5 gap-6 lg:gap-8 p-5 sm:p-7 md:p-9 items-center">
+            <div className="reveal lg:col-span-2">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-primary/15 border border-primary/40 text-primary text-[10px] uppercase tracking-[0.2em] font-semibold rounded-sm mb-3">
+                <Layers className="h-3 w-3" /> Специализация
               </div>
-              <h2 className="font-display font-bold uppercase text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight">
+              <h2 className="font-display font-bold uppercase text-xl sm:text-2xl md:text-3xl leading-tight">
                 Изделия из <span className="text-gradient-gold">керамогранита</span> и скрытый монтаж
               </h2>
-              <p className="mt-4 sm:mt-5 text-white/70 text-base sm:text-lg leading-relaxed max-w-lg">
-                Профессионально изготавливаем и монтируем элементы санузла из керамогранита:
-                всё лишнее спрятано в стене, на виду — только идеальная плоскость и чистая
-                геометрия. Работаем с крупноформатными плитами и сложными раскладками.
+              <p className="mt-3 text-white/70 text-sm sm:text-base leading-relaxed">
+                Всё лишнее спрятано в стене — на виду только идеальная плоскость и чистая геометрия.
               </p>
 
-              <ul className="mt-6 sm:mt-8 grid sm:grid-cols-2 gap-3">
-                {items.map(({ icon: Icon, title, desc }) => (
+              <ul className="mt-5 grid grid-cols-2 gap-2">
+                {items.map(({ icon: Icon, title }) => (
                   <li
                     key={title}
-                    className="flex items-start gap-3 bg-white/5 border border-white/10 p-3 sm:p-4 rounded-sm"
+                    className="flex items-center gap-2 bg-white/5 border border-white/10 px-2.5 py-2 rounded-sm"
                   >
-                    <Icon className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                    <div className="min-w-0">
-                      <div className="text-sm font-semibold text-white">{title}</div>
-                      <div className="text-xs text-white/60 mt-1 leading-relaxed">{desc}</div>
-                    </div>
+                    <Icon className="h-4 w-4 text-primary shrink-0" />
+                    <span className="text-xs font-medium text-white leading-tight">{title}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <div className="mt-5 flex flex-col sm:flex-row gap-2.5">
                 <button
                   type="button"
-                  onClick={() => window.dispatchEvent(new CustomEvent("open-lead-form"))}
-                  className="inline-flex items-center justify-center px-5 sm:px-8 py-3.5 sm:py-4 bg-primary text-white font-semibold uppercase tracking-wider text-xs sm:text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5 text-center"
+                  onClick={() =>
+                    window.dispatchEvent(
+                      new CustomEvent("open-lead-form", {
+                        detail: { objectType: "Изделия из керамогранита" },
+                      }),
+                    )
+                  }
+                  className="inline-flex items-center justify-center px-5 py-3 bg-primary text-white font-semibold uppercase tracking-wider text-xs rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5"
                 >
                   Обсудить проект
                 </button>
                 <a
                   href="#calculator"
-                  className="inline-flex items-center justify-center px-5 sm:px-8 py-3.5 sm:py-4 border border-white/30 text-white font-semibold uppercase tracking-wider text-xs sm:text-sm rounded-sm hover:bg-white/10 transition-colors text-center"
+                  className="inline-flex items-center justify-center px-5 py-3 border border-white/30 text-white font-semibold uppercase tracking-wider text-xs rounded-sm hover:bg-white/10 transition-colors"
                 >
                   Рассчитать
                 </a>
               </div>
             </div>
 
-            <div className="reveal">
+            <div className="reveal lg:col-span-3">
               <Carousel
                 opts={{ loop: true, align: "start" }}
                 setApi={setApi}
@@ -119,7 +120,7 @@ export function HiddenMountPromo() {
                           src={p.src}
                           alt={p.alt}
                           loading="lazy"
-                          className="w-full h-[280px] sm:h-[420px] md:h-[520px] object-cover"
+                          className="w-full h-[220px] sm:h-[320px] md:h-[380px] object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                       </div>
@@ -127,24 +128,6 @@ export function HiddenMountPromo() {
                   ))}
                 </CarouselContent>
               </Carousel>
-              <div className="mt-5 sm:mt-6 flex justify-center">
-                <button
-                  type="button"
-                  onClick={() =>
-                    window.dispatchEvent(
-                      new CustomEvent("open-lead-form", {
-                        detail: { objectType: "Изделия из керамогранита" },
-                      }),
-                    )
-                  }
-                  className="inline-flex items-center justify-center w-full sm:w-auto px-5 sm:px-8 py-3.5 sm:py-4 bg-primary text-white font-semibold uppercase tracking-wider text-xs sm:text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5 text-center leading-snug"
-                >
-                  Запросить консультацию по изделиям из керамогранита
-                </button>
-              </div>
-              <div className="mt-4 text-white/50 text-xs leading-relaxed text-center">
-                * Реальные работы наших мастеров — скрытый монтаж и изделия из керамогранита.
-              </div>
             </div>
           </div>
         </div>

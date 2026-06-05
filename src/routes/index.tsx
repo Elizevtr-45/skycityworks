@@ -59,17 +59,17 @@ function Index() {
     <main className="min-h-screen bg-background">
       <Navbar />
       <Hero />
-      <About />
-      <Calculator />
-      <Services />
       <Portfolio />
       <Pricing />
+      <Calculator />
+      <Reviews />
+      <About />
+      <Services />
       <Furniture />
       <Promotions />
       <HiddenMountPromo />
       <SocialProof />
       <Process />
-      <Reviews />
       <Team />
       <LeadForm />
       <SocialCTA />

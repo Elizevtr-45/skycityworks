@@ -26,9 +26,8 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,backdrop-filter,box-shadow,border-color,padding] duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${
-        scrolled ? "liquid-glass shadow-[0_10px_40px_-20px_rgba(0,0,0,0.45)]" : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 bg-transparent transition-[padding] duration-700 ease-[cubic-bezier(.22,1,.36,1)]"
+
     >
       <div
         className={`container-px mx-auto max-w-7xl flex items-center justify-between transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${

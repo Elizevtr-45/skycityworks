@@ -128,7 +128,7 @@ export function HiddenMountPromo() {
                     }),
                   )
                 }
-                className="group inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold uppercase tracking-wider text-xs rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5"
+                className="btn-cta hover:btn-cta-hover group inline-flex items-center gap-2 px-5 py-2.5 font-semibold uppercase tracking-wider text-xs rounded-xl hover:-translate-y-0.5"
               >
                 Обсудить
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

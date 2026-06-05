@@ -223,15 +223,16 @@ export function Pricing() {
                 <button
                   type="button"
                   onClick={() => selectTier(t.id, t.name)}
-                  className={`relative mt-auto block w-full text-center px-3 sm:px-6 py-3 font-semibold uppercase tracking-wide sm:tracking-wider text-xs sm:text-sm rounded-sm transition-all hover:-translate-y-0.5 leading-tight ${
+                  className={`relative mt-auto block w-full text-center px-3 sm:px-6 py-3 font-semibold uppercase tracking-wide sm:tracking-wider text-xs sm:text-sm rounded-xl transition-all hover:-translate-y-0.5 leading-tight ${
                     t.featured
-                      ? "bg-primary text-primary-foreground hover:bg-accent hover:shadow-[0_10px_30px_-10px_oklch(0.72_0.2_50/0.6)]"
-                      : "bg-white/10 text-foreground hover:bg-primary hover:text-primary-foreground"
+                      ? "btn-cta hover:btn-cta-hover"
+                      : "bg-white/10 text-foreground hover:bg-cta hover:text-cta-foreground"
                   }`}
                 >
                   <span className="hidden sm:inline">Выбрать «{t.name}»</span>
                   <span className="sm:hidden">Выбрать тариф</span>
                 </button>
+
               </div>
             );
           })}
@@ -253,7 +254,7 @@ export function Pricing() {
           <button
             type="button"
             onClick={() => selectTier("free-measure", "Бесплатный замер")}
-            className="px-5 sm:px-6 py-3 bg-primary text-primary-foreground font-semibold uppercase tracking-wider text-xs sm:text-sm rounded-sm hover:bg-accent transition-colors text-center whitespace-nowrap shadow-[0_10px_30px_-10px_oklch(0.72_0.2_50/0.5)]"
+            className="btn-cta hover:btn-cta-hover px-5 sm:px-6 py-3 font-semibold uppercase tracking-wider text-xs sm:text-sm rounded-xl text-center whitespace-nowrap"
           >
             Вызвать замерщика
           </button>

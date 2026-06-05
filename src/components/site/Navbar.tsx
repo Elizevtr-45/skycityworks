@@ -26,9 +26,20 @@ export function Navbar() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 bg-transparent transition-[padding] duration-700 ease-[cubic-bezier(.22,1,.36,1)]"
-
+      className="fixed top-0 left-0 right-0 z-50 transition-[padding] duration-700 ease-[cubic-bezier(.22,1,.36,1)]"
     >
+      {/* Плавное затемнение появляется при скролле, без видимой границы */}
+      <div
+        aria-hidden
+        className={`absolute inset-0 -z-10 pointer-events-none transition-opacity duration-700 ease-[cubic-bezier(.22,1,.36,1)] backdrop-blur-md ${
+          scrolled ? "opacity-100" : "opacity-0"
+        }`}
+        style={{
+          background:
+            "linear-gradient(180deg, oklch(0.09 0.005 260 / 0.85) 0%, oklch(0.09 0.005 260 / 0.6) 60%, oklch(0.09 0.005 260 / 0) 100%)",
+        }}
+      />
+
       <div
         className={`container-px mx-auto max-w-7xl flex items-center justify-between transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${
           scrolled ? "h-14 md:h-16" : "h-16 md:h-20"

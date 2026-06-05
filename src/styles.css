@@ -31,6 +31,10 @@
   --color-dark: var(--dark);
   --color-dark-foreground: var(--dark-foreground);
   --color-light: var(--light);
+  --color-cta: var(--cta);
+  --color-cta-foreground: var(--cta-foreground);
+  --color-cta-hover: var(--cta-hover);
+
   --font-display: "Montserrat", sans-serif;
   --font-body: "Inter", sans-serif;
   --shadow-elegant: 0 30px 80px -25px oklch(0.68 0.19 45 / 0.45);
@@ -72,6 +76,12 @@
   --dark: oklch(0.09 0.005 260);                /* near black */
   --dark-foreground: oklch(0.98 0 0);
   --light: oklch(0.97 0.005 80);
+
+  /* CTA — синий для кнопок захвата лидов */
+  --cta: oklch(0.6 0.2 252);
+  --cta-hover: oklch(0.66 0.2 252);
+  --cta-foreground: oklch(0.99 0 0);
+
 }
 
 @layer base {
@@ -147,9 +157,21 @@
   }
 }
 
+@utility btn-cta {
+  background: linear-gradient(135deg, var(--cta), var(--cta-hover));
+  color: var(--cta-foreground);
+  box-shadow: 0 15px 40px -15px oklch(0.6 0.2 252 / 0.55);
+  transition: transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s ease, filter 0.35s ease;
+}
+@utility btn-cta-hover {
+  filter: brightness(1.08);
+  box-shadow: 0 22px 55px -18px oklch(0.6 0.2 252 / 0.75);
+}
+
 @layer utilities {
   .font-display { font-family: var(--font-display); }
   .font-body { font-family: var(--font-body); }
+
 
   .container-px {
     padding-left: 1.25rem;

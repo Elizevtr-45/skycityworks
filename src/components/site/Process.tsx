@@ -24,45 +24,44 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="process" className="relative pt-0 pb-12 md:pb-32 bg-dots-orange overflow-hidden">
+    <section id="process" className="relative pt-0 pb-10 md:pb-20 bg-dots-orange overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-60 bg-[radial-gradient(circle_at_50%_0%,_oklch(0.72_0.2_50/0.12),_transparent_60%)]" />
-      <div className="relative container-px mx-auto max-w-7xl">
+      <div className="relative container-px mx-auto max-w-6xl">
         <SectionHeader eyebrow="Процесс" title="Три шага до новоселья" center />
 
-        <div className="relative grid md:grid-cols-3 gap-6 md:gap-8">
-          <div className="hidden md:block absolute top-24 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent pointer-events-none" />
+        <div className="relative grid md:grid-cols-3 gap-4 md:gap-5 mt-2">
+          <div className="hidden md:block absolute top-16 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent pointer-events-none" />
 
           {steps.map((s, i) => (
             <div
               key={s.n}
-              className="reveal group relative liquid-glass rounded-2xl md:rounded-3xl p-5 md:p-10 hover-lift transition-all duration-500"
+              className="reveal group relative liquid-glass rounded-2xl p-4 md:p-6 hover-lift transition-all duration-500"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent rounded-t-2xl md:rounded-t-3xl opacity-80 group-hover:opacity-100 transition-opacity" />
-              <div className="absolute -top-12 -right-12 h-48 w-48 rounded-full bg-primary/15 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent rounded-t-2xl opacity-80 group-hover:opacity-100 transition-opacity" />
 
-              <div className="relative flex items-start justify-between mb-4 md:mb-6">
-                <div className="h-12 w-12 md:h-16 md:w-16 rounded-xl md:rounded-2xl bg-primary/15 ring-1 ring-primary/40 flex items-center justify-center group-hover:bg-primary group-hover:ring-primary transition-all duration-500">
-                  <s.icon className="h-5 w-5 md:h-7 md:w-7 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
+              <div className="relative flex items-center justify-between mb-3">
+                <div className="h-10 w-10 md:h-12 md:w-12 rounded-xl bg-primary/15 ring-1 ring-primary/40 flex items-center justify-center group-hover:bg-primary group-hover:ring-primary transition-all duration-500">
+                  <s.icon className="h-5 w-5 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
                 </div>
-                <div className="font-display font-black text-4xl md:text-6xl text-gradient-gold leading-none opacity-90">
+                <div className="font-display font-black text-3xl md:text-4xl text-gradient-gold leading-none opacity-90">
                   {s.n}
                 </div>
               </div>
 
-              <h3 className="relative font-display font-bold uppercase text-lg md:text-2xl mb-2 md:mb-3 text-foreground">
+              <h3 className="relative font-display font-bold uppercase text-base md:text-lg mb-1.5 text-foreground">
                 {s.title}
               </h3>
-              <p className="relative text-sm md:text-base text-muted-foreground leading-relaxed">{s.text}</p>
+              <p className="relative text-sm text-muted-foreground leading-snug">{s.text}</p>
             </div>
           ))}
         </div>
 
-        <div className="reveal mt-12 text-center">
+        <div className="reveal mt-8 text-center">
           <button
             type="button"
             onClick={() => window.dispatchEvent(new CustomEvent("open-lead-form"))}
-            className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all duration-300 hover:shadow-[0_10px_40px_-10px_oklch(0.72_0.2_50/0.6)] hover:-translate-y-0.5"
+            className="btn-cta hover:btn-cta-hover inline-flex items-center justify-center px-7 py-3.5 font-semibold uppercase tracking-wider text-sm rounded-xl hover:-translate-y-0.5"
           >
             Начать с бесплатного замера
           </button>
@@ -71,3 +70,4 @@ export function Process() {
     </section>
   );
 }
+

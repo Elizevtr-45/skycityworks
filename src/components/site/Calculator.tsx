@@ -202,7 +202,7 @@ export function Calculator() {
                     }),
                   )
                 }
-                className="block w-full text-center px-6 py-4 bg-primary text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5"
+                className="btn-cta hover:btn-cta-hover block w-full text-center px-6 py-4 font-semibold uppercase tracking-wider text-sm rounded-xl hover:-translate-y-0.5"
               >
                 Получить точную смету
               </button>

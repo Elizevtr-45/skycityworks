@@ -44,7 +44,7 @@ export function Furniture() {
             <button
               type="button"
               onClick={() => window.dispatchEvent(new CustomEvent("open-lead-form", { detail: { objectType: "Мебель на заказ", source: "furniture" } }))}
-              className="group inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold uppercase tracking-wider text-xs rounded-sm hover:bg-accent transition-colors duration-300 shrink-0"
+              className="btn-cta hover:btn-cta-hover group inline-flex items-center gap-2 px-5 py-2.5 font-semibold uppercase tracking-wider text-xs rounded-xl shrink-0"
             >
               Заказать мебель
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />

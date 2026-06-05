@@ -1,9 +1,7 @@
 import { useMemo, useState } from "react";
 import {
   Check,
-  Clock,
   ShieldCheck,
-  Lock,
   Sparkles,
   Crown,
   Wrench,

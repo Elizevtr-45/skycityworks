@@ -23,7 +23,6 @@ type Tier = {
   pricePerM2: number;
   forWho: string;
   features: string[];
-  trust: { icon: typeof Clock; label: string; value: string }[];
   highlight: string;
   featured: boolean;
   icon: typeof Sparkles;

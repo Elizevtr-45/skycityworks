@@ -91,7 +91,7 @@ export function Navbar() {
         <button
           aria-label="Меню"
           onClick={() => setOpen((v) => !v)}
-          className="lg:hidden text-white p-2 relative h-10 w-10 flex items-center justify-center"
+          className="lg:hidden text-white p-2 relative h-10 w-10 flex items-center justify-center z-[60]"
         >
           <Menu
             className={`absolute transition-all duration-500 ease-[cubic-bezier(.22,1,.36,1)] ${

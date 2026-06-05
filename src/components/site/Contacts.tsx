@@ -109,8 +109,8 @@ export function Contacts() {
           {/* Map */}
           <div className="reveal surface-elevated rounded-3xl overflow-hidden min-h-[460px] lg:min-h-full p-1.5">
             <iframe
-              title="Карта — посёлок Новый, ул. Хрустальная"
-              src="https://yandex.ru/map-widget/v1/?ll=131.873%2C43.305&z=15&mode=search&text=%D0%9F%D1%80%D0%B8%D0%BC%D0%BE%D1%80%D1%81%D0%BA%D0%B8%D0%B9%20%D0%BA%D1%80%D0%B0%D0%B9%2C%20%D0%9D%D0%B0%D0%B4%D0%B5%D0%B6%D0%B4%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D1%80%D0%B0%D0%B9%D0%BE%D0%BD%2C%20%D0%BF%D0%BE%D1%81%D1%91%D0%BB%D0%BE%D0%BA%20%D0%9D%D0%BE%D0%B2%D1%8B%D0%B9%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A5%D1%80%D1%83%D1%81%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F"
+              title="Карта — пос. Новый, ул. Хрустальная, 14"
+              src="https://yandex.ru/map-widget/v1/?ll=131.873%2C43.305&z=16&mode=search&text=Приморский%20край%2C%20Надеждинский%20район%2C%20пос.%20Новый%2C%20улица%20Хрустальная%2C%2014"
               className="w-full h-full min-h-[460px] block rounded-[22px]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

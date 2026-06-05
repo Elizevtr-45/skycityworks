@@ -31,6 +31,10 @@
   --color-dark: var(--dark);
   --color-dark-foreground: var(--dark-foreground);
   --color-light: var(--light);
+  --color-cta: var(--cta);
+  --color-cta-foreground: var(--cta-foreground);
+  --color-cta-hover: var(--cta-hover);
+
   --font-display: "Montserrat", sans-serif;
   --font-body: "Inter", sans-serif;
   --shadow-elegant: 0 30px 80px -25px oklch(0.68 0.19 45 / 0.45);

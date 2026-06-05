@@ -41,13 +41,14 @@ export function Furniture() {
                 Кухни, гардеробные и корпусная мебель — единая концепция от стен до фасадов.
               </p>
             </div>
-            <a
-              href="#contact"
-              className="group inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold uppercase tracking-wider text-xs rounded-sm hover:bg-accent transition-colors shrink-0"
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("open-lead-form", { detail: { objectType: "Мебель на заказ", source: "furniture" } }))}
+              className="group inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold uppercase tracking-wider text-xs rounded-sm hover:bg-accent transition-colors duration-300 shrink-0"
             >
               Заказать мебель
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </button>
           </div>
 
           {/* Marquee strip of images */}

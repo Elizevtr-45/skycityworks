@@ -60,7 +60,6 @@ const OPTIONS: Option[] = [
     mode: "perFloorM2",
     unit: "м²",
     hint: "Матовая краска вместо обоев. 2 слоя шпатлевки + базовая шлифовка.",
-    includedIn: ["basic", "premium"],
     group: "paint",
   },
   {
@@ -71,6 +70,7 @@ const OPTIONS: Option[] = [
     mode: "perFloorM2",
     unit: "м²",
     hint: "Армирование стеклохолстом + финишная шпатлевка — защита от микротрещин при усадке.",
+    includedIn: ["basic"],
     group: "paint",
   },
   {
@@ -93,6 +93,7 @@ const OPTIONS: Option[] = [
     unit: "м²",
     hint: "Бесшовные фактуры: микроцемент, арт-бетон, шелк, травертин.",
     defaultQty: 10,
+    includedIn: ["premium"],
   },
   {
     id: "wall-panels",
@@ -103,6 +104,7 @@ const OPTIONS: Option[] = [
     unit: "м²",
     hint: "Натуральное дерево, МДФ со шпоном или архитектурный камень.",
     defaultQty: 8,
+    includedIn: ["premium"],
   },
   {
     id: "metal-inlay",
@@ -113,6 +115,7 @@ const OPTIONS: Option[] = [
     unit: "пог. м",
     hint: "Тонкие металлические профили в стыках плитки и панелей.",
     defaultQty: 6,
+    includedIn: ["premium"],
   },
 
   // Двери и полы
@@ -201,8 +204,9 @@ const OPTIONS: Option[] = [
     price: 12000,
     mode: "perCount",
     unit: "шт.",
-    hint: "Излив выходит напрямую из стены над раковиной. Опция-апгрейд для любого тарифа.",
+    hint: "Излив выходит напрямую из стены над раковиной.",
     defaultQty: 1,
+    includedIn: ["premium"],
   },
 
   // Инженерия и климат

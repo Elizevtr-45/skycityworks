@@ -60,7 +60,6 @@ const OPTIONS: Option[] = [
     mode: "perFloorM2",
     unit: "м²",
     hint: "Матовая краска вместо обоев. 2 слоя шпатлевки + базовая шлифовка.",
-    includedIn: ["basic", "premium"],
     group: "paint",
   },
   {
@@ -71,6 +70,7 @@ const OPTIONS: Option[] = [
     mode: "perFloorM2",
     unit: "м²",
     hint: "Армирование стеклохолстом + финишная шпатлевка — защита от микротрещин при усадке.",
+    includedIn: ["basic"],
     group: "paint",
   },
   {

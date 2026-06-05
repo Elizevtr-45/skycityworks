@@ -35,16 +35,16 @@ export function Process() {
           {steps.map((s, i) => (
             <div
               key={s.n}
-              className="reveal group relative liquid-glass rounded-2xl p-5 md:p-8 hover-lift transition-all duration-500"
+              className="reveal group relative liquid-glass rounded-2xl pt-8 px-5 pb-5 md:pt-10 md:px-8 md:pb-8 hover-lift transition-all duration-500"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent rounded-t-2xl opacity-80 group-hover:opacity-100 transition-opacity" />
 
-              <div className="relative flex items-center justify-between mb-4">
-                <div className="h-10 w-10 md:h-12 md:w-12 rounded-xl bg-primary/15 ring-1 ring-primary/40 flex items-center justify-center group-hover:bg-primary group-hover:ring-primary transition-all duration-500">
-                  <s.icon className="h-5 w-5 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
+              <div className="relative flex items-center justify-between gap-4 mb-5">
+                <div className="h-12 w-12 md:h-14 md:w-14 rounded-xl bg-primary/15 ring-1 ring-primary/40 flex items-center justify-center group-hover:bg-primary group-hover:ring-primary transition-all duration-500 shrink-0">
+                  <s.icon className="h-6 w-6 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
                 </div>
-                <div className="font-display font-black text-3xl md:text-4xl text-gradient-gold leading-none opacity-90">
+                <div className="font-display font-black text-2xl md:text-3xl text-gradient-gold leading-none opacity-90">
                   {s.n}
                 </div>
               </div>

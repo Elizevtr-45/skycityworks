@@ -285,11 +285,13 @@
       0 30px 80px -30px oklch(0 0 0 / 0.5);
     overflow: hidden;
   }
+  .liquid-glass > * { position: relative; z-index: 1; }
   .liquid-glass::before {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
+    z-index: 0;
     background:
       radial-gradient(60% 80% at 20% 0%, oklch(1 0 0 / 0.10), transparent 60%),
       radial-gradient(50% 60% at 100% 100%, oklch(0.72 0.2 50 / 0.10), transparent 60%);

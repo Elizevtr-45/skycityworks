@@ -5,7 +5,7 @@ import p3 from "@/assets/portfolio-4.jpg";
 import { SectionHeader } from "./SectionHeader";
 
 const videos = [
-  { img: p1, title: "Обзор готовой квартиры в ЖК «Маринист»", duration: "08:24" },
+  { img: p1, title: "Обзор готовой квартиры под ключ", duration: "08:24" },
   { img: p2, title: "Как мы делаем чистовую отделку", duration: "12:10" },
   { img: p3, title: "Премиум санузел: материалы и технологии", duration: "06:48" },
 ];

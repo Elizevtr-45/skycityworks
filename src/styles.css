@@ -187,6 +187,51 @@
     box-shadow: var(--shadow-glow);
   }
 
+  /* ===== Orange textured backgrounds ===== */
+  .bg-grid-orange {
+    background-color: var(--color-dark);
+    background-image:
+      linear-gradient(oklch(0.72 0.2 50 / 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.72 0.2 50 / 0.08) 1px, transparent 1px),
+      radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.72 0.2 50 / 0.18), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 50% 100%, oklch(0.62 0.21 35 / 0.15), transparent 70%);
+    background-size: 48px 48px, 48px 48px, 100% 100%, 100% 100%;
+  }
+
+  .bg-lines-orange {
+    background-color: var(--color-background);
+    background-image:
+      repeating-linear-gradient(135deg, oklch(0.72 0.2 50 / 0.06) 0 1px, transparent 1px 14px),
+      radial-gradient(ellipse 70% 50% at 100% 0%, oklch(0.72 0.2 50 / 0.12), transparent 70%);
+  }
+
+  .bg-dots-orange {
+    background-color: var(--color-background);
+    background-image:
+      radial-gradient(oklch(0.72 0.2 50 / 0.18) 1.2px, transparent 1.6px),
+      radial-gradient(ellipse 60% 60% at 0% 100%, oklch(0.62 0.21 35 / 0.12), transparent 70%);
+    background-size: 22px 22px, 100% 100%;
+  }
+
+  .bg-aurora-orange {
+    background-color: var(--color-background);
+    background-image:
+      radial-gradient(60% 50% at 20% 20%, oklch(0.72 0.2 50 / 0.18), transparent 70%),
+      radial-gradient(50% 50% at 80% 80%, oklch(0.62 0.21 35 / 0.15), transparent 70%),
+      radial-gradient(40% 40% at 50% 50%, oklch(0.78 0.18 55 / 0.08), transparent 70%);
+  }
+
+  .bg-hero-orange {
+    background-color: oklch(0.10 0.01 40);
+    background-image:
+      linear-gradient(oklch(0.72 0.2 50 / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.72 0.2 50 / 0.07) 1px, transparent 1px),
+      radial-gradient(ellipse 70% 60% at 80% 20%, oklch(0.72 0.2 50 / 0.35), transparent 65%),
+      radial-gradient(ellipse 60% 60% at 10% 90%, oklch(0.62 0.21 35 / 0.28), transparent 70%),
+      linear-gradient(135deg, oklch(0.16 0.02 40) 0%, oklch(0.09 0.005 260) 100%);
+    background-size: 56px 56px, 56px 56px, 100% 100%, 100% 100%, 100% 100%;
+  }
+
   /* Liquid glass — Apple-style frosted surface */
   .glass {
     background:

@@ -203,22 +203,29 @@ export function Portfolio() {
         <DialogPortal>
           <DialogPrimitive.Overlay
             className={cn(
-              "fixed inset-0 z-50 bg-black/50 backdrop-blur-md",
+              "fixed inset-0 z-50 bg-black/55 backdrop-blur-md",
               "data-[state=open]:animate-in data-[state=closed]:animate-out",
               "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+              "data-[state=open]:duration-500 data-[state=closed]:duration-300",
             )}
           />
           <DialogPrimitive.Content
-            style={{ borderRadius: "10px" }}
+            style={{ borderRadius: "28px" }}
             className={cn(
               "fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%]",
-              "w-[92vw] max-w-2xl max-h-[90vh] overflow-y-auto",
-              "bg-card border border-border shadow-2xl",
+              "w-[92vw] max-w-2xl max-h-[90vh] overflow-hidden",
+              "bg-card border border-border shadow-[0_40px_120px_-30px_rgba(0,0,0,0.5)]",
               "data-[state=open]:animate-in data-[state=closed]:animate-out",
               "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
               "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+              "data-[state=open]:slide-in-from-bottom-4 data-[state=closed]:slide-out-to-bottom-2",
+              "data-[state=open]:duration-[600ms] data-[state=closed]:duration-300",
+              "data-[state=open]:ease-[cubic-bezier(.22,1,.36,1)]",
+              "flex flex-col",
             )}
           >
+            <div className="overflow-y-auto" style={{ borderRadius: "28px" }}>
+
             {active && (
               <>
                 <div className="relative">

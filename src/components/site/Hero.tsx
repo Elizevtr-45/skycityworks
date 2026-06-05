@@ -1,20 +1,10 @@
-import heroImg from "@/assets/hero-interior.jpg";
-
 export function Hero() {
   return (
     <section id="top" className="relative min-h-screen flex items-center overflow-hidden bg-hero-orange">
-      <div className="absolute inset-0">
-        <img
-          src={heroImg}
-          alt="Премиальный интерьер квартиры после ремонта во Владивостоке"
-          width={1920}
-          height={1280}
-          className="w-full h-full object-cover scale-105 opacity-25 mix-blend-luminosity"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-dark/85 via-dark/55 to-transparent" />
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent" />
-        <div className="absolute -top-32 -right-32 h-[520px] w-[520px] rounded-full bg-primary/25 blur-[120px] pointer-events-none" />
-        <div className="absolute -bottom-32 -left-24 h-[420px] w-[420px] rounded-full bg-accent/25 blur-[120px] pointer-events-none" />
+        <div className="absolute -top-24 -right-24 h-[60vw] max-h-[520px] w-[60vw] max-w-[520px] rounded-full bg-primary/25 blur-[100px]" />
+        <div className="absolute -bottom-24 -left-16 h-[55vw] max-h-[420px] w-[55vw] max-w-[420px] rounded-full bg-accent/25 blur-[100px]" />
       </div>
 
       <div className="relative container-px mx-auto max-w-7xl pt-28 pb-20 md:pt-32 md:pb-28">

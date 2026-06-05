@@ -1,5 +1,18 @@
 import { useMemo, useState } from "react";
-import { Check, Clock, ShieldCheck, Lock, Sparkles, Crown, Wrench, Settings2 } from "lucide-react";
+import {
+  Check,
+  Clock,
+  ShieldCheck,
+  Lock,
+  Sparkles,
+  Crown,
+  Wrench,
+  Settings2,
+  ChevronDown,
+  Paintbrush,
+  Layers,
+  Eye,
+} from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { Slider } from "@/components/ui/slider";
 
@@ -22,19 +35,19 @@ const tiers: Tier[] = [
   {
     id: "econom",
     name: "Эконом",
-    tagline: "Предчистовой White Box + простая чистовая отделка",
+    tagline: "Под сдачу или базовое обновление — без переплат",
     pricePerM2: 22000,
     forWho:
-      "Инвестиционные квартиры под сдачу, коммерческие пространства, надёжная база без переплаты за сложный дизайн.",
+      "Инвестиционные квартиры под аренду, новостройки, базовое обновление интерьера в полном объёме.",
     features: [
-      "Кладка перегородок (пеноблок / ПГП) с армированием",
-      "Штукатурка по маякам, вывод углов под 90°",
+      "Кладка перегородок (пеноблок / ПГП) с армированием каждые 2 ряда",
+      "Штукатурка по маякам, вывод углов под 90° на кухне и в санузле",
       "Полусухая или цементно-песчаная стяжка с демпфер-лентой",
-      "Электромонтаж ВВГнг-LS, сборка щита с УЗО",
-      "Шпатлевание стен под плотные обои или под покраску",
-      "Укладка ламината / кварцвинила со стыковочными порожками",
-      "Санузел под ключ: тройниковая разводка, гидроизоляция, плитка 30×30–60×60",
-      "Стандартная чистовая сантехника",
+      "Электромонтаж ВВГнг-LS, сборка щита с УЗО и автоматами",
+      "Шпатлевка в 2–3 слоя под плотные обои или обои под покраску",
+      "Укладка ламината / линолеума с декоративными порожками",
+      "Санузел: гидроизоляция, тройниковая разводка, плитка до 60×60",
+      "Классический напольный унитаз, стандартная ванна и раковина",
     ],
     trust: [
       { icon: Clock, label: "Срок", value: "от 2 мес." },
@@ -48,15 +61,15 @@ const tiers: Tier[] = [
   {
     id: "basic",
     name: "Базовый",
-    tagline: "Комфорт и современный стиль — самый востребованный",
-    pricePerM2: 28000,
+    tagline: "Современные тренды без излишеств — выбор большинства",
+    pricePerM2: 25000,
     forWho:
-      "Современное жильё «для себя»: скрытые двери, единый пол без порогов, покраска. Без избыточного инженерного усложнения.",
+      "Современное жильё «для себя»: скрытые двери, единый пол без порогов, стены под покраску. Без избыточной инженерии.",
     features: [
       "Весь объём работ тарифа «Эконом»",
       "Шпатлевание под покраску с проклейкой стеклохолстом",
-      "Двери скрытого монтажа на алюминиевом коробе (заподлицо со стеной)",
-      "Паркетная / инженерная доска / кварцвинил единым контуром без порогов",
+      "Двери скрытого монтажа на алюминиевом коробе заподлицо со стеной",
+      "Паркет / инженерная доска / кварцвинил единым контуром без порогов",
       "Теневой плинтус — эффект «парящих стен»",
       "Санузел: керамогранит 60×60 или 60×120, единый уровень с коридором",
       "Скрытая инсталляция подвесного унитаза",
@@ -74,10 +87,10 @@ const tiers: Tier[] = [
   {
     id: "premium",
     name: "Премиум",
-    tagline: "Эксклюзив / High-End по дизайн-проекту",
-    pricePerM2: 38000,
+    tagline: "Эксклюзив / High-End по индивидуальному дизайн-проекту",
+    pricePerM2: 45000,
     forWho:
-      "Бескомпромиссный ремонт для ценителей эксклюзивных материалов, сложных решений и умной инженерии.",
+      "Бескомпромиссный ремонт экстра-класса: сложные материалы, климат-контроль, автоматизация, безупречная инженерия.",
     features: [
       "Весь объём работ «Эконом» и «Базовый»",
       "Идеальные стены под покраску с приёмкой под «Лампу Лосева»",
@@ -100,11 +113,51 @@ const tiers: Tier[] = [
   },
 ];
 
+const paintGuide = [
+  {
+    id: "standard",
+    title: "Стандарт",
+    subtitle: "Под матовую краску / фактурные обои",
+    forWho:
+      "Под обои под покраску или глубокоматовые краски с классическим люстровым освещением.",
+    how: "Шпатлевка в 2 слоя, базовая шлифовка, грунт и финишная краска.",
+    result: "Ровные стены без явных дефектов — нюансы скрыты матовой текстурой.",
+    price: "Включено в «Базовый» · +2 500 ₽/м² для «Эконом»",
+    icon: Paintbrush,
+    accent: false,
+  },
+  {
+    id: "comfort",
+    title: "Комфорт",
+    subtitle: "Под покраску с защитой от микротрещин",
+    forWho:
+      "Большинство современных интерьеров с гладкими однотонными стенами.",
+    how: "Армирование стеклохолстом + 2 слоя финишной шпатлевки и шлифовка под обычным светом.",
+    result: "Идеально гладкая поверхность, защищённая от трещин при усадке дома.",
+    price: "+5 000 ₽/м² (апгрейд)",
+    icon: Layers,
+    accent: true,
+  },
+  {
+    id: "premium",
+    title: "Премиум",
+    subtitle: "Приёмка под «Лампу Лосева»",
+    forWho:
+      "Скользящий свет (LED-ленты, скрытая подсветка, панорамные окна) и полуглянцевые краски.",
+    how: "Шпатлевка и шлифовка с прожектором Лампы Лосева вдоль стены — устраняются микронные изъяны.",
+    result: "Эффект зеркала / яичной скорлупы под любым футуристичным светом.",
+    price: "Включено в «Премиум» · +7 500 ₽/м² (апгрейд)",
+    icon: Eye,
+    accent: false,
+  },
+];
+
 const presets = [30, 45, 60, 80, 100, 120];
 const fmt = (n: number) => new Intl.NumberFormat("ru-RU").format(n);
 
 export function Pricing() {
   const [area, setArea] = useState<number>(60);
+  const [openTier, setOpenTier] = useState<TierId | null>("basic");
 
   const selectTier = (tierId: string, tierName: string) => {
     window.dispatchEvent(
@@ -132,7 +185,7 @@ export function Pricing() {
       id="pricing"
       className="relative scroll-mt-24 md:scroll-mt-32 py-20 md:py-32 bg-aurora-orange overflow-hidden"
     >
-      <div className="absolute inset-0 pointer-events-none opacity-60 bg-[radial-gradient(circle_at_15%_15%,_oklch(0.72_0.2_50/0.10),_transparent_55%),radial-gradient(circle_at_85%_85%,_oklch(0.62_0.21_35/0.08),_transparent_55%)]" />
+      <div className="absolute inset-0 pointer-events-none opacity-60 bg-[radial-gradient(circle_at_15%_15%,_oklch(0.72_0.2_50/0.05),_transparent_55%),radial-gradient(circle_at_85%_85%,_oklch(0.62_0.21_35/0.04),_transparent_55%)]" />
       <div className="relative container-px mx-auto max-w-7xl">
         <SectionHeader
           eyebrow="Тарифы"
@@ -146,8 +199,9 @@ export function Pricing() {
           <ShieldCheck className="h-5 w-5 text-primary shrink-0 mt-0.5" />
           <p className="text-sm sm:text-base text-foreground/90 leading-relaxed">
             <span className="font-semibold text-foreground">В каждый тариф уже включён полный цикл санузла под ключ</span>{" "}
-            — инженерия, гидроизоляция, плитка и чистовая сантехника. Мы не скрываем стоимость самой
-            сложной зоны квартиры. Чистовой потолок рассчитывается отдельно по проекту.
+            — отделочные и инженерные работы. Мы не скрываем стоимость самой сложной зоны
+            квартиры. Чистовой потолок (натяжной / подвесной) рассчитывается отдельно — он зависит
+            от сценариев освещения.
           </p>
         </div>
 
@@ -198,17 +252,19 @@ export function Pricing() {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:pt-4 items-stretch">
+        {/* Accordion-style tier cards */}
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:pt-4 items-start">
           {tiers.map((t, i) => {
             const total = totals.find((x) => x.id === t.id)?.total ?? 0;
             const Icon = t.icon;
+            const isOpen = openTier === t.id;
             return (
               <div
                 key={t.id}
-                className={`group reveal relative liquid-glass rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col h-full transition-all duration-500 hover:-translate-y-2 ${
+                className={`group reveal relative liquid-glass rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col transition-all duration-500 ${
                   t.featured
-                    ? "ring-accent md:-translate-y-4 hover:md:-translate-y-6 sm:col-span-2 md:col-span-1"
-                    : "hover:shadow-[0_30px_80px_-25px_oklch(0.72_0.2_50/0.35)]"
+                    ? "ring-accent md:-translate-y-4 sm:col-span-2 md:col-span-1"
+                    : ""
                 }`}
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
@@ -249,7 +305,7 @@ export function Pricing() {
                   {t.forWho}
                 </div>
 
-                <div className="relative grid grid-cols-3 gap-1.5 sm:gap-2 mb-5 sm:mb-6 pb-5 sm:pb-6 border-b border-white/10">
+                <div className="relative grid grid-cols-3 gap-1.5 sm:gap-2 mb-5 pb-5 border-b border-white/10">
                   {t.trust.map((tr) => {
                     const TIcon = tr.icon;
                     return (
@@ -269,17 +325,55 @@ export function Pricing() {
                   })}
                 </div>
 
-                <ul className="relative space-y-2.5 mb-5 sm:mb-6">
-                  {t.features.map((f) => (
-                    <li
-                      key={f}
-                      className="flex items-start gap-2.5 sm:gap-3 text-sm leading-snug text-foreground/90"
-                    >
-                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0 mt-0.5" />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Accordion toggle */}
+                <button
+                  type="button"
+                  onClick={() => setOpenTier(isOpen ? null : t.id)}
+                  aria-expanded={isOpen}
+                  aria-controls={`tier-features-${t.id}`}
+                  className="relative flex items-center justify-between gap-3 w-full px-4 py-3 rounded-xl border border-primary/30 bg-primary/5 hover:bg-primary/10 transition-all mb-4"
+                >
+                  <span className="text-left">
+                    <span className="block font-display font-bold uppercase tracking-wider text-[11px] sm:text-xs text-foreground">
+                      Что входит в стоимость
+                    </span>
+                    <span className="block text-[10px] sm:text-[11px] text-muted-foreground mt-0.5">
+                      {isOpen ? "Скрыть детали" : "Раскрыть подробный список работ"}
+                    </span>
+                  </span>
+                  <ChevronDown
+                    className={`h-5 w-5 text-primary shrink-0 transition-transform duration-300 ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                <div
+                  id={`tier-features-${t.id}`}
+                  className={`relative grid transition-all duration-500 ease-out ${
+                    isOpen
+                      ? "grid-rows-[1fr] opacity-100 mb-5"
+                      : "grid-rows-[0fr] opacity-0 mb-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <ul className="space-y-2.5 pt-1">
+                      {t.features.map((f) => (
+                        <li
+                          key={f}
+                          className="flex items-start gap-2.5 sm:gap-3 text-sm leading-snug text-foreground/90"
+                        >
+                          <Check className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0 mt-0.5" />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="text-[11px] italic text-muted-foreground mt-4 pt-4 border-t border-white/10">
+                      Монтаж чистового потолка не входит в стоимость — считается отдельно по
+                      выбранной системе освещения.
+                    </div>
+                  </div>
+                </div>
 
                 <div className="relative text-xs sm:text-sm italic leading-relaxed border-l-2 border-primary pl-3 mb-6 text-muted-foreground">
                   {t.highlight}
@@ -312,8 +406,77 @@ export function Pricing() {
           })}
         </div>
 
+        {/* Paint guide */}
+        <div className="reveal mt-16 sm:mt-20">
+          <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-10">
+            <div className="text-primary uppercase tracking-[0.25em] text-[10px] sm:text-xs font-semibold mb-2">
+              Гайд по покраске стен
+            </div>
+            <h3 className="font-display font-bold uppercase text-2xl sm:text-3xl text-foreground leading-tight mb-3">
+              Три уровня подготовки стен под краску
+            </h3>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              Качество подготовки стен напрямую зависит от планируемого освещения. Выбирайте
+              уровень — апгрейд можно добавить в калькуляторе ниже.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
+            {paintGuide.map((g) => {
+              const GIcon = g.icon;
+              return (
+                <div
+                  key={g.id}
+                  className={`liquid-glass rounded-3xl p-6 sm:p-7 flex flex-col ${
+                    g.accent ? "ring-accent" : ""
+                  }`}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-10 w-10 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
+                      <GIcon className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <div className="font-display font-bold uppercase text-base sm:text-lg text-foreground leading-tight">
+                        {g.title}
+                      </div>
+                      <div className="text-[11px] sm:text-xs text-muted-foreground leading-snug">
+                        {g.subtitle}
+                      </div>
+                    </div>
+                  </div>
+
+                  <dl className="space-y-3 mb-5 text-sm leading-snug">
+                    <div>
+                      <dt className="text-[10px] uppercase tracking-widest text-primary/80 font-semibold mb-1">
+                        Для чего
+                      </dt>
+                      <dd className="text-foreground/90">{g.forWho}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-[10px] uppercase tracking-widest text-primary/80 font-semibold mb-1">
+                        Как делаем
+                      </dt>
+                      <dd className="text-foreground/90">{g.how}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-[10px] uppercase tracking-widest text-primary/80 font-semibold mb-1">
+                        Результат
+                      </dt>
+                      <dd className="text-foreground/90">{g.result}</dd>
+                    </div>
+                  </dl>
+
+                  <div className="mt-auto pt-4 border-t border-white/10 text-[12px] sm:text-sm font-semibold text-primary">
+                    {g.price}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Free measurement CTA */}
-        <div className="reveal liquid-glass max-w-3xl mx-auto mt-10 sm:mt-12 rounded-3xl p-5 sm:p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div className="reveal liquid-glass max-w-3xl mx-auto mt-12 sm:mt-16 rounded-3xl p-5 sm:p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <div className="text-primary uppercase tracking-[0.25em] text-[10px] sm:text-xs font-semibold mb-1.5">
               Бесплатно

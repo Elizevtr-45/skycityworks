@@ -254,7 +254,7 @@ export function Pricing() {
           <button
             type="button"
             onClick={() => selectTier("free-measure", "Бесплатный замер")}
-            className="px-5 sm:px-6 py-3 bg-primary text-primary-foreground font-semibold uppercase tracking-wider text-xs sm:text-sm rounded-sm hover:bg-accent transition-colors text-center whitespace-nowrap shadow-[0_10px_30px_-10px_oklch(0.72_0.2_50/0.5)]"
+            className="btn-cta hover:btn-cta-hover px-5 sm:px-6 py-3 font-semibold uppercase tracking-wider text-xs sm:text-sm rounded-xl text-center whitespace-nowrap"
           >
             Вызвать замерщика
           </button>

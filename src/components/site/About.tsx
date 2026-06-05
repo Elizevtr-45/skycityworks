@@ -16,7 +16,7 @@ const stats = [
 
 export function About() {
   return (
-    <section id="about" className="relative py-20 md:py-32 bg-dark text-white overflow-hidden">
+    <section id="about" className="relative py-20 md:py-32 bg-grid-orange text-white overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-70 bg-[radial-gradient(circle_at_85%_15%,_oklch(0.72_0.2_50/0.18),_transparent_55%),radial-gradient(circle_at_10%_85%,_oklch(0.62_0.21_35/0.14),_transparent_55%)]" />
       <div className="relative container-px mx-auto max-w-7xl">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">

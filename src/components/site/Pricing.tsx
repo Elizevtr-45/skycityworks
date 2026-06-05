@@ -90,7 +90,7 @@ export function Pricing() {
   );
 
   return (
-    <section id="pricing" className="relative scroll-mt-24 md:scroll-mt-32 py-20 md:py-32 bg-background overflow-hidden">
+    <section id="pricing" className="relative scroll-mt-24 md:scroll-mt-32 py-20 md:py-32 bg-aurora-orange overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-60 bg-[radial-gradient(circle_at_15%_15%,_oklch(0.72_0.2_50/0.12),_transparent_55%),radial-gradient(circle_at_85%_85%,_oklch(0.62_0.21_35/0.10),_transparent_55%)]" />
       <div className="relative container-px mx-auto max-w-7xl">
         <SectionHeader

@@ -24,7 +24,7 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="process" className="relative pt-0 pb-20 md:pb-32 bg-background overflow-hidden">
+    <section id="process" className="relative pt-0 pb-20 md:pb-32 bg-dots-orange overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-60 bg-[radial-gradient(circle_at_50%_0%,_oklch(0.72_0.2_50/0.12),_transparent_60%)]" />
       <div className="relative container-px mx-auto max-w-7xl">
         <SectionHeader eyebrow="Процесс" title="Три шага до новоселья" center />

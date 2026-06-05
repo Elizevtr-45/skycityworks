@@ -9,7 +9,7 @@ const team = [
 
 export function Team() {
   return (
-    <section className="relative py-20 md:py-32 bg-background overflow-hidden">
+    <section className="relative py-20 md:py-32 bg-lines-orange overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-50 bg-[radial-gradient(circle_at_20%_30%,_oklch(0.72_0.2_50/0.10),_transparent_55%),radial-gradient(circle_at_80%_70%,_oklch(0.62_0.21_35/0.08),_transparent_55%)]" />
       <div className="relative container-px mx-auto max-w-7xl">
         <SectionHeader eyebrow="Команда" title="Наша команда" center />

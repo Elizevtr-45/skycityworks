@@ -140,7 +140,7 @@ export function Portfolio() {
   const [active, setActive] = useState<Project | null>(null);
 
   return (
-    <section id="portfolio" className="py-20 md:py-32 bg-dark">
+    <section id="portfolio" className="py-20 md:py-32 bg-grid-orange">
       <div className="container-px mx-auto max-w-7xl">
         <SectionHeader
           light

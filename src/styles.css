@@ -76,6 +76,12 @@
   --dark: oklch(0.09 0.005 260);                /* near black */
   --dark-foreground: oklch(0.98 0 0);
   --light: oklch(0.97 0.005 80);
+
+  /* CTA — синий для кнопок захвата лидов */
+  --cta: oklch(0.6 0.2 252);
+  --cta-hover: oklch(0.66 0.2 252);
+  --cta-foreground: oklch(0.99 0 0);
+
 }
 
 @layer base {

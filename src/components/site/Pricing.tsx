@@ -138,7 +138,7 @@ const fmt = (n: number) => new Intl.NumberFormat("ru-RU").format(n);
 
 export function Pricing() {
   const [area, setArea] = useState<number>(60);
-  const [openTier, setOpenTier] = useState<TierId | null>("basic");
+  const [openTier, setOpenTier] = useState<TierId | null>(null);
 
   const selectTier = (tierId: string, tierName: string) => {
     window.dispatchEvent(

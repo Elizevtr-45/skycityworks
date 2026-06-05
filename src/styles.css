@@ -119,6 +119,14 @@
     background: oklch(0.72 0.2 50 / 0.35);
     color: var(--color-foreground);
   }
+
+  /* Smooth color/border transitions everywhere — eliminates visual "seams" on hover */
+  a, button, input, select, textarea, summary,
+  [class*="border"], [class*="bg-"], [class*="hover:"], [class*="group"] {
+    transition-property: background-color, color, border-color, box-shadow, opacity, fill, stroke;
+    transition-duration: 400ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 @layer utilities {

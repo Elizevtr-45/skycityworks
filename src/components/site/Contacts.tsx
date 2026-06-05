@@ -1,4 +1,6 @@
-import { Phone, Mail, MapPin, Send, MessageCircle, MessagesSquare } from "lucide-react";
+import { useState } from "react";
+import { Phone, Mail, MapPin, Send, MessageCircle, MessagesSquare, ExternalLink, Navigation } from "lucide-react";
+
 
 const phones = [
   { name: "Николай — руководитель", label: "8 964 445 55 25", href: "tel:+79644455525" },

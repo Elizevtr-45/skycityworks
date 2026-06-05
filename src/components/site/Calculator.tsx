@@ -47,6 +47,7 @@ type Option = {
   hint: string;
   defaultQty?: number;
   includedIn?: TierKey[]; // авто-включено в эти тарифы
+  group?: string; // взаимоисключающая группа (выбор одного отключает другие)
 };
 
 const OPTIONS: Option[] = [

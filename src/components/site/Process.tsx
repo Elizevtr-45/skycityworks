@@ -1,5 +1,5 @@
 import { SectionHeader } from "./SectionHeader";
-import { ClipboardList, Hammer, KeyRound } from "lucide-react";
+import { ClipboardList, Hammer, KeyRound, ArrowRight } from "lucide-react";
 
 const steps = [
   {
@@ -7,57 +7,78 @@ const steps = [
     icon: ClipboardList,
     title: "Заявка и замер",
     text: "Принимаем заявку, выезжаем на объект бесплатно, обсуждаем задачу и готовим техническое задание.",
+    meta: "1–2 дня",
   },
   {
     n: "02",
     icon: Hammer,
     title: "Договор и ремонт",
     text: "Фиксируем смету и сроки в договоре. Работаем по графику с еженедельной фото-отчётностью.",
+    meta: "по графику",
   },
   {
     n: "03",
     icon: KeyRound,
     title: "Сдача под ключ",
     text: "Принимаете готовую квартиру, получаете гарантию 2 года и расширенную пожизненную поддержку.",
+    meta: "гарантия 2 года",
   },
 ];
 
 export function Process() {
   return (
-    <section id="process" className="relative pt-0 pb-10 md:pb-20 bg-dots-orange overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none opacity-60 bg-[radial-gradient(circle_at_50%_0%,_oklch(0.72_0.2_50/0.12),_transparent_60%)]" />
+    <section id="process" className="relative py-16 md:py-24 bg-dots-orange overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-50 bg-[radial-gradient(circle_at_50%_0%,_oklch(0.72_0.2_50/0.12),_transparent_60%)]" />
+
       <div className="relative container-px mx-auto max-w-6xl">
         <SectionHeader eyebrow="Процесс" title="Три шага до новоселья" center />
 
-        <div className="relative grid md:grid-cols-3 gap-5 md:gap-8 mt-6">
-          <div className="hidden md:block absolute top-11 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent pointer-events-none" />
-
-          {steps.map((s, i) => (
-            <div
-              key={s.n}
-              className="reveal group relative liquid-glass rounded-2xl pt-12 px-5 pb-5 md:pt-14 md:px-8 md:pb-8 hover-lift transition-all duration-500"
-              style={{ transitionDelay: `${i * 100}ms` }}
-            >
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent rounded-t-2xl opacity-80 group-hover:opacity-100 transition-opacity" />
-
-              <div className="relative flex items-center justify-between gap-4 mb-5">
-                <div className="h-12 w-12 md:h-14 md:w-14 rounded-xl bg-primary/15 ring-1 ring-primary/40 flex items-center justify-center group-hover:bg-primary group-hover:ring-primary transition-all duration-500 shrink-0">
-                  <s.icon className="h-6 w-6 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
+        <ol className="relative mt-12 md:mt-16 grid md:grid-cols-3 gap-6 md:gap-8">
+          {steps.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <li
+                key={s.n}
+                className="reveal group relative flex flex-col"
+                style={{ transitionDelay: `${i * 100}ms` }}
+              >
+                {/* Number + icon row */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative shrink-0">
+                    <div className="h-14 w-14 rounded-2xl bg-primary/10 ring-1 ring-primary/30 flex items-center justify-center group-hover:bg-primary group-hover:ring-primary transition-all duration-500">
+                      <Icon className="h-6 w-6 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
+                    </div>
+                  </div>
+                  <span className="font-display font-black text-4xl md:text-5xl text-gradient-gold leading-none">
+                    {s.n}
+                  </span>
                 </div>
-                <div className="font-display font-black text-2xl md:text-3xl text-gradient-gold leading-none opacity-90">
-                  {s.n}
+
+                {/* Divider */}
+                <div className="h-px w-12 bg-gradient-to-r from-primary/60 to-transparent mb-5" />
+
+                <h3 className="font-display font-bold uppercase text-lg md:text-xl mb-3 text-foreground tracking-wide">
+                  {s.title}
+                </h3>
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-5">
+                  {s.text}
+                </p>
+
+                <div className="mt-auto inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary/80 font-semibold">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                  {s.meta}
                 </div>
-              </div>
 
-              <h3 className="relative font-display font-bold uppercase text-base md:text-lg mb-2.5 text-foreground">
-                {s.title}
-              </h3>
-              <p className="relative text-sm md:text-base text-muted-foreground leading-snug">{s.text}</p>
-            </div>
-          ))}
-        </div>
+                {/* connector arrow between cards on desktop */}
+                {i < steps.length - 1 && (
+                  <ArrowRight className="hidden md:block absolute -right-5 top-4 h-5 w-5 text-primary/40" />
+                )}
+              </li>
+            );
+          })}
+        </ol>
 
-        <div className="reveal mt-10 text-center">
+        <div className="reveal mt-14 text-center">
           <button
             type="button"
             onClick={() => window.dispatchEvent(new CustomEvent("open-lead-form"))}
@@ -70,4 +91,3 @@ export function Process() {
     </section>
   );
 }
-

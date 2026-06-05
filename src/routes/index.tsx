@@ -14,7 +14,7 @@ import { Reviews } from "@/components/site/Reviews";
 import { Team } from "@/components/site/Team";
 
 import { Pricing } from "@/components/site/Pricing";
-import { LeadForm, LeadPopup } from "@/components/site/LeadForm";
+import { LeadPopup } from "@/components/site/LeadForm";
 import { FAQ } from "@/components/site/FAQ";
 import { Footer } from "@/components/site/Footer";
 import { CookieBanner } from "@/components/site/CookieBanner";
@@ -71,8 +71,8 @@ function Index() {
       <HiddenMountPromo />
       <SocialProof />
       <Team />
-      <LeadForm />
       <SocialCTA />
+
 
       <FAQ />
       <Footer />

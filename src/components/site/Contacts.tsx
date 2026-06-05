@@ -110,7 +110,7 @@ export function Contacts() {
           <div className="reveal surface-elevated rounded-3xl overflow-hidden min-h-[460px] lg:min-h-full p-1.5">
             <iframe
               title="Карта — пос. Новый, ул. Хрустальная, 14"
-              src="https://yandex.ru/map-widget/v1/?ll=131.873%2C43.305&z=16&mode=search&text=Приморский%20край%2C%20Надеждинский%20район%2C%20пос.%20Новый%2C%20улица%20Хрустальная%2C%2014"
+              src="https://yandex.ru/map-widget/v1/?ll=132.029134%2C43.370350&z=16&pt=132.029134%2C43.370350~pm2rdl"
               className="w-full h-full min-h-[460px] block rounded-[22px]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

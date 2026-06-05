@@ -30,12 +30,12 @@ export function Process() {
         <SectionHeader eyebrow="Процесс" title="Три шага до новоселья" center />
 
         <div className="relative grid md:grid-cols-3 gap-5 md:gap-8 mt-6">
-          <div className="hidden md:block absolute top-16 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent pointer-events-none" />
+          <div className="hidden md:block absolute top-11 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent pointer-events-none" />
 
           {steps.map((s, i) => (
             <div
               key={s.n}
-              className="reveal group relative liquid-glass rounded-2xl pt-10 px-5 pb-5 md:pt-12 md:px-8 md:pb-8 hover-lift transition-all duration-500"
+              className="reveal group relative liquid-glass rounded-2xl pt-12 px-5 pb-5 md:pt-14 md:px-8 md:pb-8 hover-lift transition-all duration-500"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent rounded-t-2xl opacity-80 group-hover:opacity-100 transition-opacity" />

@@ -56,16 +56,16 @@ export function Furniture() {
       <div className="container-px mx-auto max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div className="reveal order-2 lg:order-1">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="gold-divider" />
-              <span className="text-primary uppercase tracking-[0.3em] text-xs font-semibold">Новое направление</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/15 border border-primary/40 text-primary text-[10px] sm:text-xs uppercase tracking-[0.25em] font-semibold rounded-full mb-5">
+              <Sparkles className="h-3.5 w-3.5" /> Собственное производство
             </div>
-            <h2 id="furniture-heading" className="font-display font-bold uppercase text-3xl md:text-4xl lg:text-5xl leading-tight">
-              Изготавливаем мебель <span className="text-gradient-gold">на заказ</span>
+            <h2 id="furniture-heading" className="font-display font-bold uppercase text-3xl md:text-4xl lg:text-5xl leading-[1.05]">
+              Мебель, которая <span className="text-gradient-gold">продолжает</span> ваш ремонт
             </h2>
             <p className="mt-6 text-muted-foreground text-lg leading-relaxed">
-              От кухонных гарнитуров до корпусной мебели и гардеробных. Создаём предметы интерьера,
-              которые идеально впишутся в ваш ремонт — единая концепция от стен до фасадов шкафов.
+              Кухни, гардеробные, корпусная мебель и столешницы из камня — изготавливаем на собственном
+              производстве во Владивостоке. Единая концепция от стен до фасадов, точные размеры и
+              премиальная фурнитура.
             </p>
 
             <div className="mt-8 space-y-4">

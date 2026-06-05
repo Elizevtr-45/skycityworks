@@ -88,11 +88,6 @@ const tiers: Tier[] = [
       "Запил внешних углов под 45° без накладных уголков",
       "Скрытый смеситель экстра-класса для ванны",
     ],
-    trust: [
-      { icon: Clock, label: "Срок", value: "по проекту" },
-      { icon: Lock, label: "Цена", value: "Фикс, без доплат" },
-      { icon: ShieldCheck, label: "Гарантия", value: "5 лет + пожизн." },
-    ],
     highlight: "Для тех, кто хочет уникальный интерьер «под себя».",
     featured: false,
     icon: Crown,

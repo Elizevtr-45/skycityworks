@@ -49,7 +49,7 @@ export function Process() {
                       <Icon className="h-6 w-6 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
                     </div>
                   </div>
-                  <span className="font-display font-black text-4xl md:text-5xl text-gradient-gold leading-none">
+                  <span className="font-display font-black text-4xl md:text-5xl text-white leading-none">
                     {s.n}
                   </span>
                 </div>

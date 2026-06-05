@@ -35,7 +35,7 @@ export function Process() {
           {steps.map((s, i) => (
             <div
               key={s.n}
-              className="reveal group relative liquid-glass rounded-2xl pt-8 px-5 pb-5 md:pt-10 md:px-8 md:pb-8 hover-lift transition-all duration-500"
+              className="reveal group relative liquid-glass rounded-2xl pt-10 px-5 pb-5 md:pt-12 md:px-8 md:pb-8 hover-lift transition-all duration-500"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent rounded-t-2xl opacity-80 group-hover:opacity-100 transition-opacity" />

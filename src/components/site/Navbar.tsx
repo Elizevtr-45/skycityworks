@@ -102,35 +102,21 @@ export function Navbar() {
         aria-hidden="true"
       />
       <div
-        className={`lg:hidden absolute left-0 right-0 top-full z-50 bg-dark border-t border-white/5 origin-top transition-all duration-500 ease-[cubic-bezier(.22,1,.36,1)] overflow-hidden ${
+        className={`lg:hidden fixed left-0 right-0 top-14 md:top-16 z-50 bg-dark border-t border-white/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)] origin-top transition-all duration-500 ease-[cubic-bezier(.22,1,.36,1)] overflow-hidden ${
           open ? "opacity-100 translate-y-0 max-h-[80vh]" : "opacity-0 -translate-y-3 max-h-0 pointer-events-none"
         }`}
       >
         <div className="container-px mx-auto py-4 flex flex-col gap-4">
-          {links.map((l) =>
-            l.action === "lead" ? (
-              <button
-                key={l.label}
-                type="button"
-                onClick={() => {
-                  setOpen(false);
-                  openLead();
-                }}
-                className="text-left text-white/80 hover:text-primary transition-colors duration-500 uppercase tracking-wider text-sm font-medium"
-              >
-                {l.label}
-              </button>
-            ) : (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="text-white/80 hover:text-primary transition-colors duration-500 uppercase tracking-wider text-sm font-medium"
-              >
-                {l.label}
-              </a>
-            )
-          )}
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="text-white/80 hover:text-primary transition-colors duration-500 uppercase tracking-wider text-sm font-medium"
+            >
+              {l.label}
+            </a>
+          ))}
           <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
             <a href="tel:+79644455525" className="inline-flex items-center gap-2 text-primary font-semibold">
               <Phone className="h-4 w-4" /> 8 964 445 55 25 — Николай

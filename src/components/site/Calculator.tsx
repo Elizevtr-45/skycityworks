@@ -297,7 +297,9 @@ export function Calculator() {
   });
 
   const isIncluded = (o: Option) => !!o.includedIn?.includes(tier);
-  const isActive = (o: Option) => isIncluded(o) || !!enabled[o.id];
+  // active = пользователь явно включил/выключил; иначе — по умолчанию из тарифа
+  const isActive = (o: Option) =>
+    enabled[o.id] !== undefined ? !!enabled[o.id] : isIncluded(o);
 
   // Listen for "Сконфигурировать" clicks from Pricing
   useEffect(() => {
@@ -311,8 +313,20 @@ export function Calculator() {
   }, []);
 
   const toggle = (o: Option) => {
-    if (isIncluded(o)) return; // Уже включено в тариф — не отключаем
-    setEnabled((s) => ({ ...s, [o.id]: !s[o.id] }));
+    const currentlyActive = isActive(o);
+    const next = !currentlyActive;
+    setEnabled((s) => {
+      const updated: Record<string, boolean> = { ...s, [o.id]: next };
+      // Взаимоисключающая группа: при включении выключаем остальных
+      if (next && o.group) {
+        OPTIONS.forEach((other) => {
+          if (other.id !== o.id && other.group === o.group) {
+            updated[other.id] = false;
+          }
+        });
+      }
+      return updated;
+    });
   };
 
   const setQuantity = (id: string, v: number) =>

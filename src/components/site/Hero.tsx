@@ -36,10 +36,11 @@ export function Hero() {
             <button
               type="button"
               onClick={() => window.dispatchEvent(new CustomEvent("open-lead-form"))}
-              className="inline-flex items-center justify-center px-8 py-4 border border-white/30 text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-white hover:text-dark transition-all duration-300"
+              className="btn-cta hover:btn-cta-hover inline-flex items-center justify-center px-8 py-4 font-semibold uppercase tracking-wider text-sm rounded-sm hover:-translate-y-0.5"
             >
               Получить консультацию
             </button>
+
           </div>
 
           <div className="mt-16 grid grid-cols-3 gap-6 max-w-2xl">

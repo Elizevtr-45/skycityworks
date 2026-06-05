@@ -40,7 +40,7 @@ export function SvoDiscountBadge() {
   };
 
   const handleClick = () => {
-    const el = document.getElementById("contact");
+    const el = document.getElementById("promotions");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
@@ -65,7 +65,7 @@ export function SvoDiscountBadge() {
         onClick={handleClick}
         onMouseEnter={() => setExpanded(true)}
         onMouseLeave={() => setExpanded(false)}
-        aria-label="Скидка 10% участникам СВО и их семьям"
+        aria-label="Акции и спецпредложения"
         style={{
           width: expanded ? EXPANDED_W : COLLAPSED_W,
           height: 56,
@@ -75,10 +75,10 @@ export function SvoDiscountBadge() {
         className="relative flex items-center rounded-full bg-primary text-primary-foreground shadow-[0_10px_30px_-10px_oklch(0.7_0.08_65/0.6)] overflow-hidden hover:-translate-y-0.5"
       >
         <span
-          className="absolute left-2 top-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-primary-foreground/15 text-sm font-bold leading-none"
+          className="absolute left-2 top-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-primary-foreground/15 text-[11px] font-bold leading-none"
           style={{ transform: "translateY(-50%)" }}
         >
-          −10%
+          Акции
         </span>
         <span
           style={{
@@ -88,8 +88,8 @@ export function SvoDiscountBadge() {
           }}
           className="absolute left-[56px] right-4 text-left text-xs sm:text-sm leading-tight whitespace-normal pointer-events-none"
         >
-          Участникам СВО и их семьям —<br />
-          <b>скидка 10%</b> на ремонт и строительство
+          Узнайте обо всех <b>акциях</b>,<br />
+          скидках и спецпредложениях
         </span>
       </button>
       <button

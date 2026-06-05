@@ -15,8 +15,8 @@ type TierKey = "econom" | "basic" | "premium";
 
 const TIERS: Record<TierKey, { name: string; price: number; desc: string }> = {
   econom: { name: "Эконом", price: 22000, desc: "White Box + простой чистовой" },
-  basic: { name: "Базовый", price: 28000, desc: "Комфорт и современный стиль" },
-  premium: { name: "Премиум", price: 38000, desc: "High-End по дизайн-проекту" },
+  basic: { name: "Базовый", price: 25000, desc: "Комфорт и современный стиль" },
+  premium: { name: "Премиум", price: 45000, desc: "High-End по дизайн-проекту" },
 };
 
 type PropertyType = "new" | "secondary";
@@ -24,8 +24,8 @@ const PROPERTY: Record<PropertyType, { name: string; multiplier: number; note: s
   new: { name: "Новостройка", multiplier: 1.0, note: "Базовый коэффициент" },
   secondary: {
     name: "Вторичное жильё",
-    multiplier: 1.12,
-    note: "+12% — демонтаж и подготовка",
+    multiplier: 1.1,
+    note: "+10% — демонтаж и подготовка",
   },
 };
 

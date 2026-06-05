@@ -480,9 +480,10 @@ export function Calculator() {
             {/* STEP 2 */}
             <StepHeader n={2} title="Апгрейды и опции" />
             <p className="text-xs sm:text-sm text-muted-foreground mb-5 -mt-2">
-              Опции, уже входящие в выбранный тариф, помечены{" "}
-              <span className="text-primary font-semibold">«Включено»</span>.
-              Остальные можно добавить.
+              Опции с пометкой{" "}
+              <span className="text-primary font-semibold">«Включено»</span> уже входят в тариф —
+              их можно отключить и заменить на другие. Внутри одной группы (например, покраска
+              стен) активной может быть только одна опция.
             </p>
 
             <div className="space-y-7">

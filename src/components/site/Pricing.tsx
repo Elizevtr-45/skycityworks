@@ -1,9 +1,7 @@
 import { useMemo, useState } from "react";
 import {
   Check,
-  Clock,
   ShieldCheck,
-  Lock,
   Sparkles,
   Crown,
   Wrench,
@@ -25,7 +23,6 @@ type Tier = {
   pricePerM2: number;
   forWho: string;
   features: string[];
-  trust: { icon: typeof Clock; label: string; value: string }[];
   highlight: string;
   featured: boolean;
   icon: typeof Sparkles;
@@ -49,11 +46,6 @@ const tiers: Tier[] = [
       "Санузел: гидроизоляция, тройниковая разводка, плитка до 60×60",
       "Классический напольный унитаз, стандартная ванна и раковина",
     ],
-    trust: [
-      { icon: Clock, label: "Срок", value: "от 2 мес." },
-      { icon: Lock, label: "Цена", value: "Фикс в договоре" },
-      { icon: ShieldCheck, label: "Гарантия", value: "2 года" },
-    ],
     highlight: "Надёжная база без визуальных излишеств — идеально под сдачу.",
     featured: false,
     icon: Wrench,
@@ -73,11 +65,6 @@ const tiers: Tier[] = [
       "Теневой плинтус — эффект «парящих стен»",
       "Санузел: керамогранит 60×60 или 60×120, единый уровень с коридором",
       "Скрытая инсталляция подвесного унитаза",
-    ],
-    trust: [
-      { icon: Clock, label: "Срок", value: "от 3 мес." },
-      { icon: Lock, label: "Цена", value: "Фикс в договоре" },
-      { icon: ShieldCheck, label: "Гарантия", value: "3 года + пожизн." },
     ],
     highlight: "Выбор 7 из 10 клиентов — баланс эстетики и бюджета.",
     featured: true,
@@ -100,11 +87,6 @@ const tiers: Tier[] = [
       "Облицовка крупноформатным керамогранитом 120×120 / 120×240",
       "Запил внешних углов под 45° без накладных уголков",
       "Скрытый смеситель экстра-класса для ванны",
-    ],
-    trust: [
-      { icon: Clock, label: "Срок", value: "по проекту" },
-      { icon: Lock, label: "Цена", value: "Фикс, без доплат" },
-      { icon: ShieldCheck, label: "Гарантия", value: "5 лет + пожизн." },
     ],
     highlight: "Для тех, кто хочет уникальный интерьер «под себя».",
     featured: false,
@@ -304,25 +286,12 @@ export function Pricing() {
                   {t.forWho}
                 </div>
 
-                <div className="relative grid grid-cols-3 gap-1.5 sm:gap-2 mb-5 pb-5 border-b border-white/10">
-                  {t.trust.map((tr) => {
-                    const TIcon = tr.icon;
-                    return (
-                      <div
-                        key={tr.label}
-                        className="flex flex-col items-center text-center px-1 py-2 rounded-xl transition-colors duration-300 min-w-0 group-hover:bg-primary/10"
-                      >
-                        <TIcon className="h-4 w-4 sm:h-5 sm:w-5 text-primary mb-1.5 shrink-0" />
-                        <div className="text-[9px] sm:text-[10px] uppercase tracking-wider mb-0.5 text-muted-foreground">
-                          {tr.label}
-                        </div>
-                        <div className="text-[10px] sm:text-[11px] font-semibold leading-tight break-words text-foreground">
-                          {tr.value}
-                        </div>
-                      </div>
-                    );
-                  })}
+                <div className="relative flex flex-wrap items-center gap-2 mb-5 pb-5 border-b border-white/10">
+                  <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
+                    <ShieldCheck className="h-3 w-3" /> Цена фиксируется в договоре
+                  </span>
                 </div>
+
 
                 {/* Accordion toggle */}
                 <button

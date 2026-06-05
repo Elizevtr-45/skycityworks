@@ -301,16 +301,24 @@ export function Calculator() {
   const isActive = (o: Option) =>
     enabled[o.id] !== undefined ? !!enabled[o.id] : isIncluded(o);
 
-  // Listen for "Сконфигурировать" clicks from Pricing
+  // Listen for "Сконфигурировать" clicks from Pricing — сбрасываем апгрейды,
+  // чтобы новый тариф открывался с дефолтными включениями.
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent).detail as { tier?: TierKey; area?: number };
       if (detail?.tier && TIERS[detail.tier]) setTier(detail.tier);
       if (typeof detail?.area === "number") setArea(detail.area);
+      setEnabled({});
     };
     window.addEventListener("calc-preset-tier", handler);
     return () => window.removeEventListener("calc-preset-tier", handler);
   }, []);
+
+  // Ручная смена тарифа — тоже сбрасываем переопределения.
+  const selectTier = (k: TierKey) => {
+    setTier(k);
+    setEnabled({});
+  };
 
   const toggle = (o: Option) => {
     const currentlyActive = isActive(o);
@@ -454,7 +462,7 @@ export function Calculator() {
                     <button
                       key={k}
                       type="button"
-                      onClick={() => setTier(k)}
+                      onClick={() => selectTier(k)}
                       className={`p-3 sm:p-4 rounded-2xl border text-left transition-all min-w-0 ${
                         active
                           ? "border-primary bg-primary/5 shadow-[0_4px_20px_-8px_oklch(0.72_0.2_50/0.4)]"

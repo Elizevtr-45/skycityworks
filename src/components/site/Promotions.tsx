@@ -67,7 +67,7 @@ export function Promotions() {
           <button
             type="button"
             onClick={() => window.dispatchEvent(new CustomEvent("open-lead-form"))}
-            className="inline-flex items-center justify-center px-7 py-3.5 bg-primary text-primary-foreground font-semibold uppercase tracking-wider text-xs sm:text-sm rounded-sm hover:bg-accent transition-all hover:-translate-y-0.5"
+            className="btn-cta hover:btn-cta-hover inline-flex items-center justify-center px-7 py-3.5 font-semibold uppercase tracking-wider text-xs sm:text-sm rounded-xl hover:-translate-y-0.5"
           >
             Воспользоваться акцией
           </button>

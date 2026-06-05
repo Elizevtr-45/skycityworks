@@ -299,14 +299,16 @@ export function Portfolio() {
 
               </>
             )}
+            </div>
 
             <DialogPrimitive.Close
-              style={{ borderRadius: "10px" }}
-              className="absolute right-3 top-3 z-10 p-2 bg-background/80 backdrop-blur text-foreground hover:bg-background transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
+              style={{ borderRadius: "999px" }}
+              className="absolute right-3 top-3 z-30 h-9 w-9 flex items-center justify-center bg-background/80 backdrop-blur text-foreground hover:bg-background transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
             >
               <X className="h-4 w-4" />
               <span className="sr-only">Закрыть</span>
             </DialogPrimitive.Close>
+
           </DialogPrimitive.Content>
         </DialogPortal>
       </Dialog>

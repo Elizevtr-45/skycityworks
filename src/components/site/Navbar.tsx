@@ -46,26 +46,15 @@ export function Navbar() {
         </a>
 
         <nav className="hidden lg:flex items-center gap-7">
-          {links.map((l) =>
-            l.action === "lead" ? (
-              <button
-                key={l.label}
-                type="button"
-                onClick={openLead}
-                className="text-sm text-white/80 hover:text-primary transition-colors duration-500 uppercase tracking-wider font-medium"
-              >
-                {l.label}
-              </button>
-            ) : (
-              <a
-                key={l.href}
-                href={l.href}
-                className="text-sm text-white/80 hover:text-primary transition-colors duration-500 uppercase tracking-wider font-medium"
-              >
-                {l.label}
-              </a>
-            )
-          )}
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-sm text-white/80 hover:text-primary transition-colors duration-500 uppercase tracking-wider font-medium"
+            >
+              {l.label}
+            </a>
+          ))}
         </nav>
 
         <div className="hidden md:flex items-center gap-3">

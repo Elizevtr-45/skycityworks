@@ -46,37 +46,35 @@ export function Furniture() {
     <section
       id="furniture"
       aria-labelledby="furniture-heading"
-      className="py-20 md:py-32 bg-background"
+      className="py-12 md:py-16 bg-background"
     >
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
-      <div className="container-px mx-auto max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <div className="reveal order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/15 border border-primary/40 text-primary text-[10px] sm:text-xs uppercase tracking-[0.25em] font-semibold rounded-full mb-5">
-              <Sparkles className="h-3.5 w-3.5" /> Собственное производство
+      <div className="container-px mx-auto max-w-6xl">
+        <div className="grid lg:grid-cols-5 gap-6 lg:gap-10 items-center">
+          <div className="reveal order-2 lg:order-1 lg:col-span-2">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-primary/15 border border-primary/40 text-primary text-[10px] uppercase tracking-[0.2em] font-semibold rounded-full mb-3">
+              <Sparkles className="h-3 w-3" /> Своё производство
             </div>
-            <h2 id="furniture-heading" className="font-display font-bold uppercase text-3xl md:text-4xl lg:text-5xl leading-[1.05]">
-              Мебель, которая <span className="text-gradient-gold">продолжает</span> ваш ремонт
+            <h2 id="furniture-heading" className="font-display font-bold uppercase text-2xl md:text-3xl leading-[1.1]">
+              Мебель, которая <span className="text-gradient-gold">продолжает</span> ремонт
             </h2>
-            <p className="mt-6 text-muted-foreground text-lg leading-relaxed">
-              Кухни, гардеробные, корпусная мебель и столешницы из камня — изготавливаем на собственном
-              производстве во Владивостоке. Единая концепция от стен до фасадов, точные размеры и
-              премиальная фурнитура.
+            <p className="mt-3 text-muted-foreground text-sm md:text-base leading-relaxed">
+              Кухни, гардеробные и корпусная мебель — единая концепция от стен до фасадов.
             </p>
 
-            <div className="mt-8 space-y-4">
+            <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3">
               {features.map((f) => (
-                <div key={f.title} className="flex items-start gap-4">
-                  <div className="h-10 w-10 rounded-sm bg-primary/10 flex items-center justify-center shrink-0">
-                    <f.icon className="h-5 w-5 text-primary" />
+                <div key={f.title} className="flex items-start gap-2.5">
+                  <div className="h-8 w-8 rounded-sm bg-primary/10 flex items-center justify-center shrink-0">
+                    <f.icon className="h-4 w-4 text-primary" />
                   </div>
-                  <div>
-                    <div className="font-display font-bold uppercase text-sm">{f.title}</div>
-                    <div className="text-sm text-muted-foreground mt-0.5">{f.text}</div>
+                  <div className="min-w-0">
+                    <div className="font-display font-bold uppercase text-xs">{f.title}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5 leading-snug">{f.text}</div>
                   </div>
                 </div>
               ))}
@@ -84,25 +82,25 @@ export function Furniture() {
 
             <a
               href="#contact"
-              className="mt-8 inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold uppercase tracking-wider text-sm rounded-sm hover:bg-accent transition-colors"
+              className="mt-5 inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-semibold uppercase tracking-wider text-xs rounded-sm hover:bg-accent transition-colors"
             >
               Заказать мебель
             </a>
           </div>
 
-          <div className="reveal order-1 lg:order-2 relative">
+          <div className="reveal order-1 lg:order-2 lg:col-span-3 relative">
             <Carousel opts={{ align: "start", loop: true }} className="relative">
               <CarouselContent>
                 {gallery.map((p, i) => (
                   <CarouselItem key={i}>
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-sm border border-border bg-card">
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-sm border border-border bg-card">
                       <img
                         src={p.src}
                         alt={p.alt}
                         loading="lazy"
                         decoding="async"
                         width={1280}
-                        height={960}
+                        height={800}
                         data-nosnippet
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                       />

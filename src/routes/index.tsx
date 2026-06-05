@@ -77,6 +77,7 @@ function Index() {
 
 
       <FAQ />
+      <Contacts />
       <Footer />
       <CookieBanner />
       <LeadPopup />

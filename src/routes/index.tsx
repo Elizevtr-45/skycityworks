@@ -67,11 +67,12 @@ function Index() {
       <Promotions />
       <Process />
       <Services />
+      <SocialCTA />
       <Furniture />
       <HiddenMountPromo />
       <SocialProof />
       <Team />
-      <SocialCTA />
+
 
 
       <FAQ />

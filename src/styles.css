@@ -81,14 +81,25 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 96px;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
+  @media (max-width: 768px) {
     html {
-      scroll-behavior: smooth;
+      scroll-padding-top: 72px;
     }
   }
+
+  section[id] {
+    scroll-margin-top: 96px;
+  }
+
+  @media (max-width: 768px) {
+    section[id] {
+      scroll-margin-top: 72px;
+    }
+  }
+
 
   html, body {
     overflow-x: hidden;

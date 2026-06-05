@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import logo from "@/assets/logo.svg";
 
-type NavLink = { href?: string; label: string; action?: "lead" };
+type NavLink = { href: string; label: string };
 
 const links: NavLink[] = [
   { href: "#portfolio", label: "Портфолио" },
@@ -10,10 +10,8 @@ const links: NavLink[] = [
   { href: "#calculator", label: "Калькулятор" },
   { href: "#process", label: "Процесс" },
   { href: "#about", label: "О компании" },
-  { label: "Контакты", action: "lead" },
+  { href: "#contact", label: "Контакты" },
 ];
-
-const openLead = () => window.dispatchEvent(new CustomEvent("open-lead-form"));
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);

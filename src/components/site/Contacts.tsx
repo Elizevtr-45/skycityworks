@@ -14,8 +14,8 @@ const socials = [
 ];
 
 export function Contacts() {
-  const [mapLoaded, setMapLoaded] = useState(false);
   const mapSrc = "https://yandex.ru/map-widget/v1/?ll=132.029134%2C43.370350&z=16&pt=132.029134%2C43.370350~pm2rdl";
+
   const mapLink = "https://yandex.ru/maps/?ll=132.029134%2C43.370350&z=17&pt=132.029134%2C43.370350";
   const routeLink = "https://yandex.ru/maps/?rtext=~43.370350%2C132.029134&rtt=auto";
 

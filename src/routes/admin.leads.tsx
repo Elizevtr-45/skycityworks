@@ -23,6 +23,7 @@ const STATUS_LABEL: Record<string, string> = {
 };
 
 export const Route = createFileRoute("/admin/leads")({
+  ssr: false,
   head: () => ({
     meta: [{ title: "Заявки — СКАЙСИТИ" }, { name: "robots", content: "noindex" }],
   }),

@@ -15,19 +15,36 @@ const LeadSchema = z.object({
   website: z.string().max(0).optional(),
 });
 
-const corsHeaders = {
-  "Content-Type": "application/json",
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type",
-};
+const ALLOWED_ORIGINS = [
+  "https://skycityworks.lovable.app",
+  "https://skycityworks.ru",
+  "https://www.skycityworks.ru",
+];
 
-function json(body: unknown, status = 200) {
-  return new Response(JSON.stringify(body), { status, headers: corsHeaders });
+function buildCorsHeaders(request: Request): Record<string, string> {
+  const origin = request.headers.get("origin") ?? "";
+  const allowed =
+    ALLOWED_ORIGINS.includes(origin) ||
+    /^https:\/\/[a-z0-9-]+\.lovable\.app$/.test(origin) ||
+    /^https?:\/\/localhost(:\d+)?$/.test(origin);
+  return {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": allowed ? origin : ALLOWED_ORIGINS[0],
+    "Vary": "Origin",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
+}
+
+function json(body: unknown, status: number, request: Request) {
+  return new Response(JSON.stringify(body), { status, headers: buildCorsHeaders(request) });
 }
 
 function hashIp(ip: string | null): string {
-  const salt = process.env.SUPABASE_SERVICE_ROLE_KEY ?? "salt";
+  const salt = process.env.IP_HASH_SECRET ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!salt) {
+    throw new Error("IP_HASH_SECRET (or SUPABASE_SERVICE_ROLE_KEY) is not configured");
+  }
   return crypto.createHash("sha256").update(`${ip ?? "unknown"}:${salt}`).digest("hex").slice(0, 32);
 }
 
@@ -64,7 +81,7 @@ const escapeHtml = (s: string) =>
 export const Route = createFileRoute("/api/leads")({
   server: {
     handlers: {
-      OPTIONS: async () => new Response(null, { status: 204, headers: corsHeaders }),
+      OPTIONS: async ({ request }) => new Response(null, { status: 204, headers: buildCorsHeaders(request) }),
       POST: async ({ request }) => {
         try {
           const raw = await request.json().catch(() => null);

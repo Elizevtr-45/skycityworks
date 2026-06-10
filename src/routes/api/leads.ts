@@ -87,13 +87,13 @@ export const Route = createFileRoute("/api/leads")({
           const raw = await request.json().catch(() => null);
           const parsed = LeadSchema.safeParse(raw);
           if (!parsed.success) {
-            return json({ error: "Invalid input" }, 400);
+            return json({ error: "Invalid input" }, 400, request);
           }
           const data = parsed.data;
 
           // honeypot — тихо «успех», но ничего не делаем
           if (data.website && data.website.length > 0) {
-            return json({ ok: true });
+            return json({ ok: true }, 200, request);
           }
 
           const ip = getRequestIP({ xForwardedFor: true }) ?? null;
@@ -108,7 +108,7 @@ export const Route = createFileRoute("/api/leads")({
             .eq("ip_hash", ipHash)
             .gte("created_at", since);
           if ((count ?? 0) >= 5) {
-            return json({ error: "Too many requests" }, 429);
+            return json({ error: "Too many requests" }, 429, request);
           }
 
           const { data: inserted, error } = await supabaseAdmin
@@ -128,7 +128,7 @@ export const Route = createFileRoute("/api/leads")({
 
           if (error) {
             console.error("Insert lead failed:", error);
-            return json({ error: "Server error" }, 500);
+            return json({ error: "Server error" }, 500, request);
           }
 
           const lines = [
@@ -144,10 +144,10 @@ export const Route = createFileRoute("/api/leads")({
 
           await notifyTelegram(lines.join("\n"));
 
-          return json({ ok: true, id: inserted.id });
+          return json({ ok: true, id: inserted.id }, 200, request);
         } catch (e) {
           console.error("POST /api/leads exception:", e);
-          return json({ error: "Server error" }, 500);
+          return json({ error: "Server error" }, 500, request);
         }
       },
     },
